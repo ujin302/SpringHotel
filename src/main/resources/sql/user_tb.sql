@@ -15,7 +15,7 @@ create table user_tb(
 );
 
 [ naver api ]
-1. 회원이름
+1. 회원이름.
 	name
 2. 전화번호
 	mobile: 010-1111-1111
