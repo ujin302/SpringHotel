@@ -11,7 +11,8 @@ create table user_tb(
 	tel1 varchar(10), -- 휴대폰1
 	tel2 varchar(10), -- 휴대폰2
 	tel3 varchar(10) -- 휴대폰3
-	role VARCHAR(50) DEFAULT 'USER' -- 회원 등급
+	grade VARCHAR(50) DEFAULT '일반', -- 회원 등급: VIP, GOLD, SILVER, 일반
+	logintype varchar(10) DEFAULT 'SH' -- SH or NAVER
 );
 
 [ naver api ]
