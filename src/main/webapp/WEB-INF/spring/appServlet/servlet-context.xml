@@ -23,6 +23,7 @@
 	
 	<context:component-scan base-package="com.controller.SpringHotel" />
 	
-	
+	<!-- User -->
+	<context:component-scan base-package="user.controller" />
 	
 </beans:beans>
