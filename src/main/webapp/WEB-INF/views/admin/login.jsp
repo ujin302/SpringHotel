@@ -22,11 +22,11 @@
 					<th align="center" colspan="2">ADMIN LOGIN</th>
 				</tr>
 				<tr id="loginTr">
-					<td id="text">아이디</td>
+					<td class="text">아이디</td>
 					<td><input type="text" name="u_id" id="input" /></td>
 				</tr>
 				<tr>
-					<td id="text">비밀번호</td>
+					<td class="text">비밀번호</td>
 					<td><input type="password" name="u_pwd" id="input"  /></td>
 				</tr>
 				<tr>
