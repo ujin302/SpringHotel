@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Configuration
-@PropertySource("classpath:mysql/naver.properties")
+@PropertySource("classpath:mysql/ncp.properties")
 @Getter
 @Setter
 public class NCPConfiguration {

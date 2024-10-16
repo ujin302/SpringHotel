@@ -36,16 +36,16 @@
 		<c:forEach items="${roomList}" var="roomDTO">
 				<tr align="center">
 				<td>
-					<img src="/SpringHotel/resources/image/" width="250" height="200"><br /><br />
-					<b>${roomDTO.type }</b>
+					<img src="/SpringHotel/resources/image/${roomDTO.roomImg.imageOriginalFileName}" width="250" height="200"><br /><br />
+					<b>${roomDTO.type}</b>
 				</td>
 				<td>${roomDTO.getSize() }</td>
 				<td>${roomDTO.getCapacity()}</td>
 				<td><fmt:formatNumber value="${roomDTO.getPrice()}" pattern="#,###" /></td>
 				<td>${roomDTO.getCount() }</td>
-				<td><input type="button" value="객실 수정" style="color: white" onclick="location.href='/SpringHotel/admin/updateRoomInfo?type=${roomDTO.type}'"/></td>
+				<td><input type="button" value="객실 수정" style="color: white" onclick="location.href='/SpringHotel/admin/updateRoomInfo?roomId=${roomDTO.roomId}&type=${roomDTO.type}'"/></td>
 			</tr>	
-		</c:forEach>
+		</c:forEach> 
 	</table>
 </body>
 </html>

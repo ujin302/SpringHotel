@@ -1,10 +1,10 @@
 package room.bean;
 
-import org.springframework.stereotype.Component;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 
 @Data
 @AllArgsConstructor
@@ -15,5 +15,6 @@ public class RoomImgDTO {
     private int roomId;
     private String imageFileName;
     private String imageOriginalFileName;
+
 
 }

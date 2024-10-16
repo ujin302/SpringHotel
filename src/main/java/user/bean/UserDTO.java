@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Component
 public class UserDTO {
-
-    private String id;         // 아이디 (varchar(30) - primary key)
+	private int seq;
+    private String userId;         // 아이디 (varchar(30) - primary key)
     private String pwd;        // 비밀번호 (varchar(70) - not null)
     private String name;       // 이름 (varchar(30) - not null)
     private String gender;     // 성별 (varchar(3) - not null, F/M)
