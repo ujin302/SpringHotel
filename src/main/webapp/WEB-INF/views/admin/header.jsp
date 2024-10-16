@@ -28,7 +28,7 @@
             	<li><a href="/SpringHotel/admin/checkUser">회원조회</a></li>
             	<li><a href="/SpringHotel/admin/updateRoom">객실 정보</a></li>
                <li><a href="/SpringHotel/admin/checkReserve">예약내역</a></li>
-               <li><a href="">Q&A</a></li>
+               <li><a href="/SpringHotel/admin/inquiryList">Q&A</a></li>
 
             </ul>
 

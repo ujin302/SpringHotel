@@ -26,9 +26,11 @@
 	
 	<!-- Room -->
 	<context:component-scan base-package="room.bean" />
+	<context:component-scan base-package="room.service" />
 	
 	<!-- Review -->
 	<context:component-scan base-package="review.bean" />
+	<context:component-scan base-package="review.service" />
 	
 	<context:component-scan base-package="spring.conf" />
 </beans>

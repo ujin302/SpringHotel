@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:spring/db.properties")
-@MapperScan("admin.dao")
+@PropertySource("classpath:mysql/db.properties")
+@MapperScan("*.dao")
 public class SpringConfiguration {
    private @Value("${jdbc.driver}") String driver;
    private @Value("${jdbc.url}") String url;
@@ -42,7 +42,7 @@ public class SpringConfiguration {
    public SqlSessionFactory sqlSessionFactory() throws Exception {
       SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
       sqlSessionFactoryBean.setDataSource(dataSource());
-      sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("spring/mybatis-config.xml"));
+      sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mysql/mybatis-config.xml"));
       
       //1개
       //sqlSessionFactoryBean.setMapperLocations(new ClassPathResource("mapper/userMapper.xml"));
