@@ -8,6 +8,8 @@
 
 </head>
 <body>
+	<a href="/SpringHotel/user/login">로그인</a>
+	${state }
 
 <h1>Welcome to Spring Hotel</h1>
 
@@ -21,6 +23,5 @@
 <div>
     <p>Spring Hotel에 오신 것을 환영합니다!</p>
 </div>
-
 </body>
 </html>
