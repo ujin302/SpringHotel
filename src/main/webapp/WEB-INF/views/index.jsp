@@ -9,7 +9,6 @@
 </head>
 <body>
 	<a href="/SpringHotel/user/login">로그인</a>
-	${state }
 
 <h1>Welcome to Spring Hotel</h1>
 
