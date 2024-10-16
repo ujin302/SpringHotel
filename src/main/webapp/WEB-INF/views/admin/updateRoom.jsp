@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>호텔 오버톤 - 객실 정보</title>
+	<title>호텔 Spring Hotel - 객실 정보</title>
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
 	<style>
 		input{
@@ -22,7 +22,7 @@
 
 <body>
 	<%@ include file="header.jsp" %>
-	<div id="reserveTitle"><font size="20">객실 정보</font></div>
+	<div id="reserveTitle" style="font-size:20px;">객실 정보</div>
 	
 	<table align="center" class="reserveInfo">
 		<tr align="center" id="list">
@@ -33,18 +33,18 @@
 			<td>객실 수(개)</td>
 			<td>수정하기</td>
 		</tr>
-		<c:forEach items="${dto}" var="dto">
+		<c:forEach items="${roomList}" var="roomDTO">
 				<tr align="center">
 				<td>
-					<img src="../image/${dto.getRoomImg() }" width="250" height="200"><br /><br />
-					<b>${d.getType() }</b>
+					<img src="/SpringHotel/resources/image/" width="250" height="200"><br /><br />
+					<b>${roomDTO.type }</b>
 				</td>
-				<td>${dto.getSize() }</td>
-				<td>${dto.getCapacity() }</td>
-				<td><fmt:formatNumber value="${dto.getPrice()}" pattern="#,###" /></td>
-				<td>${dto.getCount() }</td>
-				<td><input type="button" value="객실 수정" onclick="location.href='roomUpdate?room_type=${dto.getType()}'"/></td>
-			</tr>		
+				<td>${roomDTO.getSize() }</td>
+				<td>${roomDTO.getCapacity()}</td>
+				<td><fmt:formatNumber value="${roomDTO.getPrice()}" pattern="#,###" /></td>
+				<td>${roomDTO.getCount() }</td>
+				<td><input type="button" value="객실 수정" style="color: white" onclick="location.href='/SpringHotel/admin/updateRoomInfo?type=${roomDTO.type}'"/></td>
+			</tr>	
 		</c:forEach>
 	</table>
 </body>

@@ -21,4 +21,6 @@ public class RoomDTO {
     private String form;       // 객실 구성 (TEXT, NOT NULL)
     private String view;       // 객실 전망 (TEXT, NOT NULL)
     private String bedtype;    // 침대 타입 (TEXT, NOT NULL)
+    
+    
 }
