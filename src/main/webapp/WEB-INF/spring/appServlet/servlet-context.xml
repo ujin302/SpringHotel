@@ -26,4 +26,6 @@
 	<!-- User -->
 	<context:component-scan base-package="user.controller" />
 	
+	<!-- Admin -->
+	<context:component-scan base-package="admin.controller" />
 </beans:beans>

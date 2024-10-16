@@ -17,7 +17,7 @@ public class UserNaverLoginServiceImpl implements UserNaverLoginService {
 	public String naverLogin(NaverLoginConfiguration loginConfiguration) {
 		String clientId = loginConfiguration+""  ;//애플리케이션 클라이언트 아이디값";
 	    String redirectURI;
-	    String apiURL;
+	    String apiURL = null;
 		try {
 			redirectURI = URLEncoder.encode("http://localhost:8080/SpringHotel/user/login/naver", "UTF-8");
 			SecureRandom random = new SecureRandom();
@@ -26,7 +26,7 @@ public class UserNaverLoginServiceImpl implements UserNaverLoginService {
 		    apiURL += "&client_id=" + clientId;
 		    apiURL += "&redirect_uri=" + redirectURI;
 		    apiURL += "&state=" + state;
-		    session.setAttribute("state", state);
+		   // session.setAttribute("state", state);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,4 +1,0 @@
-CREATE TABLE qtypes_tb (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    type_name VARCHAR(100) NOT NULL,
-);
