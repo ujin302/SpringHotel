@@ -7,6 +7,7 @@
 <title>Spring Hotel</title>
 </head>
 <body>
-
+	<a href="/SpringHotel/user/login">로그인</a>
+	${state }
 </body>
 </html>

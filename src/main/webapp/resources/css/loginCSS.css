@@ -155,37 +155,61 @@ footer input{
 	background:#f1ebd5;
 	margin:5% auto;
 	width:470px;
-	height:400px;
-	text-align:center;
+	height:570px;
 	border-radius: 1em;
 }
 
 .log th{
-	height:120px;
+	height:110px;
 	font-size:xx-large;
+	text-align: center;
 }
 
-#input{
-	 height:25px;
-     float:left;
+.input{
+	 height:35px;
 	 border-right: 0px;
      border-left: 0px;
      border-top: 0px;
      border-bottom: #9f8a7b 1px solid;
-     font-size:larger;
+     border-radius: 0.2em;
+     font-size:medium;
+     padding-left: 7px;
 }
 
-#text{
+.text{
    text-align:right;
    width:23%;
+   padding-right: 10px;
 }
 
-#btn{
-	margin-bottom:26px;
+.btn{
 	background-color: #382f24;
-    width:100px;
-    height:40px;
-    border-radius: 1em;
+    width: 65%;
+    height:35px;
+    border-radius: 0.5em;
     font-size:medium;
     color:#f1ebd5;
+}
+
+.btn:hover {
+	color: white;
+	background-color: #45392a;
+}
+
+#loginBtn {
+	margin-top: 12px;
+}
+
+#naverLoginBtn {
+	margin-bottom:26px;
+}
+
+#welcomText {
+	margin-bottom: 35px;
+	font-size:larger;
+}
+
+#SocialText {
+	margin-top: 40px;
+	margin-bottom: 0;
 }

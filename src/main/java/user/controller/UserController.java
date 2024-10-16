@@ -1,5 +1,7 @@
 package user.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +40,8 @@ public class UserController {
 	
 	@RequestMapping(value = "/login")
 	public String login(HttpSession session, ModelMap map) {
-		userService.login(session);
-		//map.addAttribute("apiURL", );
+		String apiURL = userService.login(session);
+		map.addAttribute("apiURL", apiURL);
 		
 		return "user/login";
 	}
@@ -50,8 +52,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login/naver")
-	public String loginNaver(@RequestParam String code) {
-		System.out.println("Naver code: " + code);
+	public String loginNaver(@RequestParam Map<String, String> map, HttpSession session) {
+		// 콜백 처리
+		userService.loginNaver(map, session);
 		
 		return "index";
 	}
