@@ -8,10 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Configuration
-@PropertySource("classpath:mysql/naver.properties")
+@PropertySource("classpath:mysql/ncp.properties")
 @Getter
 @Setter
-public class NaverConfiguration {
+public class NCPConfiguration {
    private @Value("${ncp.accessKey}") String accessKey; //접근할 수 있는 키값
    private @Value("${ncp.secretKey}") String secretKey; //보안 키값
    private @Value("${ncp.regionName}") String regionName;

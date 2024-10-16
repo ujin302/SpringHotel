@@ -31,11 +31,10 @@
 					<td>${userDTO.getName() }</td>
 					<td>${userDTO.getUserId() }</td>
 					<td>${userDTO.getPwd() }</td>
-					<td>${userDTO.getTel1 }</td>
+					<td>${userDTO.getTel1()}-${userDTO.getTel2()}-${userDTO.getTel3()}</td> <!-- 전화번호 출력 -->
 					<td>${userDTO.getEmail() }</td>
 				</tr>
 			</c:forEach>
-
 		</c:if>
 		<c:if test="${map2.list == null}">
 			<tr>

@@ -15,61 +15,64 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:mysql/db.properties")
 @MapperScan("*.dao")
 public class SpringConfiguration {
-	private @Value("${jdbc.driver}") String driver;
-	private @Value("${jdbc.url}") String url;
-	private @Value("${jdbc.username}") String username;
-	private @Value("${jdbc.password}") String password;
-	
-	@Autowired
-	private ApplicationContext appContext; // 환경 설정 파일임으로 주입 가능
-	
-	@Bean
-	public BasicDataSource dataSource() {
-		BasicDataSource basicDataSource = new BasicDataSource();
-		basicDataSource.setDriverClassName(driver);
-		basicDataSource.setUrl(url);
-		basicDataSource.setUsername(username);
-		basicDataSource.setPassword(password);
-		
-		return basicDataSource;
-	}
-	
-	@Bean
-	public SqlSessionFactory sqlSessionFactory() throws Exception {
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-		sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mysql/mybatis-config.xml"));
-		
-		sqlSessionFactoryBean.setTypeAliasesPackage("*.bean");
-		
-		
-		// [매퍼 등록]
-		sqlSessionFactoryBean.setMapperLocations(
-					appContext.getResources("classpath:mapper/*Mapper.xml")
-				);
-	    
-		return sqlSessionFactoryBean.getObject(); // getObject(): SqlSessionFactory 변환
-	}
-	
-	@Bean
-	public SqlSessionTemplate sqlSession() throws Exception {
-		SqlSessionTemplate sqlSsessionTemplate = new SqlSessionTemplate(sqlSessionFactory());
-		
-		return sqlSsessionTemplate;
-	}
-	
-	@Bean
-	// 트랜잭션 매니저 설정
-	public DataSourceTransactionManager transactionManager() {
-		DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager(dataSource());
-		
-		return dataSourceTransactionManager;
-	}
-	
+   private @Value("${jdbc.driver}") String driver;
+   private @Value("${jdbc.url}") String url;
+   private @Value("${jdbc.username}") String username;
+   private @Value("${jdbc.password}") String password;
+   
+   @Autowired
+   private ApplicationContext context;
+   
+   @Bean
+   public BasicDataSource dataSource() {
+      BasicDataSource basicDataSource =  new BasicDataSource();
+      basicDataSource.setDriverClassName(driver);
+      basicDataSource.setUrl(url);
+      basicDataSource.setUsername(username);
+      basicDataSource.setPassword(password);
+      return basicDataSource;
+   }
+   
+   @Bean
+   public SqlSessionFactory sqlSessionFactory() throws Exception {
+      SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+      sqlSessionFactoryBean.setDataSource(dataSource());
+      sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mysql/mybatis-config.xml"));
+      
+      //1개
+      //sqlSessionFactoryBean.setMapperLocations(new ClassPathResource("mapper/userMapper.xml"));
+      
+      //Mapper.xml이 2개 이상일 때
+      /*
+      sqlSessionFactoryBean.setMapperLocations(
+            new ClassPathResource("mapper/userMapper.xml"),
+            new ClassPathResource("mapper/userUploadMapper.xml"));
+      */
+      
+      sqlSessionFactoryBean.setMapperLocations(context.getResources("classpath:mapper/*Mapper.xml"));
+      
+      //sqlSessionFactoryBean.setTypeAliasesPackage("user.bean");
+      sqlSessionFactoryBean.setTypeAliasesPackage("*.bean");
+      
+      return sqlSessionFactoryBean.getObject(); // SqlSessionFactory 변환 역할
+   }
+   
+   @Bean
+   public SqlSessionTemplate sqlSession() throws Exception{
+      SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory());
+      return sqlSessionTemplate;
+      
+   }
+   
+   @Bean
+   public DataSourceTransactionManager transactionManager(){
+      DataSourceTransactionManager dataSourceTransactionManager = 
+            new DataSourceTransactionManager(dataSource());
+      return dataSourceTransactionManager;
+   }
 }
