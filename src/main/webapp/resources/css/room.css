@@ -83,29 +83,67 @@ h3 {
     transition: all 0.2s ease-in-out;
 }
 
-/* 부대시설 섹션 스타일 */
+/* 부대시설 섹션 스타일 (호텔 정보 섹션과 유사하게 변경) */
 .amenity-section {
     margin-top: 50px;
-    padding: 20px;
+    padding: 30px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.amenities-list {
+/* 부대시설 섹션 스타일 (호텔 정보 섹션과 일치하도록 수정) */
+.amenity-section {
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.amenity-section h3 {
+    text-align: center;
+    color: #444444;
+    font-size: 1.75em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.amenity-section h4 {
+    font-size: 1.5em;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.amenity-section ul.list-unstyled {
+    padding-left: 0;
     list-style-type: none;
-    padding-left: 20px;
 }
 
-.amenities-list li {
-    font-size: 1.1em;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    color: #343a40;
+/* 부대시설 항목 테이블 스타일 */
+.amenity-section table {
+    width: 100%;
 }
 
-.amenities-list li i {
-    margin-right: 10px;
+.amenity-section table td {
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px;
+}
+
+.amenity-section table td h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.amenity-section ul.list-unstyled {
+    padding-left: 0;
+    list-style-type: none;
+    color: #555;
+}
+
+.amenity-section ul.list-unstyled li {
+    font-size: 1em;
+    margin-bottom: 8px;
 }
 
 /* 호텔 정보 섹션 스타일 */

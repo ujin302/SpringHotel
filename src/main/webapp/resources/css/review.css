@@ -40,3 +40,28 @@ input[type="button"], button {
 input[type="button"]:hover, button:hover {
     background-color: #45a049;
 }
+
+ /* 별 평점 스타일 */
+    .star-rating {
+        direction: rtl;
+        display: inline-flex;
+        font-size: 2em;
+    }
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        cursor: pointer;
+        color: #ccc;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label {
+        color: gold;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: gold;
+    }

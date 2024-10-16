@@ -14,15 +14,27 @@
 <form action="${pageContext.request.contextPath}/review/insertReview" method="post">
     <!-- 객실 ID 입력 -->
     <label for="roomId">Room ID:</label>
-    <input type="text" id="roomId" name="roomId" required /><br/><br/>
+    <input type="text" id="roomId" name="roomId" value="${roomId}" readonly /><br/><br/>
     
-    <!-- 사용자 ID 입력 -->
+    <!-- 사용자 ID 입력 (readonly) -->
     <label for="userId">User ID:</label>
-    <input type="text" id="userId" name="userId" required /><br/><br/>
+    <input type="text" id="userId" name="userId" value="${userId}" readonly /><br/><br/>
     
-    <!-- 평점 입력 (1~5 범위) -->
+    <!-- 평점 입력 (1~5 별 선택) -->
     <label for="rating">Rating:</label>
-    <input type="number" id="rating" name="rating" min="1" max="5" required /><br/><br/>
+    <div class="star-rating">
+        <input type="radio" id="star5" name="rating" value="5" required />
+        <label for="star5">★</label>
+        <input type="radio" id="star4" name="rating" value="4" />
+        <label for="star4">★</label>
+        <input type="radio" id="star3" name="rating" value="3" />
+        <label for="star3">★</label>
+        <input type="radio" id="star2" name="rating" value="2" />
+        <label for="star2">★</label>
+        <input type="radio" id="star1" name="rating" value="1" />
+        <label for="star1">★</label>
+    </div>
+    <br/><br/>
     
     <!-- 리뷰 코멘트 입력 -->
     <label for="comment">Comment:</label>
@@ -32,11 +44,9 @@
     <button type="submit">리뷰 작성</button>
 </form>
 
-
+<!-- 리뷰 목록과 홈으로 이동하는 버튼 -->
 <input type="button" value="List" onclick="window.location.href='${pageContext.request.contextPath}/review/reviewList';">
 <input type="button" value="Index" onclick="window.location.href='${pageContext.request.contextPath}/';">
-
-
 
 </body>
 </html>

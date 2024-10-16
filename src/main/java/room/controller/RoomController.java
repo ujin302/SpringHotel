@@ -11,7 +11,11 @@ import room.bean.RoomDTO;
 import room.bean.RoomImgDTO;
 import room.service.RoomService;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/room")
@@ -32,6 +36,7 @@ public class RoomController {
         
         return "room/roomView";  // roomView.jsp로 이동
     }
+    
     
     // 특정 객실의 상세 정보 보기
     @RequestMapping(value = "/detail/{roomId}", method = RequestMethod.GET)
