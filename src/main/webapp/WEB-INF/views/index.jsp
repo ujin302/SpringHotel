@@ -7,6 +7,6 @@
 <title>Spring Hotel</title>
 </head>
 <body>
-	
+
 </body>
 </html>
