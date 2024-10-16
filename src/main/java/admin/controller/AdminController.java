@@ -1,5 +1,6 @@
 package admin.controller;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import admin.service.AdminService;
 import room.bean.RoomDTO;
@@ -19,17 +20,17 @@ import room.bean.RoomDTO;
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
-	
+
 	@RequestMapping(value="admin/login", method = RequestMethod.GET)
 	public String login() {
 		return "/admin/login";
 	}
 	
-	@RequestMapping(value="admin/updateRoom", method = RequestMethod.GET)
+	@RequestMapping(value="admin/updateRoom")
 	public String updateRoom(Model model) {
-		List<RoomDTO> roomList = adminService.getRoomList();
-		model.addAttribute("roomList", roomList);
-		return "/admin/updateRoom";
+	    List<RoomDTO> roomList = adminService.getRoomList();
+	    model.addAttribute("roomList", roomList);
+	    return "/admin/updateRoom";
 	}
 	
 	@RequestMapping(value="admin/updateRoomInfo", method = RequestMethod.GET)
@@ -41,15 +42,27 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "admin/update", produces = "text/html; charset=UTF-8")
-	@ResponseBody
-	public String update(@ModelAttribute RoomDTO roomDTO,
-						 @RequestParam("img") MultipartFile img){
-		adminService.update(roomDTO, img);
-		return "객실 정보 수정완료";
+	public String update(@ModelAttribute RoomDTO roomDTO, @RequestParam("img") MultipartFile img, Model model) {
+	    System.out.println("roomDTO = " + roomDTO);
+	    System.out.println("img = " + img);
+	    
+	    adminService.update(roomDTO, img);
+	    
+	    List<RoomDTO> roomList = adminService.getRoomList();
+	    model.addAttribute("roomList", roomList);
+	    
+	    // updateRoom.jsp로 이동
+	    return "admin/updateRoom";
 	}
+
+
 	
 	@RequestMapping(value="admin/checkReserve", method = RequestMethod.GET)
-	public String checkReserve() {
+	public String checkReserve(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
+		Map<String, Object> map2 = adminService.checkReserve(pg);
+		
+		map2.put("pg", pg);
+		model.addAttribute("map2", map2);
 		return "/admin/checkReserve";
 	}
 	
@@ -60,6 +73,17 @@ public class AdminController {
 		map2.put("pg", pg);
 		model.addAttribute("map2", map2);
 		
+		System.out.println("mape2 = " + map2);
 		return "/admin/checkUser";
+	}
+	
+	@RequestMapping(value="admin/inquiryList", method = RequestMethod.GET)
+	public String inquiryList() {
+		return "/admin/inquiryList";
+	}
+	
+	@RequestMapping(value="admin/inquiryDetail", method = RequestMethod.GET)
+	public String inquiryDetail() {
+		return "/admin/inquiryDetail";
 	}
 }

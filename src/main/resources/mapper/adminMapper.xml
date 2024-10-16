@@ -11,12 +11,65 @@
  	<select id="getTotalA" resultType="int">
  		SELECT COUNT(*) FROM user
  	</select>
- 	
- 	<select id="getRoomList" resultType="roomDTO">
- 		SELECT * FROM room
- 	</select>
+	 	
+	<select id="getRoomListWithImages" resultMap="roomWithImgMap">
+	    SELECT 
+	        r.roomId, r.type, r.size, r.capacity, r.price, r.count,
+	        ri.imageFileName, ri.imageOriginalFileName
+	    FROM room r
+	    LEFT JOIN roomImg ri ON r.roomId = ri.roomId
+	</select>
+	
+	<resultMap id="roomWithImgMap" type="roomDTO">
+	    <id property="roomId" column="roomId"/>
+	    <result property="type" column="type"/>
+	    <result property="size" column="size"/>
+	    <result property="capacity" column="capacity"/>
+	    <result property="price" column="price"/>
+	    <result property="count" column="count"/>
+	    <association property="roomImg" javaType="roomImgDTO">
+	        <result property="imageFileName" column="imageFileName"/>
+	        <result property="imageOriginalFileName" column="imageOriginalFileName"/>
+	    </association>
+	</resultMap>
  	
  	<select id="getRoomDTO" parameterType="String" resultType="roomDTO">
  		SELECT * FROM room where type = #{type}
  	</select>
+ 	
+ 	<select id="getRoomImgDTO" parameterType="String" resultType="roomImgDTO">
+ 		SELECT * FROM roomImg WHERE roomId = #{roomId}
+ 	</select>
+ 	
+ 	<update id="updateRoom" parameterType="roomDTO">
+        UPDATE room
+        SET type = #{type}, size = #{size}, capacity = #{capacity},
+            price = #{price}, count = #{count}
+        WHERE roomId = #{roomId}
+    </update>
+
+    <update id="updateRoomImg" parameterType="roomImgDTO">
+        UPDATE roomImg
+        SET imageFileName = #{imageFileName}, imageOriginalFileName = #{imageOriginalFileName}
+        WHERE roomImgId = #{roomImgId}
+    </update>
+    
+    <select id="checkReserve" resultType="reserveDTO">
+        SELECT r.reserveId AS reserveId,
+               r.roomId AS roomId,
+               r.adults,
+               r.kids,
+               r.checkin,
+               r.checkout,
+               rm.type AS roomType,  <!-- RoomDTO의 type을 가져옴 -->
+               r.price,
+               r.time
+        FROM reserve r
+        JOIN room rm ON r.roomId = rm.roomId
+        LIMIT #{startNum}, #{endNum}
+    </select>
+
+    <select id="getTotalB" resultType="int">
+        SELECT COUNT(*) FROM reserve;
+    </select>
  </mapper>

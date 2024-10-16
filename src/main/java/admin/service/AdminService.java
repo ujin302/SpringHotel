@@ -17,4 +17,6 @@ public interface AdminService {
 
 	public void update(RoomDTO roomDTO, MultipartFile img);
 
+	public Map<String, Object> checkReserve(String pg);
+
 }
