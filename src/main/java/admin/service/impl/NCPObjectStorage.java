@@ -15,14 +15,14 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
-import spring.conf.NaverConfiguration;
+import spring.conf.NCPConfiguration;
 import admin.service.ObjectStorageService;
 
 @Service
 public class NCPObjectStorage implements ObjectStorageService {
    final AmazonS3 s3;
    
-   public NCPObjectStorage(NaverConfiguration naverConfiguration) {
+   public NCPObjectStorage(NCPConfiguration naverConfiguration) {
       s3 = AmazonS3ClientBuilder
             .standard()
             .withEndpointConfiguration(
