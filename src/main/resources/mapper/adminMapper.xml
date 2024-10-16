@@ -4,4 +4,19 @@
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="admin.dao.AdminDAO">
+ 	<select id="checkUser" parameterType="map" resultType="userDTO">
+ 		SELECT * FROM user limit #{startNum}, #{endNum}
+ 	</select>
+ 	
+ 	<select id="getTotalA" resultType="int">
+ 		SELECT COUNT(*) FROM user
+ 	</select>
+ 	
+ 	<select id="getRoomList" resultType="roomDTO">
+ 		SELECT * FROM room
+ 	</select>
+ 	
+ 	<select id="getRoomDTO" parameterType="String" resultType="roomDTO">
+ 		SELECT * FROM room where type = #{type}
+ 	</select>
  </mapper>
