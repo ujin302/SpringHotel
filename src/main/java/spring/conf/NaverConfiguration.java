@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Configuration
-@PropertySource("classpath:spring/naver.properties")
+@PropertySource("classpath:mysql/naver.properties")
 @Getter
 @Setter
 public class NaverConfiguration {
