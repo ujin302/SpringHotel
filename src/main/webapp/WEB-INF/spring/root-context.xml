@@ -14,6 +14,10 @@
 	<!-- User -->
 	<context:component-scan base-package="user.bean" />	
 	
+	<!-- Admin -->
+	<context:component-scan base-package="admin.bean" />
+	<context:component-scan base-package="admin.service.impl" />	
+	
 	<!-- 문의사항 -->
 	<context:component-scan base-package="questions.bean" />
 	
@@ -26,4 +30,5 @@
 	<!-- Review -->
 	<context:component-scan base-package="review.bean" />
 	
+	<context:component-scan base-package="spring.conf" />
 </beans>
