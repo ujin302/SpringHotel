@@ -1,15 +1,17 @@
 // 아이디 중복 체크 	
-function checkId() {
+function checkId(focusId) {
 	console.log("checkId()")
+	console.log('data checkid: ' + $('#userid').data('checkid'));
+	
+	if($('#userid').val() == '' || focusId == $('#userid').val()) return;
 	
 	$.ajax({
 		type: 'get',
-		url: '/SpringHotel/user/checkId',
-		data: {'id' : $('#id').val()},
+		url: '/SpringHotel/user/checkUserId?userId=' + $('#userid').val(),
 		dataType: 'text',
 		success: function(data) {
 			console.log(data.trim());
-			if(data.trim() === "true") {
+			if(data.trim() == "true") {
 				$('#idDiv').text('사용 가능');
 				$('#idDiv').css('color', 'green');
 			}
@@ -21,114 +23,108 @@ function checkId() {
 	})
 }
 
-// 아이디 중복 체크 후, 사용자가 id를 다시 설정하였을 경우 
-let focusId = null;
-document.getElementById('id').addEventListener("focus", () => {
-	focusId = document.getElementById('id').value;
-});
-
-document.getElementById('id').addEventListener("blur", () => {
-	if(focusId != document.getElementById('id').value) { // id 변경 
-		document.getElementById('id').dataset['checkid'] = false; // 중복체크 X
-	}
-});
-
 // 회원가입 시, 유효성 검사 
 function Join(e) {
+	console.log('Join()');
+	var isOk = true;
+	
+	// 초기화
+	$('.infoText').each(function (index, item) {
+		if($(this).attr('id') != 'idDiv') {
+			$(this).text('');
+		}
+    });
+	
 	// 1. 아이디 유효성 확인
 	if($('#idDiv').text() == '사용 불가능') {
-		alert("아이디 중복체크 하세요.");
+		$('#idDiv').text("아이디 중복체크 하세요.");
+		$('#idDiv').css('color', 'red');
 		e.preventDefault();
-		return false;
+		isOk = false;
 	}
 	
-	// 2. 이름 유효성 확인
-	if(document.getElementById('name').value == '') {
-		alert("이름을 작성하세요.");
+	if($('#userid').val() == '' || $('#idDiv').text() == '아이디를 작성하세요.') {
+		$('#idDiv').text("아이디를 작성하세요.");
 		e.preventDefault();
-		return false;
+		isOk = false;
 	}
 	
-	// 3. 비밀번호 유효성 확인
-	if(document.getElementById('pwd').value == '') {
-		alert("비밀번호을 작성하세요.");
+	// 2. 비밀번호 유효성 확인
+	if($('#pwd').val() == '') {
+		$('#pwdDiv').text("비밀번호를 작성하세요.");
 		e.preventDefault();
-		return false;
+		isOk = false;
 	}
 	
-	$.ajax({
-		type: 'post',
-		url: '/Spring/user/write',
-		data: $('#writeFrom').serialize(),
-		success: function(data) {
-			console.log('회원가입');
-			alert("회원가입을 축하합니다.");
-			location.href="/Spring/user/list";
-		},
-		error: function(e) {
-			console.log(e);
-			alert('실패');
-		}
-	});	
-}
+	// 3. 이름 유효성 확인
+	if($('#name').val() == '') {
+		$('#nameDiv').text("이름을 작성하세요.");
+		e.preventDefault();
+		isOk = false;
+	}
 
-// 회원정보 수정 
-function userInfoUpdate(e) {
-	if(confirm("회원 정보를 수정하시겠습니까? ")) {
+	// 4. 이메일 유효성 확인
+	if($('#email').val() == '') {
+		$('#emailDiv').text("비밀번호를 작성하세요.");
+		e.preventDefault();
+		isOk = false;
+	}
+	
+	// 5. 생년월일 유효성 확인
+	$('.birth').each(function (index, item) {
+		if($(this).val() == '') {
+			$('#birthDiv').text("생년월일을 작성하세요.");
+			e.preventDefault();
+			isOk = false;
+		}else if(index == 0 && $(this).val().length != 4) {
+			$('#birthDiv').text("태어난 해는 4자리 수로 입력하세요.");
+			e.preventDefault();
+			isOk = false;
+		}else if((index == 1 || index == 2) && $(this).val().length > 2) {
+			$('#birthDiv').text("태어난 달과 일수는 1자리 또는 2자리로 입력하세요.");
+			e.preventDefault();
+			isOk = false;
+		}
+    });
+
+	// 6. 전화번호 유효성 확인
+	$('.tel').each(function (index, item) {
+		if($(this).val() == '') {
+			$('#telDiv').text("전화번호를 작성하세요.");
+			e.preventDefault();
+			isOk = false;
+		}else if(index != 0 && $(this).val().length != 4) {
+			$('#telDiv').text("4자리 수를 작성하세요.");
+			e.preventDefault();
+			isOk = false;
+		}
+    });
+	
+	if(isOk) {
 		$.ajax({
 			type: 'post',
-			url: '/Spring/user/update',
-			data: $('#updateFrom').serialize(),
+			url: '/SpringHotel/user/join/submit',
+			data: $('#joinForm').serialize(),
 			success: function(data) {
-				console.log('회원수정');
-				alert("회원정보가 수정되었습니다.");
-				location.href="/Spring/user/list?pg="+$('#pg').text();
+				console.log('회원가입');
+				alert("회원가입을 축하합니다.");
+				location.href="/SpringHotel";
 			},
 			error: function(e) {
 				console.log(e);
-				location.reload();
+				alert('실패');
 			}
 		});
-	}
+	}	
 }
-
-
-// 회원 탈퇴 
-function userInfoDelete(e) {
-	$.ajax({
-		type: 'get',
-		url: '/Spring/user/getExistPwd?id=' + $('#id').val(),
-		dataType: 'json',
-		success: function(data) {
-			console.log('회원탈퇴: 비밀번호 가져오기');
-			console.log(JSON.stringify(data));
-			var input = prompt('비밀번호를 입력해주세요.');
-			
-			if(input == data.pwd) {
-				if(confirm("탈퇴 하시겠습니까?")) {
-					$.ajax({
-						type: 'get',
-						url: '/Spring/user/delete?id=' + $('#id').val(),
-						success: function(data) {
-							console.log('회원탈퇴');
-							alert("탈퇴되었습니다.");
-							location.href="/Spring/user/list";
-						},
-						error: function(e) {
-							console.log(e);
-						}
-					});
-				}
-			}else alert('비밀번호가 일치하지 않습니다.')
-		},
-		error: function(e) {
-			console.log(e);
-		}
-	});
-}
-
 
 $(function() {
 	// 1. id 중복 체크
-	$('#userid').blur(checkId);
+	$('#userid').focus(function() {
+		let focusId = $('#userid').val();
+		$('#userid').blur(function() {
+			checkId(focusId)
+		});
+	});
+	
 });

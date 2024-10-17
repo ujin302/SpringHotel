@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	<div id="reserveTitle"><font size="20">Q&A</font></div>
 	
 	<table align="center" class="reserveInfo">

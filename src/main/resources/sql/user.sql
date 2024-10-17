@@ -1,6 +1,6 @@
 create table user (
     seq INT AUTO_INCREMENT PRIMARY KEY, -- PK
-	user_id varchar(30) UNIQUE, -- 아이디
+	userid varchar(30) UNIQUE, -- 아이디
 	pwd varchar(70), -- 비밀번호
 	name varchar(30) not null, -- 이름
 	gender varchar(3) not null, -- 성별: F/M

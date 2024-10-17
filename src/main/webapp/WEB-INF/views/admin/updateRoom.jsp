@@ -21,7 +21,7 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	<div id="reserveTitle" style="font-size:20px;">객실 정보</div>
 	
 	<table align="center" class="reserveInfo">
@@ -47,5 +47,8 @@
 			</tr>	
 		</c:forEach> 
 	</table>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 </body>
 </html>

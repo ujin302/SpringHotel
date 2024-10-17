@@ -37,6 +37,7 @@ html,body{
 #joinTable th {
 	width: 100px;
 	padding-left: 20px;
+	text-align: center;
 }
 
 .input{
@@ -47,7 +48,6 @@ html,body{
      border-bottom: #9f8a7b 1px solid;
      font-size:medium;
 }
-
 
 .log #title{
 	height:110px;
@@ -93,4 +93,18 @@ html,body{
 
 #loginBtn {
 	margin-top: 12px;
+}
+
+.infoText {
+	font-size: 11px;
+	color: red;
+}
+
+#m {
+	margin-right: 4px;
+}
+
+#f{
+	margin-right: 4px;
+	margin-left: 35px;
 }

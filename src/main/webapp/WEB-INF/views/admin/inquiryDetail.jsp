@@ -38,7 +38,7 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
     <br/><br />
 	<div id="reserveTitle"><font size="20">Q&A</font></div>
     <div id="detailcomment">
@@ -107,10 +107,10 @@
 	    </form>
 	</div>
 
-
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="/SpringHotel/resources/js/bootstrap.js"></script>
-    <script src="/SpringHotel/resources/js/admin.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
+<script src="/SpringHotel/resources/js/admin.js"></script>
 	
 </body>
 </html>
