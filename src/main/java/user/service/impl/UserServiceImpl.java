@@ -36,16 +36,18 @@ public class UserServiceImpl implements UserService {
 		String userId = userDTO.getUserId();
 		
 		// 2. 신규 사용자 구분
-		String checkNaverLoginId = userDAO.checkNaverLoginId(userId);
-		if(!userId.equals(checkNaverLoginId)) { 
-			// 2-1. 신규 사용자: 회원가입 진행 
-			return userDTO;
-		} else { 
-			// 2-2. 기존 사용자: 로그인 완료
-			session.setAttribute("userSeq", userDTO.getSeq());
-			session.setAttribute("userName", userDTO.getName());
-			return null;
-		}
+		UserDTO resultDTO = userDAO.checkNaverLoginId(userId);
+		if(resultDTO == null) { 
+			// 2-1. 신규 사용자: 
+			userDAO.joinUser(userDTO);
+			userDTO = userDAO.checkNaverLoginId(userId);
+		} 
+		
+		// 3. session 부여
+		session.setAttribute("userSeq", userDTO.getSeq());
+		session.setAttribute("userName", userDTO.getName());
+			
+		return null;
 	}
 
 	@Override
@@ -53,6 +55,7 @@ public class UserServiceImpl implements UserService {
 		// 1. 로그인 정보 확인
 		UserDTO userDTO = userDAO.loginSH(map);
 		System.out.println("loginSH(): " + map.toString());
+		System.out.println("userDTO: " + userDTO);
 		
 		// 2. 로그인 성공&실패 확인
 		if(userDTO != null) {
@@ -61,6 +64,20 @@ public class UserServiceImpl implements UserService {
 			return true;
 		} else return false;
 		
+	}
+
+	@Override
+	public boolean checkUserId(String userId) {
+		int result = userDAO.checkUserId(userId);
+		
+		if(result == 1) return false;
+		else return true;
+		
+	}
+
+	@Override
+	public void joinSubmit(UserDTO userDTO) {
+		userDAO.joinUser(userDTO);
 	}
 	
 }
