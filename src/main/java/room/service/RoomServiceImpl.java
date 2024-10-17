@@ -21,11 +21,7 @@ public class RoomServiceImpl implements RoomService {
     
     @Override
     public RoomDTO getRoomById(int roomId) {
-    	 RoomDTO room = roomDAO.getRoomById(roomId);
-    	    if (room == null) {
-    	        System.out.println(" DB에 RoomID 가 없는가? : " + roomId);  // 데이터가 없는 경우 확인
-    	    }
-    	    return room;
+    	 return roomDAO.getRoomById(roomId);
     }
 
     @Override

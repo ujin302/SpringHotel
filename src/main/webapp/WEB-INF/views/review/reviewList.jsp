@@ -1,93 +1,66 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head>
-    <title>Review List</title>
-    <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/review.css">
-</head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-         	<button type="button" class="navbar-toggle collapsed"
-            	data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-            	aria-expanded="false">
-            	<span class="icon-bar"></span>
-            	<span class="icon-bar"></span>
-            	<span class="icon-bar"></span>
-         	</button>
-         	<a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring Hotel</a>
-     	 </div>
-     	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-         	<ul class="nav navbar-nav">
-            	<li class="active"><a href="${pageContext.request.contextPath}/">HOME</a></li>
-            	 <li><a href="${pageContext.request.contextPath}/room/roomView">객실 정보</a></li>
-               <li><a href="reservation1.jsp">예약</a></li>
-               <li><a href="reserveInfo.jsp">예약내역</a></li>
-               <li><a href="inquiryList.jsp">Q&A</a></li>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-            	<li class="dropdown">
-               		<a href="#" class="dropdown-toggle"
-                  		data-toggle="dropdown" role="button" aria-haspopup="true"
-                  		aria-expanded="false">접속하기<span class="caret"></span></a>
-           			<ul class="dropdown-menu">
-                	  	<li class="active"><a href="login.jsp">로그인</a></li>
-                  		<li><a href="join.jsp">회원가입</a></li>
-               		</ul>
-            	</li>
-         	</ul>
-     	 </div> 
-	</nav>
-	
-	
-    <div class="container">
-        <h2 class="text-center">Review List</h2>
-
-        <table class="table table-striped table-bordered table-responsive">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Room ID</th>
-                    <th>User Name</th>
-                    <th>Rating</th>
-                    <th>Comment</th>
-                    <th>Logtime</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-					<c:forEach var="review" items="${reviews}">
-					    <tr>
-					        <td>${review.roomId}</td>
-					        <td>${review.userName}</td> <!-- userId 대신 userName 출력 -->
-					        <td>${review.rating}</td>
-					        <td>${review.comment}</td>
-					        <td>${review.logtime}</td>
-					        <td>
-					            <button class="btn btn-primary update-btn" data-id="${review.reviewId}">Update</button>
-					        </td>
-					        <td>
-					            <button class="btn btn-danger delete-btn" data-id="${review.reviewId}">Delete</button>
-					        </td>
-					    </tr>
-					</c:forEach>
-            </tbody>
-        </table>
+    <div class="review-modal">
+        <div class="review-modal-header">
+            <h2 class="modal-title">Customer Reviews</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <p class="room-id">Room ID: ${review.roomId}</p>
         
-        <div class="text-center">
-            <input type="button" class="btn btn-success" value="Index" onclick="window.location.href='${pageContext.request.contextPath}/';">
+        <div class="review-list-container">
+            <c:forEach var="review" items="${reviews}">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="user-info">
+                            <!-- userName이 null일 경우 '익명 사용자' 출력, 값이 있으면 출력 -->
+                            <h4 class="user-name">
+                                <c:choose>
+                                    <c:when test="${not empty review.userName}">
+                                        ${review.userName}
+                                    </c:when>
+                                    <c:otherwise>
+                                        익명 사용자
+                                    </c:otherwise>
+                                </c:choose>
+                            </h4>
+                            <p class="room-id">Room ID: ${review.roomId}</p> <!-- roomId 추가 -->
+                            <span class="rating">
+                                <c:forEach begin="1" end="5" varStatus="loop">
+                                    <!-- 별을 표시할 때, loop.index와 rating 값을 비교하여 클래스 동적으로 지정 -->
+                                    <c:if test="${loop.index <= review.rating}">
+                                        <i class="fas fa-star filled"></i>
+                                    </c:if>
+                                    <c:if test="${loop.index > review.rating}">
+                                        <i class="fas fa-star"></i>
+                                    </c:if>
+                                </c:forEach>
+                            </span>
+                        </div>
+                        <div class="review-logtime">${review.logtime}</div>
+                    </div>
+                    <div class="review-content">
+                        <p>${review.comment}</p>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn btn-outline-primary update-btn" data-id="${review.reviewId}">수정</button>
+                        <button class="btn btn-outline-danger delete-btn" data-id="${review.reviewId}">삭제</button>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        
+        <div class="review-modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
     </div>
 
-    <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/review.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/SpringHotel/resources/js/review.js"></script>
 </body>
 </html>

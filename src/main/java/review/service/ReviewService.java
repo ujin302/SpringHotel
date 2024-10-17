@@ -9,4 +9,6 @@ public interface ReviewService {
     public void updateReview(ReviewDTO review) throws Exception;  // 리뷰 업데이트
     public void deleteReview(int reviewId) throws Exception;      // 리뷰 삭제
 	public ReviewDTO getReviewById(Integer reviewId);
+	public List<ReviewDTO> reviewListByRoom(int roomId);
+	
 }

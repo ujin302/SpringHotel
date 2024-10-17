@@ -20,6 +20,13 @@
     SELECT * FROM review ORDER BY rating DESC
 	</select>
 	
+	<select id="reviewListByRoom" parameterType="int" resultType="review.bean.ReviewDTO">
+	    SELECT r.reviewId, r.roomId, r.userId, u.name AS userName, r.rating, r.comment, r.logtime
+	    FROM review r
+	    LEFT JOIN user u ON r.userId = u.seq
+	    WHERE r.roomId = #{roomId}
+	</select>
+
 	<update id="updateReview" parameterType="review.bean.ReviewDTO">
     UPDATE review
     SET rating = #{rating}, comment = #{comment}, updatetime = NOW()
@@ -31,8 +38,6 @@
     WHERE reviewid = #{reviewId}
 	</delete>
 	
-	
-    
-    
+
 </mapper>
  

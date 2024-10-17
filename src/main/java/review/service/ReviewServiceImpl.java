@@ -36,4 +36,10 @@ public class ReviewServiceImpl implements ReviewService {
     public ReviewDTO getReviewById(Integer reviewId) {
         return reviewDAO.getReviewById(reviewId);
     }
+    
+    @Override
+    public List<ReviewDTO> reviewListByRoom(int roomId) {
+    	
+    	return reviewDAO.reviewListByRoom(roomId);
+    }
 }

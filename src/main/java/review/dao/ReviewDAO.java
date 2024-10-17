@@ -12,6 +12,7 @@ public interface ReviewDAO {
     public void updateReview(ReviewDTO review) throws Exception;
     public void deleteReview(int reviewId) throws Exception;
     public ReviewDTO getReviewById(Integer reviewId);
+	public List<ReviewDTO> reviewListByRoom(int roomId);
     
 }
 
