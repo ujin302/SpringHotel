@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
+<body>
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
         	<button type="button" class="navbar-toggle collapsed"
@@ -14,11 +14,11 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        	<ul class="nav navbar-nav">
-          	<li class="active"><a href="main.jsp">HOME</a></li>
-          	 <li><a href="Standard.jsp">객실 정보</a></li>
-             <li><a href="reservation1.jsp">예약</a></li>
-             <li><a href="reserveInfo.jsp">예약내역</a></li>
-             <li><a href="inquiryList.jsp">Q&A</a></li>
+          	 <li id="header-1"><a href="/SpringHotel/">HOME</a></li>
+          	 <li id="header-2"><a href="/SpringHotel/">객실 정보</a></li>
+             <li id="header-3"><a href="/SpringHotel/">예약</a></li>
+             <li id="header-4"><a href="/SpringHotel/">예약내역</a></li>
+             <li id="header-5"><a href="/SpringHotel/">Q&A</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li class="dropdown">
@@ -34,4 +34,5 @@
        	</ul>
    	 </div> 
 </nav>
+</body>
 

@@ -7,17 +7,17 @@
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/loginCSS.css">
 <title>로그인</title>
 </head>
 <body>
-	<div id="viewName" hidden="">login</div>
 	<jsp:include page="../common/header.jsp" />
-	<div class="container">
+	<div class="container" data-view="login">
       	<form>
 			<table id="loginTable" class="log" style="background-color: #EEEEEE;" >
 				<tr>
-					<th>LOGIN</th>
+					<th>로그인</th>
 				</tr>
 				<tr align="center">
 					<td>
@@ -56,6 +56,8 @@
 			</table>
 		</form>
 	</div>
+
+<jsp:include page="../common/footer.jsp" />
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="/SpringHotel/resources/js/bootstrap.js"></script>
 <script src="/SpringHotel/resources/js/header.js"></script>
