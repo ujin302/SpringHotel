@@ -1,11 +1,7 @@
 package user.service.impl;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
 import java.util.Map;
@@ -23,12 +19,15 @@ import org.springframework.web.client.RestTemplate;
 import org.json.JSONObject;
 
 import spring.conf.NaverLoginConfiguration;
+import user.bean.UserDTO;
 import user.service.UserNaverLoginService;
 
 @Service
 public class UserNaverLoginServiceImpl implements UserNaverLoginService {
 	@Autowired
 	NaverLoginConfiguration naverLoginConf;
+	@Autowired
+	UserDTO userDTO;
 	
 	@Override
 	public String naverLogin(HttpSession session) { // 네이버 로그인 인증 요청
@@ -56,14 +55,20 @@ public class UserNaverLoginServiceImpl implements UserNaverLoginService {
 	}
 
 	@Override
-	public void loginNaver(Map<String, String> map, HttpSession session) {
+	public UserDTO loginNaver(Map<String, String> map, HttpSession session) {
 		String code = map.get("code");
 	    String state = map.get("state");
+	    System.out.println("1. userDTO: " + userDTO.toString());
 	    
-	    // 접근 토큰 발급 요청
+	    // 1. 접근 토큰 발급 요청
 	    String access_token = getAccessToken(code, state); 
-	    // 사용자 정보 요청
-	    JSONObject userInfo = getUserInfo(access_token);
+	    // 2. 사용자 정보 요청
+	    JSONObject userInfoJSON = getUserInfo(access_token);
+	    // 3. 사용자 정보 DTO에 저장
+	    setNaverUserDTO(userInfoJSON);
+	    System.out.println("2. userDTO: " + userDTO.toString());
+	    
+	    return userDTO;
 	}
 
 	// 접근 토큰 발급 요청
@@ -96,13 +101,12 @@ public class UserNaverLoginServiceImpl implements UserNaverLoginService {
 	private JSONObject getUserInfo(String access_token) {
         String apiUrl = "https://openapi.naver.com/v1/nid/me";
         RestTemplate restTemplate = new RestTemplate();
-
+        
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + access_token);
         headers.setContentType(MediaType.APPLICATION_JSON);
-
+        
         HttpEntity<String> entity = new HttpEntity<>(headers);
-
         ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
 
         try {
@@ -114,6 +118,33 @@ public class UserNaverLoginServiceImpl implements UserNaverLoginService {
         }
         
         return null;
+	}
+	
+	private void setNaverUserDTO(JSONObject userInfoJSON) {
+		// seq, pwd, emailCheck, grade 저장 X 
+		
+		// 이름 & 성별 & 이메일 & 로그인 타입
+		userDTO.setUserId(userInfoJSON.get("id").toString());
+		userDTO.setName(userInfoJSON.get("name").toString());
+		userDTO.setGender(userInfoJSON.get("gender").toString());
+		userDTO.setEmail(userInfoJSON.get("email").toString());
+		userDTO.setLogintype("NAVER");
+		
+		// 생년월일 설정
+		userDTO.setBirth1(Integer.parseInt(userInfoJSON.get("birthyear").toString()));
+		if(!userInfoJSON.get("birthday").toString().equals("") && userInfoJSON.get("birthday").toString() != null) {
+			String[] birthday = userInfoJSON.get("birthday").toString().split("-");
+			userDTO.setBirth2(Integer.parseInt(birthday[0]));
+			userDTO.setBirth3(Integer.parseInt(birthday[1]));
+		}
+		
+		// 전화번호 
+		if(!userInfoJSON.get("mobile").toString().equals("") && userInfoJSON.get("mobile").toString() != null) {
+			String[] mobileArr = userInfoJSON.get("mobile").toString().split("-");
+			userDTO.setTel1(mobileArr[0]);
+			userDTO.setTel2(mobileArr[1]);
+			userDTO.setTel3(mobileArr[2]);
+		}
 	}
 	
 }
