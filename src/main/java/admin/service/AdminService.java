@@ -35,4 +35,9 @@ public interface AdminService {
 
 	public List<AnswerDTO> getCommentsByQuestionId(int parseInt);
 
+	public void saveQuestion(QuestionsDTO questionsDTO);
+
+	public void updateInquiry(int questionsId, int typename, String content);
+
+
 }

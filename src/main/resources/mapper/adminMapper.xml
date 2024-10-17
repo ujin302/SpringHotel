@@ -116,4 +116,16 @@
         DELETE FROM answer
         WHERE answerId = #{answerId}
     </delete>
+    
+    <insert id="saveQuestion" parameterType="questions.bean.QuestionsDTO">
+        INSERT INTO questions (userId, content, qtypesId, isAnswered, logtime)
+        VALUES (#{userId}, #{content}, #{qtypesId}, false, NOW());
+    </insert>
+    
+    <update id="updateInquiry" parameterType="map">
+        UPDATE questions
+        SET content = #{content}, qtypesId = #{qtypesId}  
+        WHERE questionsId = #{questionsId}
+    </update>
+    
  </mapper>

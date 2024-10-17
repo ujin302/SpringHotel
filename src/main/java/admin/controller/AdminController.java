@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,7 +128,25 @@ public class AdminController {
 	    return "/admin/inquiryDetail";
 	}
 
-	
+	@RequestMapping(value="admin/inquiryDetail2", method = RequestMethod.GET)
+	public String inquiryDetail2(@RequestParam String questionsId, String typename, String writerId, HttpSession session,Model model) {
+	    QuestionsDTO questionsDTO = adminService.getQuestionsDTO(questionsId);
+	    String adminId = (String) session.getAttribute("adminId");
+	    
+	    // 댓글 목록 조회
+	    List<AnswerDTO> comments = adminService.getCommentsByQuestionId(Integer.parseInt(questionsId));
+	    
+	    model.addAttribute("questionsDTO", questionsDTO);
+	    model.addAttribute("typename", typename);
+	    model.addAttribute("writerId", writerId);
+	    model.addAttribute("comments", comments); 
+	    model.addAttribute("adminId", adminId); 
+	    
+	    
+	    System.out.println("comments = " + comments);
+	    System.out.println(questionsDTO);
+	    return "/inquiry/inquiryDetail";
+	}
 	
 	@RequestMapping(value="admin/writeComment")
 	@ResponseBody
@@ -190,4 +210,70 @@ public class AdminController {
 	        return "fail";
 	    }
 	}
+	
+	//------------------------------------------------------------------------------
+	@RequestMapping(value="admin/inquiryWrite", method = RequestMethod.GET)
+	public String inquiryWrite() {
+		return "/inquiry/inquiryWrite";
+	}
+	
+	@PostMapping("/questions/save")
+	@ResponseBody
+	public String saveQuestion(@RequestParam("qtypesId") int qtypesId,
+	                    @RequestParam("content") String content,
+	                    HttpSession session) {
+		// 세션에서 userId 가져오기
+		Integer userId = (Integer) session.getAttribute("userId");
+		
+		// QuestionsDTO 객체 생성
+		QuestionsDTO questionsDTO = new QuestionsDTO();
+		questionsDTO.setUserId(userId);
+		questionsDTO.setContent(content);
+		questionsDTO.setQtypesId(qtypesId);
+		
+		// 데이터베이스에 저장
+		adminService.saveQuestion(questionsDTO);
+		
+		return "success"; // AJAX 성공 응답
+	}
+	
+	@RequestMapping(value="admin/inquiryUpdate", method = RequestMethod.GET)
+	public String inquiryUpdate(@RequestParam("typename") String typename,
+            					@RequestParam("content") String content,
+            					@RequestParam("questionsId") String questionsId,
+            					Model model) {
+		System.out.println("typename = " + typename);
+		System.out.println("content = " + content);
+		System.out.println("questionsId = " + questionsId);
+		model.addAttribute("typename", typename);
+		model.addAttribute("content", content);
+		model.addAttribute("questionsId", questionsId);
+		return "/inquiry/inquiryUpdate";
+	}
+    
+	@RequestMapping(value="admin/inquiryList2", method = RequestMethod.GET)
+	public String inquiryList2(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
+		Map<String, Object> map2 = adminService.inquiryList(pg);
+		
+		map2.put("pg", pg);
+		model.addAttribute("map2", map2);
+		return "/inquiry/inquiryList";
+	}
+	
+	@RequestMapping(value = "inquiry/update", method = RequestMethod.POST)
+	public String updateInquiry(@RequestParam("typename") int typename,
+	                            @RequestParam(value = "questionsId", required = false) String questionsIdStr,
+	                            @RequestParam("content") String content,
+	                            Model model) {
+	    if (questionsIdStr == null || questionsIdStr.isEmpty()) {
+	        throw new IllegalArgumentException("questionsId는 필수입니다."); // 예외 처리
+	    }
+	    
+	    int questionsId = Integer.parseInt(questionsIdStr); // 문자열을 정수로 변환
+	    adminService.updateInquiry(questionsId, typename, content); // 서비스 호출
+
+	    // 성공적으로 업데이트된 후의 로직
+	    return "redirect:/inquiryList.jsp";  // 수정 후 목록으로 리다이렉트
+	}
+
 }

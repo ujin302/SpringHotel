@@ -88,6 +88,12 @@ html, body {
 	background-color: #45392a;
 }
 
+/* 글쓰기 버튼 크기 조정 */
+.small-btn {
+	width: 150px; /* 너비를 줄였습니다 */
+	height: 40px;
+}
+
 /*checkReserve.jsp */
 #reserveTitle {
     width: 100%;  /* 전체 너비 사용 */
