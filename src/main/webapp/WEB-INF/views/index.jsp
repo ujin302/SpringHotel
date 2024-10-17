@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css"> 
 <link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
+<link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<c:if test="${sessionScope.userName != null }">

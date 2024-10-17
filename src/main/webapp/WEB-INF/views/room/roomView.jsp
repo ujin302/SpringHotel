@@ -3,54 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width", initial-scale="1">
     <title>Room Information - Hotel S&H</title>
-    <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- favicon & footer -->
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">  -->
+	<link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
+	<link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/css/room.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/room.css">
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                aria-expanded="false">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring Hotel</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="${pageContext.request.contextPath}/">HOME</a></li>
-                <li><a href="${pageContext.request.contextPath}/room/roomView">객실 정보</a></li>
-                <li><a href="reservation1.jsp">예약</a></li>
-                <li><a href="reserveInfo.jsp">예약내역</a></li>
-                <li><a href="inquiryList.jsp">Q&A</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle"
-                        data-toggle="dropdown" role="button" aria-haspopup="true"
-                        aria-expanded="false">접속하기<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li class="active"><a href="login.jsp">로그인</a></li>
-                        <li><a href="join.jsp">회원가입</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+	<!-- header -->
+	<c:if test="${sessionScope.userName != null }">
+		<jsp:include page="../common/header.jsp" />
+	</c:if>
+	
+	<c:if test="${sessionScope.adminId != null }">
+		<jsp:include page="../admin/header.jsp" />
+	</c:if>
+	
     <div class="container mt-5">
         <!-- 페이지 타이틀 -->
         <h2 class="my-4 text-center"><i class="fas fa-bed"></i> 객실 정보</h2>
@@ -62,7 +38,7 @@
         </div>
 
         <!-- 객실 카드 정보 -->
-        <div class="row" id="cardView" style="display: none;">
+        <div class="row" id="cardView" >
             <c:forEach var="room" items="${rooms}">
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
@@ -83,7 +59,7 @@
         </div>
 
         <!-- 객실 테이블 정보 -->
-        <div class="room-info-table" id="tableView">
+        <div class="room-info-table" id="tableView" style="display: none;">
             <table class="table table-bordered table-hover table-responsive text-center">
                 <thead class="table-dark">
                     <tr>
@@ -190,11 +166,13 @@
 			</table>
 		</div>
     </div>
-
-    <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
+	<!-- footer -->
+	<jsp:include page="../common/footer.jsp" />
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+	<script src="/SpringHotel/resources/js/header.js?v=1.0"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
     <!-- 카드 및 테이블 토글 스크립트 -->
     <script>
         $(document).ready(function() {

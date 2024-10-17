@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        	<ul class="nav navbar-nav">
           	 <li id="header-1"><a href="/SpringHotel/">HOME</a></li>
-          	 <li id="header-2"><a href="/SpringHotel/">객실 정보</a></li>
+          	 <li id="header-2"><a href="/SpringHotel/room/roomView">객실 정보</a></li>
              <li id="header-3"><a href="/SpringHotel/">예약</a></li>
              <li id="header-4"><a href="/SpringHotel/">예약내역</a></li>
              <li id="header-5"><a href="/SpringHotel/">Q&A</a></li>
