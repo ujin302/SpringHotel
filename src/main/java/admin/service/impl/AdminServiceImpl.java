@@ -211,5 +211,22 @@ public class AdminServiceImpl implements AdminService {
 	public List<AnswerDTO> getCommentsByQuestionId(int questionsId) {
 	    return adminDAO.getCommentsByQuestionId(questionsId);
 	}
+	@Override
+	public void saveQuestion(QuestionsDTO questionsDTO) {
+		adminDAO.saveQuestion(questionsDTO);
+		
+	}
+	@Override
+	public void updateInquiry(int questionsId, int typename, String content) {
+		Map<String, Object> map = new HashedMap<String, Object>();
+		map.put("questionsId", questionsId);
+		map.put("typename", typename);
+		map.put("content", content);
+		
+		
+		adminDAO.updateInquiry(map);
+		
+	}
+
 
 }
