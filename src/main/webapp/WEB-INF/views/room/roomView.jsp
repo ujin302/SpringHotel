@@ -8,7 +8,6 @@
     <title>Room Information - Hotel S&H</title>
     <!-- favicon & footer -->
 	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
-	<link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
 	<link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -19,7 +18,7 @@
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
 
-    <div class="container mt-5">
+    <div class="container mt-5" data-view="roomView">
         <!-- 페이지 타이틀 -->
         <h2 class="my-4 text-center"><i class="fas fa-bed"></i> 객실 정보</h2>
 
@@ -147,6 +146,7 @@
             </tr>
         </table>
     </div>
+
 
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
