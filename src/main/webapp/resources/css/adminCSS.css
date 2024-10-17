@@ -1,93 +1,91 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 
-html,body{
-	margin:0;
-	width:100%;
-	height:100%;
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+html, body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-/*모든 폴더의 header에 적용*/
-.header{
-	text-align:center; 
+/* 공통 header 스타일 */
+.header {
+	text-align: center; 
 	font-size: 22px;
 }
-.header tr th{
-	width:13%;
+.header tr th {
+	width: 13%;
 }
-.header a:link {					/* a 태그 클릭 안한 상태 */
-	text-align:center; 
+.header a {
+	text-align: center; 
 	color: black;
-	text-decoration : none;	/*밑줄 제거*/
+	text-decoration: none;
 }
 
-.header a:visited { 				/* a 태그 1회 이상 클릭 했을 때 상태 */
- 	color: black; 
- 	text-decoration: none;
+/* 로그인 페이지 스타일 */
+#loginComment {
+	width: 630px;
+	margin-top: 20%;
+	margin-bottom: 4%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-size: x-large;
+	border-bottom: 2px solid #623f30;
 }
 
-.header a:hover { 					/* a 태그에 마우스 올렸을 때 상태 */
- 	color: black; 
- 	text-decoration: none;	
-}
-
-/*login.jsp*/
-#loginComment{
-	width:630px;
-	margin-top:5%;
-	margin-bottom:4%;
-	margin-left:auto;
-	margin-right:auto;
-	text-align:center;
-	font-size:x-large;
-	border-bottom:2px solid #623f30;
-}
-
-.log{
-	background:#f1ebd5;
-	margin:auto;
-	width:430px;
-	height:360px;
-	text-align:center;
+.log {
+	background: #f1ebd5;
+	margin: auto;
+	width: 470px;
+	height: 500px;
+	text-align: center;
 	border-radius: 1em;
+	margin-top: 50px; /* header와의 간격 추가 */
 }
 
-.log tr td {
-	height:40px;
-	font-size:larger;
+.log th {
+	height: 30px;
+	font-size: xx-large;
+	margin-top: 20px;
 }
 
-.log th{
-	height:100px;
-	font-size:xx-large;
-	
+.log td {
+	height: 10px;
+	padding: 0;
+	font-size: larger;
 }
 
-#input{
-	 height:26px;
-     float:left;
-	 border-right: 0px;
-     border-left: 0px;
-     border-top: 0px;
-     border-bottom: #9f8a7b 1px solid;
-     font-size:larger;
+/* input 필드 */
+.input {
+	height: 35px;
+	width: 70%;
+	margin: 2px 0;
+	border-right: 0px;
+	border-left: 0px;
+	border-top: 0px;
+	border-bottom: 1px solid #9f8a7b;
+	font-size: larger;
+	padding-left: 7px;
 }
 
-#text{
-   text-align:right;
-   width:23%;
-}
-
-#btn{
-	margin-bottom:20px;
+/* 버튼 스타일 */
+.btn {
 	background-color: #382f24;
-    width:100px;
-    height:45px;
-    border: none;
-    border-radius: 1em;
-    font-size:medium;
-    color:#f1ebd5;
+	width: 70%;
+	height: 45px;
+	border-radius: 0.5em;
+	font-size: medium;
+	color: #f1ebd5;
+	margin-top: 5px;
+}
+
+.btn:hover {
+	color: white;
+	background-color: #45392a;
 }
 
 /*checkReserve.jsp */

@@ -37,6 +37,10 @@
  		SELECT * FROM room where type = #{type}
  	</select>
  	
+ 	<select id="getQuestionsDTO" parameterType="String" resultType="questionsDTO">
+ 		SELECT * FROM questions where questionsId = #{questionsId}
+ 	</select>
+ 	
  	<select id="getRoomImgDTO" parameterType="String" resultType="roomImgDTO">
  		SELECT * FROM roomImg WHERE roomId = #{roomId}
  	</select>
@@ -72,4 +76,44 @@
     <select id="getTotalB" resultType="int">
         SELECT COUNT(*) FROM reserve;
     </select>
+    
+	<select id="inquiryList" parameterType="map" resultType="questionsDTO">
+	    SELECT q.*, qt.typename, u.userid AS writerId 
+	    FROM questions q
+	    LEFT JOIN qtypes qt ON q.qtypesId = qt.qtypesId 
+	    LEFT JOIN user u ON q.userid = u.seq
+	    ORDER BY q.questionsId DESC 
+	    LIMIT #{startNum}, #{endNum};
+	</select>
+	
+	<select id="getCommentsByQuestionId" parameterType="int" resultType="answerDTO">
+		select * from answer where questionsId = #{questionsId}
+	</select> 
+	
+    <select id="getTotalC" resultType="int">
+        SELECT COUNT(*) FROM questions;
+    </select>
+    
+    <insert id="writeComment" parameterType="answerDTO">
+	    INSERT INTO answer (questionsId, adminId, userId, comment, logdate)
+	    VALUES (#{questionsId}, #{adminId}, #{userId}, #{comment}, NOW());
+	</insert>
+	
+	<select id="adminCheck" parameterType="map" resultType="int">
+        SELECT COUNT(*) 
+        FROM admin
+        WHERE adminId = #{adminId}
+        AND pwd = #{pwd}
+    </select>
+    
+    <update id="updateComment" parameterType="map">
+        UPDATE answer
+        SET comment = #{comment}
+        WHERE answerId = #{answerId}
+    </update>
+
+    <delete id="deleteComment">
+        DELETE FROM answer
+        WHERE answerId = #{answerId}
+    </delete>
  </mapper>
