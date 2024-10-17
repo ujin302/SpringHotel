@@ -34,7 +34,10 @@
 					</td>
 				</tr>
 				<tr align="center">
-					<td><input type="password" id="pwd" name="pwd" size="35" class="input" placeholder="비밀번호 입력"/></td>
+					<td>
+						<input type="password" id="pwd" name="pwd" size="35" class="input" placeholder="비밀번호 입력"/>
+						<div id="pwdDiv"></div>
+					</td>
 				</tr>
 				<tr align="center">
 					<td><input id="loginBtn" type="button" value="로그인" class="btn" /></td>

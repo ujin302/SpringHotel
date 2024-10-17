@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,12 +38,12 @@ public class UserController {
 		return "user/join";
 	}
 	
-	@RequestMapping(value = "/join/submit")
+	@RequestMapping(value = "/join/submit", method = RequestMethod.POST)
 	@ResponseBody
-	public String joinDB(HttpSession session) {
+	public void joinSubmit(@ModelAttribute UserDTO userDTO) {
 		System.out.println("/join/submit");
-		
-		return "회원가입 완료 / 실패";
+		System.out.println(userDTO.toString());
+		userService.joinSubmit(userDTO);
 	}
 	
 	// 로그인 화면 출력
@@ -76,6 +78,20 @@ public class UserController {
 		}else { // 신규 사용자
 			return "user/join";
 		}
+	}
+	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/checkUserId")
+	@ResponseBody
+	public boolean checkUserId(@RequestParam String userId) {
+		boolean isUseUserId = userService.checkUserId(userId);
+		return isUseUserId;
 	}
 		
 }
