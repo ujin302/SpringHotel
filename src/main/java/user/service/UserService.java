@@ -11,5 +11,7 @@ public interface UserService {
 	public String login(HttpSession session);
 
 	public UserDTO loginNaver(Map<String, String> map, HttpSession session);
+
+	public Boolean loginSH(Map<String, String> map, HttpSession session);
 	
 }

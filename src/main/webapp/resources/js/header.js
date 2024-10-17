@@ -7,5 +7,7 @@ $(function(){
     	$('#header-loginMenu').addClass('active');
     }else if(viewName == 'join') {
     	$('#header-joinMenu').addClass('active');
+    }else if(viewName == 'admin') {
+    	$('#header-adminMenu').addClass('active');
     }
 });
