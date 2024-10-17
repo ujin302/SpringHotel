@@ -38,7 +38,7 @@ footer{
 }
 
 /*login 폴더의 footer 태그에만 적용*/
-footer input{
+/* footer input{
 	margin-top:15px;
 	margin-bottom:15px;
 	background-color: #382f24;
@@ -47,7 +47,7 @@ footer input{
 	border: none;
 	font-size:medium;
 	color:#f1ebd5;
-}
+} */
 
 .wrapper{
 	width:80%;   /* 너비 */

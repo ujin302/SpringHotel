@@ -10,9 +10,42 @@
 <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
 <title>호텔 예약 시스템</title>
-</head>
-<body>
+<style type="text/css">
+@charset "UTF-8";
+html,body{
+	margin:0;
+	width:100%;
+	height:100%;
+	font-family : "Nanum Gothic";
+}
 
+/*모든 폴더의 header에 적용*/
+.header{
+	height:8%;
+	text-align:center; 
+	font-size: 22px;
+}
+.header tr th{
+	width:13%;
+}
+.header a:link {					/* a 태그 클릭 안한 상태 */
+	text-align:center; 
+	color: black;
+	text-decoration : none;	/*밑줄 제거*/
+}
+
+.header a:visited { 				/* a 태그 1회 이상 클릭 했을 때 상태 */
+ 	color: black; 
+ 	text-decoration: none;
+}
+
+.header a:hover { 					/* a 태그에 마우스 올렸을 때 상태 */
+ 	color: black; 
+ 	text-decoration: none;	
+}
+</style>
+</head>
+<body class="header">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
          	<button type="button" class="navbar-toggle collapsed"
