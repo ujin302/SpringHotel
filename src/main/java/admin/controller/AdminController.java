@@ -4,6 +4,8 @@ package admin.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +18,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import admin.service.AdminService;
+import answer.bean.AnswerDTO;
+import questions.bean.QuestionsDTO;
 import room.bean.RoomDTO;
 
 @Controller
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
-
-	@RequestMapping(value="admin/login", method = RequestMethod.GET)
+	
+	@RequestMapping(value="admin/login")
 	public String login() {
-		return "/admin/login";
+	    return "/admin/login";
+	}
+	
+	@RequestMapping(value = "admin/loginForm", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	@ResponseBody
+	public String adminLogin(@RequestParam String adminId, @RequestParam String pwd, HttpSession session, Model model) {
+	    boolean adminCheck = adminService.adminCheck(adminId, pwd);
+	    System.out.println("adminId = " + adminId);
+	    System.out.println("pwd = " + pwd);
+	    System.out.println("adminCheck = " + adminCheck);
+	    if (adminCheck) {
+	        session.setAttribute("adminId", adminId); // 세션에 adminId 저장
+	        return "로그인에 성공하였습니다.";
+	    } else {
+	        return "아이디 또는 비밀번호가 틀렸습니다."; 
+	    }
 	}
 	
 	@RequestMapping(value="admin/updateRoom")
@@ -57,8 +76,6 @@ public class AdminController {
 	    return "admin/updateRoom";
 	}
 
-
-	
 	@RequestMapping(value="admin/checkReserve", method = RequestMethod.GET)
 	public String checkReserve(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
 		Map<String, Object> map2 = adminService.checkReserve(pg);
@@ -80,12 +97,97 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="admin/inquiryList", method = RequestMethod.GET)
-	public String inquiryList() {
+	public String inquiryList(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
+		Map<String, Object> map2 = adminService.inquiryList(pg);
+		
+		map2.put("pg", pg);
+		model.addAttribute("map2", map2);
 		return "/admin/inquiryList";
 	}
 	
+	
 	@RequestMapping(value="admin/inquiryDetail", method = RequestMethod.GET)
-	public String inquiryDetail() {
-		return "/admin/inquiryDetail";
+	public String inquiryDetail(@RequestParam String questionsId, String typename, String writerId, HttpSession session,Model model) {
+	    QuestionsDTO questionsDTO = adminService.getQuestionsDTO(questionsId);
+	    String adminId = (String) session.getAttribute("adminId");
+	    
+	    // 댓글 목록 조회
+	    List<AnswerDTO> comments = adminService.getCommentsByQuestionId(Integer.parseInt(questionsId));
+	    
+	    model.addAttribute("questionsDTO", questionsDTO);
+	    model.addAttribute("typename", typename);
+	    model.addAttribute("writerId", writerId);
+	    model.addAttribute("comments", comments); 
+	    model.addAttribute("adminId", adminId); 
+	    
+	    
+	    System.out.println("comments = " + comments);
+	    System.out.println(questionsDTO);
+	    return "/admin/inquiryDetail";
+	}
+
+	
+	
+	@RequestMapping(value="admin/writeComment")
+	@ResponseBody
+	public String writeComment(@RequestParam AnswerDTO answerDTO, HttpSession session) {
+	    try {
+	        adminService.writeComment(answerDTO);
+	        return "success";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "fail";
+	    }
+	}
+	
+	@RequestMapping(value = "admin/writeComment", method = RequestMethod.POST)
+	@ResponseBody
+	public String writeComment(@RequestParam int questionsId, 
+	                           @RequestParam int userId, 
+	                           @RequestParam String comment, HttpSession session) {
+	    String adminId = (String) session.getAttribute("adminId");
+	    System.out.println("questionsId = " + questionsId);
+	    System.out.println("userId = " + userId);
+	    System.out.println("comment = " + comment);
+	    System.out.println("adminId = " + adminId);
+	    
+	    AnswerDTO answerDTO = new AnswerDTO();
+	    answerDTO.setQuestionsId(questionsId);
+	    answerDTO.setUserId(userId);
+	    answerDTO.setComment(comment);
+	    answerDTO.setAdminId(adminId);
+
+	    try {
+	        adminService.writeComment(answerDTO);
+	        return "success"; 
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "fail";
+	    }
+	}
+
+
+	@RequestMapping(value="admin/updateComment", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateComment(@RequestParam int answerId, @RequestParam String comment) {
+	    try {
+	        adminService.updateComment(answerId, comment);
+	        return "success";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "fail";
+	    }
+	}
+
+	@RequestMapping(value="admin/deleteComment", method = RequestMethod.GET)
+	@ResponseBody
+	public String deleteComment(@RequestParam int answerId) {
+	    try {
+	        adminService.deleteComment(answerId);
+	        return "success";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "fail";
+	    }
 	}
 }
