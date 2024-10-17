@@ -2,274 +2,124 @@
 
 /* 전체적인 배경 및 텍스트 스타일 */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa; /* 부드러운 배경색 */
-    color: #333; /* 텍스트 기본 색상 */
-    margin: 0;
-    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f4f3ef;  /* 베이지 톤의 배경색 */
+    color: #333;  /* 텍스트는 다크 그레이로 고급스러운 느낌 유지 */
 }
 
-/* 페이지 헤더 스타일 */
-header {
-    padding: 10px;
-    text-align: right;
-    background-color: #0056b3; /* Index 버튼 배경 */
-    color: white;
+/* 네비게이션 스타일 */
+.navbar-brand {
+    font-weight: bold;
+    color: #a57d4a;  /* 골드 계열의 고급스러운 톤 */
 }
 
-header input[type="button"] {
-    background-color: #007bff;
-    color: white;
+.navbar-nav .nav-link {
+    font-size: 1.1em;
+    padding: 10px 15px;
+    color: #333;  /* 네비게이션 링크도 고급스러운 다크 그레이 */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #a57d4a;  /* 골드 색상으로 링크 hover 시 변경 */
+}
+
+/* 카드 스타일 */
+.card {
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-header input[type="button"]:hover {
-    background-color: #0056b3;
-}
-
-/* 제목 스타일 */
-h2 {
-    text-align: center;
-    color: #343a40;
-    font-weight: 600;
-    font-size: 2.5em;
-    margin-bottom: 40px;
-}
-
-/* 부제목 스타일 */
-h3 {
-    color: #444444;
-    font-size: 1.75em;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* 객실 정보 테이블 스타일 */
-.table {
-    width: 100%;
-    background-color: #ffffff;
-    border-collapse: collapse;
-    margin-bottom: 30px;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);  /* 조금 더 깊은 그림자 효과 */
+    background-color: #fff;  /* 카드 배경은 화이트로 깔끔하게 */
 }
 
-.table thead th {
-    background-color: #0056b3; /* 헤더 배경색 */
-    color: white;
-    padding: 15px;
-    text-transform: uppercase;
-    font-size: 1.1em;
+.card-img-top {
+    border-radius: 10px 10px 0 0;
+    height: 240px;  /* 이미지 높이를 더 크게 */
+    object-fit: cover;
 }
 
-.table tbody td {
-    padding: 15px;
-    font-size: 1em;
-    color: #555;
-    text-align: center;
-    border-bottom: 1px solid #dee2e6;
+.card-body {
+    padding: 20px;  /* 패딩을 조금 더 크게 하여 여유있게 */
+    background-color: #f4f3ef;  /* 카드 내부 배경색도 베이지 톤으로 통일 */
 }
 
-/* 테이블 행 Hover 효과 */
-.table tbody tr:hover {
-    background-color: #f1f1f1;
-    transition: all 0.2s ease-in-out;
+.card-title {
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: #a57d4a;  /* 타이틀 색상도 골드 계열 */
 }
 
-/* 부대시설 섹션 스타일 (호텔 정보 섹션과 유사하게 변경) */
-.amenity-section {
-    margin-top: 50px;
-    padding: 30px;
-    background-color: #ffffff;
+.card-text {
+    font-size: 1rem;
+    color: #555;  /* 본문 텍스트는 약간 연한 다크 그레이 */
+}
+
+.btn-outline-primary {
+    border-color: #a57d4a;
+    color: #a57d4a;
+}
+
+.btn-outline-primary:hover {
+    background-color: #a57d4a;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #a57d4a;
+    border-color: #a57d4a;
+}
+
+.btn-primary:hover {
+    background-color: #8a6737;  /* hover 시 좀 더 어두운 골드 톤 */
+}
+
+/* 부대시설, 호텔 정보 섹션 */
+.amenity-section, .hotel-info {
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);  /* 깊은 그림자 효과 */
+    padding: 30px;  /* 패딩을 넉넉하게 */
+    margin-top: 40px;
 }
 
-/* 부대시설 섹션 스타일 (호텔 정보 섹션과 일치하도록 수정) */
-.amenity-section {
-    margin-top: 50px;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.amenity-section h3 {
-    text-align: center;
-    color: #444444;
-    font-size: 1.75em;
-    margin-top: 30px;
+/* 타이틀 스타일 */
+h3 {
+    font-size: 1.5rem;
+    color: #a57d4a;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
-.amenity-section h4 {
-    font-size: 1.5em;
-    color: #444;
-    margin-bottom: 15px;
-}
-
-.amenity-section ul.list-unstyled {
-    padding-left: 0;
-    list-style-type: none;
-}
-
-/* 부대시설 항목 테이블 스타일 */
-.amenity-section table {
-    width: 100%;
-}
-
-.amenity-section table td {
-    border-bottom: 1px solid #dee2e6;
-    padding: 15px;
-}
-
-.amenity-section table td h4 {
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.amenity-section ul.list-unstyled {
-    padding-left: 0;
-    list-style-type: none;
+/* 리스트 스타일 */
+ul.list-unstyled {
+    font-size: 1.05rem;
     color: #555;
-}
-
-.amenity-section ul.list-unstyled li {
-    font-size: 1em;
-    margin-bottom: 8px;
-}
-
-/* 호텔 정보 섹션 스타일 */
-.hotel-info {
-    margin-top: 50px;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.hotel-table th, .hotel-table td {
-    padding: 15px;
-    font-size: 1.1em;
-    color: #333;
-    text-align: left;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.hotel-info h4 {
-    font-size: 1.5em;
-    color: #444;
-    margin-bottom: 15px;
-}
-
-.hotel-info ul.list-unstyled {
-    padding-left: 0;
-    list-style-type: none;
-}
-
-/* Index 버튼 */
-header input[type="button"] {
-    margin-right: 15px;
-    font-weight: 600;
 }
 
 /* 반응형 디자인 */
-
-/* 중간 크기의 태블릿 화면 */
 @media (max-width: 1024px) {
     h2 {
-        font-size: 2em; /* 제목 폰트 크기 축소 */
+        font-size: 2em;
     }
-
-    h3 {
-        font-size: 1.5em; /* 부제목 크기 축소 */
-    }
-
-    .table tbody td {
-        font-size: 0.95em;
-        padding: 12px;
-    }
-
-    .amenities-list li {
-        font-size: 1em;
-    }
-
-    .hotel-info h4 {
-        font-size: 1.4em;
+    .card-img-top {
+        height: 200px;
     }
 }
 
-/* 작은 모바일 화면 */
 @media (max-width: 768px) {
     h2 {
-        font-size: 1.8em; /* 제목 폰트 크기 더 축소 */
+        font-size: 1.8em;
     }
-
-    h3 {
-        font-size: 1.4em; /* 부제목 크기 축소 */
-    }
-
-    .table thead th {
-        font-size: 0.9em; /* 테이블 헤더 폰트 축소 */
-    }
-
-    .table tbody td {
-        font-size: 0.85em; /* 테이블 내용 폰트 축소 */
-        padding: 10px; /* padding 축소 */
-    }
-
-    .amenity-section, .hotel-info {
-        padding: 15px; /* 섹션 padding 축소 */
-    }
-
-    .amenities-list li {
-        font-size: 0.9em; /* 부대시설 폰트 축소 */
-    }
-
-    .hotel-info h4 {
-        font-size: 1.3em; /* 호텔 정보 타이틀 폰트 축소 */
-    }
-
-    .carousel-inner img {
-        height: 300px; /* 캐러셀 이미지 크기 축소 */
+    .card-img-top {
+        height: 180px;
     }
 }
 
-/* 매우 작은 모바일 화면 */
 @media (max-width: 480px) {
     h2 {
-        font-size: 1.6em; /* 제목 폰트 더 축소 */
+        font-size: 1.6em;
     }
-
-    h3 {
-        font-size: 1.3em; /* 부제목 폰트 더 축소 */
-    }
-
-    .table thead th, .table tbody td {
-        font-size: 0.75em; /* 테이블 폰트 크기 축소 */
-        padding: 8px; /* padding 축소 */
-    }
-
-    .amenity-section, .hotel-info {
-        padding: 10px; /* 섹션 padding 축소 */
-    }
-
-    .amenities-list li {
-        font-size: 0.85em; /* 부대시설 폰트 더 축소 */
-    }
-
-    .hotel-info h4 {
-        font-size: 1.2em; /* 호텔 정보 타이틀 더 축소 */
-    }
-
-    .carousel-inner img {
-        height: 250px; /* 캐러셀 이미지 크기 더 축소 */
+    .card-img-top {
+        height: 150px;
     }
 }
