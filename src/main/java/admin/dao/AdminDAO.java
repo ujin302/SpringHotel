@@ -52,4 +52,9 @@ public interface AdminDAO {
 	public void deleteComment(int answerId);
 
 	public List<AnswerDTO> getCommentsByQuestionId(int questionsId);
+
+	public void saveQuestion(QuestionsDTO questionsDTO);
+
+	public void updateInquiry(Map<String, Object> map);
+
 }
