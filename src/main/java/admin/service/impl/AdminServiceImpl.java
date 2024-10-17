@@ -16,6 +16,8 @@ import admin.bean.AdminPaging;
 import admin.dao.AdminDAO;
 import admin.service.AdminService;
 import admin.service.ObjectStorageService;
+import answer.bean.AnswerDTO;
+import questions.bean.QuestionsDTO;
 import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
 import room.bean.RoomImgDTO;
@@ -143,4 +145,71 @@ public class AdminServiceImpl implements AdminService {
 		
 		return map2;
 	}
+	@Override
+	public Map<String, Object> inquiryList(String pg) {
+		//1페이지당 5개씩
+		int startNum = (Integer.parseInt(pg)-1) * 5; //시작위치 (0부터 시작)
+		int endNum = 5; //개수
+		
+		Map<String, Integer> map = new HashedMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		
+		//DB
+		List<ReserveDTO> list = adminDAO.inquiryList(map);
+		
+		//페이징 처리
+		int totalA = adminDAO.getTotalC(); //총글수
+		
+		adminPaging.setCurrentPage(Integer.parseInt(pg)); //현재페이지
+		adminPaging.setPageBlock(3);
+		adminPaging.setPageSize(5);
+		adminPaging.setTotalA(totalA);
+		adminPaging.makePagingHTML();
+		
+		Map<String, Object> map2 = new HashedMap<>();
+		map2.put("list", list);
+		map2.put("adminPaging", adminPaging);
+		
+		return map2;
+	}
+	
+	@Override
+	public QuestionsDTO getQuestionsDTO(String questionsId) {
+		System.out.println("questionsId = " + questionsId);
+		System.out.println(adminDAO.getQuestionsDTO(questionsId));
+		return adminDAO.getQuestionsDTO(questionsId);
+	}
+	@Override
+	public void writeComment(AnswerDTO answerDTO) {
+		adminDAO.writeComment(answerDTO);
+	}
+	
+	@Override
+	public boolean adminCheck(String adminId, String pwd) {
+		Map<String, String> map = new HashedMap<String, String>();
+		map.put("adminId", adminId);
+		map.put("pwd", pwd);
+		int result = adminDAO.adminCheck(map);
+		return result > 0;
+	}
+	@Override
+	public void updateComment(int answerId, String comment) {
+		Map<String, Object> map = new HashedMap<String, Object>();
+		map.put("answerId", answerId);
+		map.put("comment", comment);
+		
+		adminDAO.updateComment(map);
+		
+	}
+	@Override
+	public void deleteComment(int answerId) {		
+		adminDAO.deleteComment(answerId);
+		
+	}
+	@Override
+	public List<AnswerDTO> getCommentsByQuestionId(int questionsId) {
+	    return adminDAO.getCommentsByQuestionId(questionsId);
+	}
+
 }

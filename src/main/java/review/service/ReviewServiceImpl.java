@@ -1,12 +1,9 @@
 package review.service;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import review.bean.ReviewDTO;
 import review.dao.ReviewDAO;
-
 import java.util.List;
 
 @Service
@@ -34,10 +31,9 @@ public class ReviewServiceImpl implements ReviewService {
     public void deleteReview(int reviewId) throws Exception {
         reviewDAO.deleteReview(reviewId);
     }
-    
+
     @Override
     public ReviewDTO getReviewById(Integer reviewId) {
-    	 return reviewDAO.getReviewById(reviewId);
+        return reviewDAO.getReviewById(reviewId);
     }
 }
-

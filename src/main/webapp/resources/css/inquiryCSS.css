@@ -38,6 +38,13 @@ footer{
 	width: 100%;
 }
 
+#reserveTitle {
+    width: 100%;  /* 전체 너비 사용 */
+    height: auto;
+    margin: 3% auto;
+    text-align: center;
+    font-size: 5vw;  /* 화면 너비의 5%로 폰트 크기 설정 */
+}
 /* inquiryList.jsp */
 .inquiryInfo{
 	width:70%;
@@ -96,11 +103,12 @@ footer{
     height: auto; /* 자동 높이 조정 */
     text-align: center;
     margin: 40px auto;
-    font-size: x-large;
+    font-size: large; /* 기존 x-large에서 large로 줄임 */
     overflow-wrap: break-word; /* 긴 단어를 줄 바꿈 */
     word-wrap: break-word; /* 긴 단어를 줄 바꿈 (구형 브라우저 호환) */
     hyphens: auto; /* 자동 하이픈 삽입 */
 }
+
 .inquiryDetail{
 	width:70%;
 	margin-top:30px;
@@ -149,14 +157,20 @@ footer{
 	outline:none;
 }
 
-#comment{
-	padding-left: 150px;
+/* 댓글 목록 스타일 */
+#comment {
+    padding-left: 150px;
+    width: 70%; /* 댓글 목록과 동일한 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
 }
 
-#commentWrite{
-	width:300px;
-	height:120px;
-	padding-left: 150px;
+/* 댓글 작성 영역 스타일 */
+#commentWrite {
+    display: flex; /* Flexbox 활성화 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    margin: 20px 0; /* 위아래 여백 추가 */
+    width: 70%; /* 댓글 목록과 동일한 너비 설정 */
+    margin: 20px auto; /* 가운데 정렬 */
 }
 
 #commentBtn{
@@ -166,17 +180,21 @@ footer{
 	background-color: #876f55;
 	color:#f1ebd5;
 }
-
-#commentWriteBtn{
-	position:absolute;
-	width:120px; 
-	height:50px; 
-	background-color: #876f55; 
-	color:#f1ebd5;
+.updateCommentBtn, .deleteCommentBtn {	
+	width:70px;
+	height:25px;
 	border: none;
-	margin-top:20px;
-	margin-left:25px;
+	background-color: #876f55;
+	color:#f1ebd5;
 }
+#commentWriteBtn {
+    width: 120px; /* 고정 너비로 설정 */
+    height: 50px; 
+    background-color: #876f55; 
+    color: #f1ebd5;
+    border: none;
+}
+
 /*inquiryWrite.jsp*/
 #writeTitle{
 	width:100%;
