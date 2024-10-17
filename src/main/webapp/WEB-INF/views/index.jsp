@@ -14,13 +14,7 @@
 <link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<c:if test="${sessionScope.userName != null }">
-		<jsp:include page="./common/header.jsp" />
-	</c:if>
-	
-	<c:if test="${sessionScope.adminId != null }">
-		<jsp:include page="./admin/header.jsp" />
-	</c:if>
+	<jsp:include page="./common/header.jsp" />
 	
 	<div class="container" data-view="index">
 		
