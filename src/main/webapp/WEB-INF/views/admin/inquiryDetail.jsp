@@ -38,7 +38,7 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
     <br/><br />
 	<div id="reserveTitle"><font size="20">Q&A</font></div>
     <div id="detailcomment">

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	<div id="reserveTitle"><font size="20">예약 내역</font></div>
 	
 	<input type="hidden" id="pg" value="${pg }" />

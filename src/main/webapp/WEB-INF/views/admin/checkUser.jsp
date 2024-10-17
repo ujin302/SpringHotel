@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../common/header.jsp" %>
 	<div id="reserveTitle">
 		<font size="20">회원 조회</font>
 	</div>
