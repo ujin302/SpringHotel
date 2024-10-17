@@ -59,11 +59,10 @@ html,body{
      	 </div>
      	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
          	<ul class="nav navbar-nav">
-            	<li><a href="/SpringHotel/admin/checkUser">회원조회</a></li>
+         		<li><a href="/SpringHotel/admin/checkUser">회원조회</a></li>
             	<li><a href="/SpringHotel/admin/updateRoom">객실 정보</a></li>
-               <li><a href="/SpringHotel/admin/checkReserve">예약내역</a></li>
-               <li><a href="/SpringHotel/admin/inquiryList">Q&A</a></li>
-
+            	<li><a href="/SpringHotel/admin/checkReserve">예약내역</a></li>
+            	<li><a href="/SpringHotel/admin/inquiryList">Q&A</a></li>
             </ul>
 
 		<ul class="nav navbar-nav navbar-right">

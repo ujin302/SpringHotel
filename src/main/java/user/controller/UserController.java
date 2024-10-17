@@ -32,7 +32,7 @@ public class UserController {
 	@RequestMapping(value = "/join")
 	public String join(HttpSession session) {
 		System.out.println("/join");
-		System.out.println("session: " + session.getAttribute("userName"));
+		
 		return "user/join";
 	}
 	
@@ -44,6 +44,7 @@ public class UserController {
 		return "회원가입 완료 / 실패";
 	}
 	
+	// 로그인 화면 출력
 	@RequestMapping(value = "/login")
 	public String login(HttpSession session, ModelMap map) {
 		String apiURL = userService.login(session);
@@ -52,12 +53,17 @@ public class UserController {
 		return "user/login";
 	}
 	
+	// SH 로그인 처리
 	@RequestMapping(value = "/login/sh")
-	public String loginSH() {
+	@ResponseBody
+	public Boolean loginSH(@RequestParam Map<String, String> map, HttpSession session) {
+		Boolean isLogin = false;
+		isLogin = userService.loginSH(map, session);
 		
-		return "index";
+		return isLogin;
 	}
 	
+	// Naver 로그인 처리
 	@RequestMapping(value = "/login/naver")
 	public String loginNaver(@RequestParam Map<String, String> map, HttpSession session, ModelMap mMap) {
 		// 1. 콜백 처리
@@ -70,14 +76,6 @@ public class UserController {
 		}else { // 신규 사용자
 			return "user/join";
 		}
-	}
-	
-	@RequestMapping(value = "/logout/naver")
-	public String logoutNaver(@RequestParam Map<String, String> map, HttpSession session) {
-		// 콜백 처리
-		userService.loginNaver(map, session);
-		
-		return "index";
 	}
 		
 }

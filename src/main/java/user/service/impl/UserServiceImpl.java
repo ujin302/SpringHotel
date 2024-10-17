@@ -1,5 +1,6 @@
 package user.service.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -35,8 +36,8 @@ public class UserServiceImpl implements UserService {
 		String userId = userDTO.getUserId();
 		
 		// 2. 신규 사용자 구분
-		String checkUserId = userDAO.checkUserId(userId);
-		if(!userId.equals(checkUserId)) { 
+		String checkNaverLoginId = userDAO.checkNaverLoginId(userId);
+		if(!userId.equals(checkNaverLoginId)) { 
 			// 2-1. 신규 사용자: 회원가입 진행 
 			return userDTO;
 		} else { 
@@ -45,6 +46,21 @@ public class UserServiceImpl implements UserService {
 			session.setAttribute("userName", userDTO.getName());
 			return null;
 		}
+	}
+
+	@Override
+	public Boolean loginSH(Map<String, String> map, HttpSession session) {
+		// 1. 로그인 정보 확인
+		UserDTO userDTO = userDAO.loginSH(map);
+		System.out.println("loginSH(): " + map.toString());
+		
+		// 2. 로그인 성공&실패 확인
+		if(userDTO != null) {
+			session.setAttribute("userSeq", userDTO.getSeq());
+			session.setAttribute("userName", userDTO.getName());
+			return true;
+		} else return false;
+		
 	}
 	
 }

@@ -11,8 +11,6 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpSession session) {
-		session.setAttribute("userName", "a");
-		session.setAttribute("userSeq", 1);
 		return "index";
 	}
 }

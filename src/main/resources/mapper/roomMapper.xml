@@ -6,8 +6,25 @@
 
     <!-- 모든 room 정보 가져오기 -->
     <select id="getAllRooms" resultType="room.bean.RoomDTO">
-        SELECT * FROM room
+        SELECT r.*, ri.imageFileName 
+	    FROM room r 
+	    LEFT JOIN roomimg ri ON r.roomid = ri.roomid
     </select>
+    <resultMap id="roomResultMap" type="room.bean.RoomDTO">
+    <id property="roomId" column="roomid" />
+    <result property="type" column="type" />
+    <result property="size" column="size" />
+    <result property="capacity" column="capacity" />
+    <result property="price" column="price" />
+    <result property="count" column="count" />
+    <result property="description" column="description" />
+    <result property="form" column="form" />
+    <result property="view" column="view" />
+    <result property="bedtype" column="bedtype" />
+    <association property="roomImg" javaType="room.bean.RoomImgDTO">
+        <result property="imageFileName" column="imageFileName" />
+    </association>
+	</resultMap>
     
     <!-- 객실 ID로 객실 정보 가져오기 -->
     <select id="getRoomById" parameterType="int" resultType="room.bean.RoomDTO">

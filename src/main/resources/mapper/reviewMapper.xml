@@ -10,10 +10,12 @@
         VALUES (#{roomId}, #{userId}, #{rating}, #{comment}, NOW(), NOW())
     </insert>
 
-    <select id="getAllReviews" resultType="review.bean.ReviewDTO">
-        SELECT * FROM review
-    </select>
-    
+		<select id="getAllReviews" resultType="review.bean.ReviewDTO">
+		    SELECT r.reviewId, r.roomId, r.userId, u.name AS userName, r.rating, r.comment, r.logtime, r.updatetime
+		    FROM review r
+		    LEFT JOIN user u ON r.userId = u.seq  <!-- user 테이블과 조인 -->
+		</select>
+
     <select id="getReviewsSortedByRating" resultType="review.bean.ReviewDTO">
     SELECT * FROM review ORDER BY rating DESC
 	</select>

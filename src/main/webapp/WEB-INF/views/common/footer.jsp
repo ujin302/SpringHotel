@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <footer>
 	<div id="footer-logo">
-		<a href="${pageContext.request.contextPath}/"><img src="" width="200" height="180" alt="HOME"></a>
+		<a href="${pageContext.request.contextPath}/"><img src="/SpringHotel/resources/image/sh.png" width="200" height="180" alt="HOME"></a>
 	</div>
 	<div id="footer-info">
 		<b>(주)Spring Hotel 02-1234-5678</b><br/>
