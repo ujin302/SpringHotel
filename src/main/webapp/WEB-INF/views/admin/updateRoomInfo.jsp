@@ -72,6 +72,9 @@
 			</tr>
 		</table>
 	</form>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 <script>
 function previewImage(input) {
     if (input.files && input.files[0]) {
@@ -84,5 +87,6 @@ function previewImage(input) {
     }
 }
 </script>
+
 </body>
 </html>

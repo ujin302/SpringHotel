@@ -18,10 +18,10 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	<ul class="nav navbar-nav">
     		<c:if test="${sessionScope.adminId != null}">
-    			<li><a href="/SpringHotel/admin/checkUser">회원조회</a></li>
-            	<li><a href="/SpringHotel/admin/updateRoom">객실 정보</a></li>
-            	<li><a href="/SpringHotel/admin/checkReserve">예약내역</a></li>
-            	<li><a href="/SpringHotel/admin/inquiryList">Q&A</a></li>
+    			<li><a id="header-6" href="/SpringHotel/admin/checkUser">회원조회</a></li>
+            	<li><a id="header-7" href="/SpringHotel/admin/updateRoom">객실 정보</a></li>
+            	<li><a id="header-8" href="/SpringHotel/admin/checkReserve">예약내역</a></li>
+            	<li><a id="header-9" href="/SpringHotel/admin/inquiryList">Q&A</a></li>
     		</c:if>
     		<!-- 로그인 전 && 사용자 로그인-->
     		<c:if test="${sessionScope.adminId == null}">
@@ -73,4 +73,5 @@
        	</ul>
    	 </div> 
 </nav>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
 </body>

@@ -12,6 +12,7 @@
 
 <body>
 	<%@ include file="../common/header.jsp" %>
+	
 	<div id="reserveTitle"><font size="20">예약 내역</font></div>
 	
 	<input type="hidden" id="pg" value="${pg }" />
@@ -54,6 +55,9 @@
 	<div>
 		${map.adminPaging.pagingHTML }
 	</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 <script type="text/javascript">
 function adminPaging(pg){
 	location.href = "/SpringHotel/admin/checkUser?pg=" + pg;
