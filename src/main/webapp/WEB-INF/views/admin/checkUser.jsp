@@ -11,7 +11,8 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../common/header.jsp" %>
+	<div class="container" data-view="checkUser"></div>
 	<div id="reserveTitle">
 		<font size="20">회원 조회</font>
 	</div>
@@ -45,6 +46,9 @@
 	<div>
 		${map.adminPaging.pagingHTML }
 	</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 <script type="text/javascript">
 function adminPaging(pg){
 	location.href = "/SpringHotel/admin/checkUser?pg=" + pg;

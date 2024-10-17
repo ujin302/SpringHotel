@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Spring Hotel RoomInfo</title>
 <link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
 <style>
 #updateBtn {
 	margin: 1% auto;
@@ -19,7 +20,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../common/header.jsp" %>
 	<div id="inquiryTitle">
 		<font size="20">객실 정보 수정</font>
 	</div>
@@ -71,6 +72,9 @@
 			</tr>
 		</table>
 	</form>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 <script>
 function previewImage(input) {
     if (input.files && input.files[0]) {
@@ -83,5 +87,6 @@ function previewImage(input) {
     }
 }
 </script>
+
 </body>
 </html>

@@ -6,11 +6,13 @@
 	<meta charset="UTF-8">
 	<title>Spring Hotel 로그인</title>
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<jsp:include page="../common/header.jsp" />
 
 	<div class="container">
 		<!-- 관리자 로그인 form -->
