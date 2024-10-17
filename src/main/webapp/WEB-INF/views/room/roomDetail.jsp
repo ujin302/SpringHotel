@@ -17,7 +17,9 @@
 </head>
 <body>
     <jsp:include page="../common/header.jsp" />
-
+	<script type="text/javascript">
+	    var contextPath = "${pageContext.request.contextPath}";
+	</script>
     <!-- 룸 상세 정보 섹션 -->
     <div class="container room-detail-container mt-5">
         <h2 class="text-center room-detail-title"><i class="fas fa-bed"></i> ${room.type} 상세 정보</h2>
@@ -48,12 +50,40 @@
             </div>
         </div>
 
-        <!-- 리뷰 관련 버튼 -->
+         <!-- 리뷰 관련 버튼 -->
         <div class="room-actions text-center mt-4">
-            <a href="${pageContext.request.contextPath}/review/reviewList" class="btn btn-outline-secondary mr-2">리뷰 목록 보기</a>
-            <a href="${pageContext.request.contextPath}/review/reviewWriteForm?roomId=${room.roomId}" class="btn btn-outline-primary">리뷰 작성하기</a>
-        </div>
+	    <a href="#" class="btn btn-outline-secondary mr-2" data-room-id="${room.roomId}" id="loadReviewList">리뷰 목록 보기</a>
+	    <a href="#" class="btn btn-outline-primary" data-room-id="${room.roomId}" id="loadReviewWriteForm">리뷰 작성하기</a>
+	</div>
 
+        
+		<!-- 모달 버튼 클릭 시 보여줄 모달 구조 -->
+		<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+		    <div class="modal-dialog modal-lg" role="document">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <h5 class="modal-title" id="reviewModalLabel">리뷰</h5>
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                    <span aria-hidden="true">&times;</span>
+		                </button>
+		            </div>
+		            <div class="modal-body">
+		                <!-- 모달 내용 로딩 전 로딩 인디케이터 -->
+						<div id="loadingIndicator" style="display:none;">
+						    <div class="text-center">
+						        <i class="fas fa-spinner fa-spin"></i> 로딩 중...
+						    </div>
+						</div>
+		                <!-- 여기에 리뷰 목록이나 작성 폼이 로드될 예정 -->
+		                <div id="modalContent"></div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+		            </div>
+		        </div>
+		    </div>
+		</div>		
+		
         <!-- 부가적인 룸 정보 섹션 -->
         <div class="additional-info mt-5 bg-white p-5 rounded shadow-sm text-center">
             <h3 class="mb-4">객실 부가 정보</h3>
@@ -66,7 +96,9 @@
     <jsp:include page="../common/footer.jsp" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="/SpringHotel/resources/js/bootstrap.js"></script>
-    <script src="/SpringHotel/resources/js/header.js?v=1.0"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/SpringHotel/resources/js/header.js"></script>
+    <script src="/SpringHotel/resources/js/review.js"></script>
 </body>
 </html>
+
+<!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
