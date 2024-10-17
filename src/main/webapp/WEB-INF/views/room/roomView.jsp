@@ -42,7 +42,7 @@
             <c:forEach var="room" items="${rooms}">
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="${pageContext.request.contextPath}/resources/images/${room.roomImg.imageFileName}" alt="${room.type}">
+                        <img class="card-img-top" src="/SpringHotel/resources/images/${room.roomImg.imageFileName}" alt="${room.type}">
                         <div class="card-body">
                             <h5 class="card-title">${room.type}</h5>
                             <p class="card-text">크기: ${room.size}m² | 수용 인원: ${room.capacity}명</p>

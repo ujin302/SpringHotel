@@ -6,16 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import room.bean.RoomDTO;
 import room.bean.RoomImgDTO;
 import room.service.RoomService;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/room")
@@ -28,34 +23,22 @@ public class RoomController {
     public String getAllRooms(Model model) {
         List<RoomDTO> rooms;
 		try {
-			rooms = roomService.getAllRooms();
-			model.addAttribute("rooms", rooms);  // Model에 rooms 추가
+			rooms = roomService.getAllRooms(); // 모든 방 정보를 가져옴
+			model.addAttribute("rooms", rooms);  // 모델에 rooms 리스트를 추가
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-        
+		}  
+		
         return "room/roomView";  // roomView.jsp로 이동
     }
     
-    
-    // 특정 객실의 상세 정보 보기
+    // 특정 방의 상세 정보 보기
     @RequestMapping(value = "/detail/{roomId}", method = RequestMethod.GET)
     public String roomDetail(@PathVariable("roomId") int roomId, Model model) {
-        System.out.println("Room ID: " + roomId);  // roomId가 제대로 넘어오는지 확인
-        
         RoomDTO room = roomService.getRoomById(roomId);
-        List<RoomImgDTO> roomImages = roomService.getRoomImagesByRoomId(roomId);
-        
-        if (room == null) {
-            System.out.println("Room not found for ID: " + roomId); // 데이터가 없을 경우 확인
-        } else {
-            System.out.println("Room found: " + room.getType()); // 데이터가 있을 경우 확인
-        }
-
+        List<RoomImgDTO> roomImages = roomService.getRoomImagesByRoomId(roomId);  // 이미지 정보도 함께 조회
         model.addAttribute("room", room);
         model.addAttribute("roomImages", roomImages);
         return "room/roomDetail";  // roomDetail.jsp로 이동
     }
-
-    
 }
