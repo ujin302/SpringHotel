@@ -7,13 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Spring Hotel 회원 조회</title>
-<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
-<link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
 </head>
 
 <body>
-<jsp:include page="../common/header.jsp" />
+	<%@ include file="../common/header.jsp" %>
 	<div class="container" data-view="checkUser"></div>
 	<div id="reserveTitle">
 		<font size="20">회원 조회</font>
@@ -49,7 +47,6 @@
 		${map.adminPaging.pagingHTML }
 	</div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="/SpringHotel/resources/js/bootstrap.js"></script>
 <script src="/SpringHotel/resources/js/header.js"></script>
 <script type="text/javascript">
