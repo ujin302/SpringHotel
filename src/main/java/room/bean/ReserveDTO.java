@@ -20,4 +20,6 @@ public class ReserveDTO {
     private int price;         // 가격 (INT)
     private String time;       // 예약 시간 (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)
     private RoomDTO room;	  // RoomDTO 추가
+    
+    private RoomImgDTO roomImgDTO;
 }
