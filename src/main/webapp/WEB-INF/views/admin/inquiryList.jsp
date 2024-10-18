@@ -5,13 +5,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Spring Hotel Q&A</title>
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
 </head>
 
 <body>
 	<%@ include file="../common/header.jsp" %>
 	<div id="reserveTitle"><font size="20">Q&A</font></div>
-	
+	<input type="hidden" id="pg" value="${pg }" />
 	<table align="center" class="reserveInfo">
 	    <tr align="center" id="list">
 	        <td>NO</td>
@@ -26,9 +30,9 @@
 	            <c:forEach items="${map2.list}" var="questionsDTO">
 	                <tr align="center">
 	                    <td>${questionsDTO.questionsId}</td>
-	                    <td>${questionsDTO.writerId}</td> 
+	                    <td>${questionsDTO.userName}</td> 
 	                    <td>${questionsDTO.typename}</td>
-	                    <td><a href="/SpringHotel/admin/inquiryDetail?questionsId=${questionsDTO.questionsId}&writerId=${questionsDTO.writerId}&typename=${questionsDTO.typename}"><b>${questionsDTO.content}</b></a></td>
+	                    <td><a href="/SpringHotel/admin/inquiryDetail?questionsId=${questionsDTO.questionsId}&userName=${questionsDTO.userName}&typename=${questionsDTO.typename}"><b>${questionsDTO.content}</b></a></td>
 	                    <td>${questionsDTO.logtime}</td>
 	                </tr>
 	            </c:forEach>
@@ -40,5 +44,15 @@
 	        </c:otherwise>
 	    </c:choose>
 	</table>
+	<div class="pagination">
+	    ${map2.adminPaging.pagingHTML}
+	</div>
+<script type="text/javascript">
+function adminPaging(pg){
+	location.href = "/SpringHotel/admin/inquiryList?pg=" + pg;
+}
+</script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 </body>
 </html>

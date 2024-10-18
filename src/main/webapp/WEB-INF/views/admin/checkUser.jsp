@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>Spring Hotel 회원 조회</title>
 <link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
 </head>
 
 <body>
@@ -43,8 +45,8 @@
 			</tr>
 		</c:if>
 	</table>
-	<div>
-		${map.adminPaging.pagingHTML }
+	<div class="pagination">
+	    ${map2.adminPaging.pagingHTML}
 	</div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="/SpringHotel/resources/js/bootstrap.js"></script>

@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring Hotel Q&A 상세내역</title>
+    <meta name="viewport" content="width=device-width", initial-scale="1">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
     <style>
         .btn {
@@ -56,7 +58,7 @@
             </tr>
             <tr>
                 <td id="detail">작성자</td>
-                <td>${writerId}</td>
+                <td>${userName}</td>
                 <td id="detail">작성일</td>
                 <td>${questionsDTO.logtime}</td>
             </tr>
@@ -68,16 +70,20 @@
             </tr>
             <tr align="center">
                 <td colspan="4">
+                   	<input type="hidden" name="questionsId" value="${questionsDTO.questionsId}">
                     <input type="button" class="btn" value="목록" onclick="location.href='admin/inquiryList2'" />
-                   <input type="button" class="btn" id="Updatebtn" value="수정" onclick="location.href='/SpringHotel/admin/inquiryUpdate?questionsId=${questionsDTO.questionsId}&typename=${typename}&content=${questionsDTO.content}'" />
-                    <input type="button" class="btn" id="Deletebtn" value="삭제" onclick="location.href='admin/inquiryList2'" />
+ 					<!-- 현재 로그인한 사용자가 작성자인지 확인하여 수정, 삭제 버튼 표시 -->
+                    <c:if test="${sessionScope.userSeq == seq}">
+                        <input type="button" class="btn" id="Updatebtn" value="수정" onclick="location.href='/SpringHotel/admin/inquiryUpdate?questionsId=${questionsDTO.questionsId}&typename=${typename}&content=${questionsDTO.content}'" />
+                        <input type="button" class="btn" id="Deletebtn" value="삭제" onclick="location.href='/SpringHotel/admin/inquiryDelete?questionsId=${questionsDTO.questionsId}'" />
+                    </c:if>
                 </td>
             </tr>
         </table>
     </form>
 	
 	<c:forEach items="${comments}" var="answerDTO">
-	    <div id="comment">
+	    <div id="comment" style="margin-bottom: 10px;">
 	        <strong>${answerDTO.adminId}</strong> | ${answerDTO.logdate}<br/>
 	        <div id="showContent${answerDTO.answerId}" style="white-space: pre;">
 	            <c:out value="${answerDTO.comment}"></c:out><br />

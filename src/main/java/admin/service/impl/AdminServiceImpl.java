@@ -69,8 +69,8 @@ public class AdminServiceImpl implements AdminService {
 	    return adminDAO.getRoomListWithImages();
 	}    
 	@Override
-	public RoomDTO getRoomDTO(String type) {
-		return adminDAO.getRoomDTO(type);
+	public RoomDTO getRoomDTO(int roomId) {
+		return adminDAO.getRoomDTO(roomId);
 	}
 	@Override
 	public void update(RoomDTO roomDTO, MultipartFile img) {
@@ -156,7 +156,7 @@ public class AdminServiceImpl implements AdminService {
 		map.put("endNum", endNum);
 		
 		//DB
-		List<ReserveDTO> list = adminDAO.inquiryList(map);
+		List<QuestionsDTO> list = adminDAO.inquiryList(map);
 		
 		//페이징 처리
 		int totalA = adminDAO.getTotalC(); //총글수
@@ -222,10 +222,15 @@ public class AdminServiceImpl implements AdminService {
 		map.put("questionsId", questionsId);
 		map.put("typename", typename);
 		map.put("content", content);
-		
-		
+		System.out.println("questionsId2 = " + questionsId);
+		System.out.println("typename2 = " + typename);
+		System.out.println("content2 = " + content);
 		adminDAO.updateInquiry(map);
 		
+	}
+	@Override
+	public void deleteQuestions(int questionsId) {
+		adminDAO.deleteQuestions(questionsId);
 	}
 
 

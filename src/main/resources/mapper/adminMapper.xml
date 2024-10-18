@@ -27,14 +27,36 @@
 	    <result property="capacity" column="capacity"/>
 	    <result property="price" column="price"/>
 	    <result property="count" column="count"/>
+	    <result property="description" column="description"/>
+	    <result property="form" column="form"/>
+	    <result property="view" column="view"/>
+	    <result property="bedtype" column="bedtype"/>
 	    <association property="roomImg" javaType="roomImgDTO">
+	        <id property="roomImgId" column="roomImgId"/>
 	        <result property="imageFileName" column="imageFileName"/>
 	        <result property="imageOriginalFileName" column="imageOriginalFileName"/>
 	    </association>
 	</resultMap>
+
  	
- 	<select id="getRoomDTO" parameterType="String" resultType="roomDTO">
- 		SELECT * FROM room where type = #{type}
+ 	<select id="getRoomDTO" parameterType="int" resultMap="roomWithImgMap">
+		SELECT 
+		    r.roomId, 
+		    r.type, 
+		    r.size, 
+		    r.capacity, 
+		    r.price, 
+		    r.count, 
+		    r.description,
+		    r.form, 
+		    r.view, 
+		    r.bedtype,
+		    ri.roomImgId, 
+		    ri.imageFileName, 
+		    ri.imageOriginalFileName
+		FROM room r
+		LEFT JOIN roomImg ri ON r.roomId = ri.roomId
+		WHERE r.roomId = #{roomId}
  	</select>
  	
  	<select id="getQuestionsDTO" parameterType="String" resultType="questionsDTO">
@@ -78,7 +100,7 @@
     </select>
     
 	<select id="inquiryList" parameterType="map" resultType="questionsDTO">
-	    SELECT q.*, qt.typename, u.userid AS writerId 
+	    SELECT q.*, qt.typename, u.name AS userName, u.seq 
 	    FROM questions q
 	    LEFT JOIN qtypes qt ON q.qtypesId = qt.qtypesId 
 	    LEFT JOIN user u ON q.userid = u.seq
@@ -124,8 +146,12 @@
     
     <update id="updateInquiry" parameterType="map">
         UPDATE questions
-        SET content = #{content}, qtypesId = #{qtypesId}  
+        SET content = #{content}, qtypesId = #{typename}  
         WHERE questionsId = #{questionsId}
     </update>
     
+    <delete id="deleteQuestions">
+      	DELETE FROM questions
+        WHERE questionsId = #{questionsId}
+    </delete>
  </mapper>
