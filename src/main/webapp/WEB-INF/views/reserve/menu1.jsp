@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/reserveCSS.css">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico" type="image/x-icon">
-<title>로그인</title>
+<title>Spring Hotel</title>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
