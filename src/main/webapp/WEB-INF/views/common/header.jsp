@@ -29,7 +29,7 @@
 	          	<li id="header-2"><a href="/SpringHotel/room/roomView">객실 정보</a></li>
 	            <li id="header-3"><a href="/SpringHotel/">예약</a></li>
 	            <li id="header-4"><a href="/SpringHotel/">예약내역</a></li>
-	            <li id="header-5"><a href="/SpringHotel/">Q&A</a></li>
+	            <li id="header-5"><a href="/SpringHotel/admin/inquiryList2">Q&A</a></li>
     		</c:if>
         </ul>
         <ul class="nav navbar-nav navbar-right">
