@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/reserveCSS.css">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico" type="image/x-icon">
 <title>Spring Hotel</title>
@@ -16,9 +16,9 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 	
-	<div class="container" data-view="reservation1" data-menu="2">
+	<div class="container" data-view="reservation" data-menu="3">
+	
 		<!-- 메인 메뉴 -->
-		<span id="seq">${sessionScope.userSeq }</span>
 		<div id="reservation">
 			<!-- 예약 순서 -->
 			<jsp:include page="./menu.jsp"/>
@@ -36,27 +36,27 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr id="calVal" align="center">
-							<td><input type="date" id="checkin" name="checkin" min='' value="${userInput.checkin }" pattern="yyyy-MM-dd" /></td>
-							<td><input type="date" id="checkout" name="checkout" min='' value="${userInput.checkout }"  pattern="yyyy-MM-dd" /></td>
+						<!-- <tr id="calVal" align="center">
+							<td><input type="date" id="checkin" name="checkin" min='' pattern="yyyy-MM-dd" /></td>
+							<td><input type="date" id="checkout" name="checkout" min=''  pattern="yyyy-MM-dd" /></td>
 							<td><input type="text" id="diffday" min="1" value="" readonly/></td>
-							<td><input type="number" id="adults" name="adults" min="1" value="${userInput.adults }"/></td>
-							<td><input type="number" id="kids" name="kids" value="0" min="${userInput.kids }" /></td>
+							<td><input type="number" id="adults" name="adults" min="1" value="1"/></td>
+							<td><input type="number" id="kids" name="kids" value="0" min="0" /></td>
 							<td><input type="button" class="btn" id="findRoomBtn" value="검색"></td>
-						</tr>
+						</tr> -->
 					</tbody>
 					<tfoot>
-						<c:forEach items="${roomList }" var="roomDTO">
-							<tr>
-								<td colspan="6">
-									<div class="card mb-3" >
+						<tr align="center">
+							<td colspan="6">
+								<div class="card mb-3" >
 										<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${roomDTO.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
 										<div class="room-details bg-light p-5 rounded shadow-sm">
 											<h3 class="card-title">${roomDTO.type }</h3>
 											<div class="row roomInfo">
 												<div class="col-md-6">
 													<p><i class="fas fa-expand-arrows-alt"></i>크기: ${roomDTO.size} m²</p>
-								                    <p><i class="fas fa-users"></i> 수용 인원: ${roomDTO.capacity}명</p>
+								                    <p><i class="fas fa-users"></i> 어른: ${roomDTO.capacity}인</p>
+								                    <p><i class="fas fa-users"></i> 아이: ${roomDTO.capacity}인</p>
 								                    <p><i class="fas fa-money-bill-wave"></i> 가격: ₩${roomDTO.price}</p>
 						                		</div>
 								                <div class="col-md-6">
@@ -69,9 +69,8 @@
 						            		</div>
 							          	</div>
 									</div>
-								</td>
-							</tr>
-						</c:forEach>
+							</td>
+						</tr>				
 					</tfoot>
 				</table>
 			</div>

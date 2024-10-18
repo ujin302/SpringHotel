@@ -7,11 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
 import room.service.ReserveService;
 
@@ -21,14 +23,14 @@ public class ReserveController {
 	@Autowired
 	ReserveService reserveService;
 	
-	// 예약 화면 보여주기
+	// [ 날짜, 인원 선택 화면 ]
 	@RequestMapping(value = "/main")
 	public String main(ModelMap mMap) {
 		return "reserve/menu1";
 	}
 	
 	// 조건에 맞는 객실 확인
-	@RequestMapping(value = "/findRoom", method = RequestMethod.POST)
+	@RequestMapping(value = "/menu2/findRoom", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean findRoom(@RequestParam Map<String, String> map) {
 		ArrayList<RoomDTO> findRoomList = reserveService.getFindRoomList(map);
@@ -40,11 +42,36 @@ public class ReserveController {
 		return true;
 	}
 	
+	// [ 객실 정보 화면 ]
 	@RequestMapping(value = "/menu2")
 	public String menu2(@RequestParam Map<String, String> map, ModelMap mMap) {
 		ArrayList<RoomDTO> roomList = reserveService.getFindRoomList(map);
 		mMap.addAttribute("roomList", roomList);
+		mMap.addAttribute("userInput", map);
 		
 		return "reserve/menu2";
 	}
+	
+	// [ 예약 정보 화면 ]
+	@RequestMapping(value = "/menu3/submit")
+	public String submit() {
+		System.out.println("/submit");
+		return "reserve/menu3";
+	}
+	
+	// 예약 정보 출력
+	@RequestMapping(value = "/menu3")
+	public void menu3(@RequestParam Map<String, String> map, ModelMap mMap) {
+		System.out.println("/menu3");
+		System.out.println(map);
+		
+		// 1. 예약 정보 가져오기
+		ReserveDTO reserveDTO = reserveService.getReserveInfo(map);
+		
+		// 2. 정보 저장
+		mMap.addAttribute("reserveDTO", reserveDTO);
+	}
+	
+	// 예약 정보 저장
+	
 }
