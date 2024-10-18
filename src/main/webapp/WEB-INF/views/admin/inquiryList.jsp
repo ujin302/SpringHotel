@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
 	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
+	<link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
 </head>
 
 <body>

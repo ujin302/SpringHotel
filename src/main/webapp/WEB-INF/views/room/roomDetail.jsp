@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="/SpringHotel/resources/css/roomDetail.css">
 </head>
 <body>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- 최신 jQuery -->
+	
     <jsp:include page="../common/header.jsp" />
+
 	
     <!-- 룸 상세 정보 섹션 -->
-    <div class="container room-detail-container mt-5">
+    <div class="container room-detail-container mt-5" data-view="roomDetail">
         <h2 class="text-center room-detail-title"><i class="fas fa-bed"></i> ${room.type} 상세 정보</h2>
         
         <!-- 세션에서 가져온 userId를 히든 필드로 저장 -->
@@ -132,8 +133,9 @@
 
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- 최신 jQuery -->
     <script src="/SpringHotel/resources/js/bootstrap.js"></script>
-    <!-- <script src="/SpringHotel/resources/js/header.js"></script> -->
+    <script src="/SpringHotel/resources/js/header.js"></script>
     <script src="/SpringHotel/resources/js/review.js"></script>
 </body>
 </html>
