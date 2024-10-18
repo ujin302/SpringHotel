@@ -12,7 +12,9 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- User -->
-	<context:component-scan base-package="user.bean" />	
+	<context:component-scan base-package="user.bean" />
+	<context:component-scan base-package="user.service.impl"/>
+	<mybatis-spring:scan base-package="user.dao"/>
 	
 	<!-- Admin -->
 	<context:component-scan base-package="admin.bean" />
@@ -26,9 +28,41 @@
 	
 	<!-- Room -->
 	<context:component-scan base-package="room.bean" />
+	<context:component-scan base-package="room.service" />
 	
 	<!-- Review -->
 	<context:component-scan base-package="review.bean" />
+	<context:component-scan base-package="review.service" />
 	
 	<context:component-scan base-package="spring.conf" />
+	
+	<bean
+      class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+      <property name="messageConverters">
+         <list>
+            <bean
+               class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+         </list>
+      </property>
+   </bean>
+   <!-- 이메일 인증 관련 등록 -->
+   <!-- 이메일 인증 관련 등록 -->
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.naver.com"/>
+       <property name="port" value="587"/>
+       <property name="username" value="springhotel"/>
+       <property name="password" value="Spring123!@#"/>
+       <!-- 보안연결 SSL과 관련된 설정 -->
+       <property name="javaMailProperties">
+          <props>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtps.checkserveridentity">true</prop>
+            <prop key="mail.smtps.ssl.trust">*</prop>
+            <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            <prop key="mail.debug">true</prop>
+            <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+           </props>
+        </property>
+   </bean>
 </beans>

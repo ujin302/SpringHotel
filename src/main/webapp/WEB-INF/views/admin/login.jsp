@@ -1,47 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Spring Hotel 관리자 로그인</title>
+	<title>Spring Hotel 로그인</title>
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
-		<!--LoginServlet으로 이동-->
-		<div id="loginComment">
-			관리자 로그인 화면입니다<br />
-			Spring Hotel 고객님께서는 이전화면으로 이동해주시기 바랍니다
-		</div>
-		
-		<form action="adminlogin" method="post" name="regForm">
-			<table align="center" class="log">
-				<tr>
-					<th align="center" colspan="2">ADMIN LOGIN</th>
+	<jsp:include page="../common/header.jsp" />
+
+	<div class="container">
+		<!-- 관리자 로그인 form -->
+		<form id="loginForm" class="login-form">
+			<table class="log">
+				<tr align="center">
+			 	   <th style="text-align: center; margin-top: 50px; padding-top: 50px;">ADMIN LOGIN</th>
 				</tr>
-				<tr id="loginTr">
-					<td id="text">아이디</td>
-					<td><input type="text" name="u_id" id="input" /></td>
-				</tr>
-				<tr>
-					<td id="text">비밀번호</td>
-					<td><input type="password" name="u_pwd" id="input"  /></td>
+				<tr align="center">
+					<td>
+						<p id="welcomText" style="font-size: 20px;">
+							Spring Hotel<br> 관리자 로그인 화면입니다.
+						</p>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="로그인" id="btn" />
+					<td>
+						<input type="text" name="adminId" id="adminId" placeholder="아이디 입력" class="input" /><br><br>
+						<input type="password" name="pwd" id="pwd" placeholder="비밀번호 입력" class="input" />
+						<div id="loginDiv" style="color: red; margin-top: 10px;"></div>
+						<input type="button" value="로그인" id="loginBtn" class="btn" style="margin-top: 50px;"/>
 					</td>
 				</tr>
 			</table>
-			
 		</form>
-		<br /><br /><br /><br /><br />
-<%-- 		<c:if test="${msg != null}">
-			<script>
-				alert("관리자 계정으로 로그인해주세요");
-			</script>
-		</c:if> --%>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
+    <script src="/SpringHotel/resources/js/admin.js"></script>
+
 </body>
 </html>

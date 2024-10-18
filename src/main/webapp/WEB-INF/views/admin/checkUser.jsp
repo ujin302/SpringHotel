@@ -8,10 +8,13 @@
 <meta charset="UTF-8">
 <title>Spring Hotel 회원 조회</title>
 <link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
 </head>
 
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../common/header.jsp" %>
+	<div class="container" data-view="checkUser"></div>
 	<div id="reserveTitle">
 		<font size="20">회원 조회</font>
 	</div>
@@ -31,11 +34,10 @@
 					<td>${userDTO.getName() }</td>
 					<td>${userDTO.getUserId() }</td>
 					<td>${userDTO.getPwd() }</td>
-					<td>${userDTO.getTel1 }</td>
+					<td>${userDTO.getTel1()}-${userDTO.getTel2()}-${userDTO.getTel3()}</td> <!-- 전화번호 출력 -->
 					<td>${userDTO.getEmail() }</td>
 				</tr>
 			</c:forEach>
-
 		</c:if>
 		<c:if test="${map2.list == null}">
 			<tr>
@@ -43,9 +45,12 @@
 			</tr>
 		</c:if>
 	</table>
-	<div>
-		${map.adminPaging.pagingHTML }
+	<div class="pagination">
+	    ${map2.adminPaging.pagingHTML}
 	</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 <script type="text/javascript">
 function adminPaging(pg){
 	location.href = "/SpringHotel/admin/checkUser?pg=" + pg;
