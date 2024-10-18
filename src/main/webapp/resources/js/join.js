@@ -99,6 +99,21 @@ function Join(e) {
 			isOk = false;
 		}
     });
+
+    // 7. 인증번호 확인
+    var enteredCode = $('#EmailCheckbutton').val(); 
+    var sentCode = $('#checkNum').val();
+
+    if (enteredCode === "") {
+        $('#emailCheckDiv').text("인증번호를 입력하세요."); 
+        e.preventDefault();
+        isOk = false;
+    } else if (enteredCode !== sentCode) {
+        $('#emailCheckDiv').text("인증번호가 일치하지 않습니다.");
+        e.preventDefault();
+        isOk = false;
+    }
+    	
 	
 	if(isOk) {
 		$.ajax({
@@ -140,12 +155,12 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            url: "/SpringHotel/user/EmailAuth", // 요청할 URL
-            type: "POST",                   // POST 요청
-            data: {email: email},            // 서버로 보낼 데이터
+            url: "/SpringHotel/user/EmailAuth", 
+            type: "POST",                  
+            data: {email: email},         
             success: function(checkNum) {
                 alert("인증번호가 이메일로 발송되었습니다. 이메일을 확인하고 인증번호를 입력하세요.");
-                $('#checkNum').val(checkNum);  // 인증번호를 hidden input에 저장
+                $('#checkNum').val(checkNum);  
             },
             error: function() {
                 alert("이메일 인증에 실패했습니다. 다시 시도해주세요.");
@@ -155,18 +170,18 @@ $(document).ready(function() {
 
     // 인증번호 확인 버튼 클릭 시
     $('#emailCheckBtn').on('click', function() {
-        var enteredCode = $('#EmailCheckbutton').val(); // 입력한 인증번호
-        var sentCode = $('#checkNum').val();  // 서버로부터 받은 인증번호
+        var enteredCode = $('#EmailCheckbutton').val(); 
+        var sentCode = $('#checkNum').val();  
 
         if (enteredCode === "") {
-            alert("인증번호를 입력하세요.");
+        	$('#emailCheckDiv').text("인증번호를 입력하세요."); 
             return;
         }
 
         if (enteredCode === sentCode) {
-            alert("인증이 성공적으로 완료되었습니다.");
+        	$('#emailCheckDiv').text("인증이 성공적으로 완료되었습니다.").css('color', 'blue');        
         } else {
-            alert("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
+            $('#emailCheckDiv').text("인증번호가 일치하지 않습니다. 다시 확인해주세요.")
         }
     });
 });
