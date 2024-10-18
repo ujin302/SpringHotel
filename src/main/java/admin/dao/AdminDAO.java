@@ -21,7 +21,7 @@ public interface AdminDAO {
 
 	public List<RoomDTO> getRoomList();
 
-	public RoomDTO getRoomDTO(String type);
+	public RoomDTO getRoomDTO(int roomId);
 
 	// 객실 정보 업데이트
     public void updateRoom(RoomDTO roomDTO);
@@ -39,7 +39,7 @@ public interface AdminDAO {
 
 	public int getTotalC();
 
-	public List<ReserveDTO> inquiryList(Map<String, Integer> map);
+	public List<QuestionsDTO> inquiryList(Map<String, Integer> map);
 
 	public QuestionsDTO getQuestionsDTO(String questionsId);
 
@@ -56,5 +56,7 @@ public interface AdminDAO {
 	public void saveQuestion(QuestionsDTO questionsDTO);
 
 	public void updateInquiry(Map<String, Object> map);
+
+	public void deleteQuestions(int questionsId);
 
 }

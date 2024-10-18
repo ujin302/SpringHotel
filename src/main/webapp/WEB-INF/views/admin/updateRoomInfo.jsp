@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>Spring Hotel RoomInfo</title>
 <link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
-<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
 <style>
 #updateBtn {
 	margin: 1% auto;
@@ -30,7 +31,7 @@
 			<tr>
 				<td id="detail">객실 타입</td>
 				<td align="center">
-					<img id="roomImage" src="/SpringHotel/resources/image/${roomDTO.getType()}.jpg" width="300" height="250" name=""><br /> 
+					<img id="roomImage" src="https://kr.object.ncloudstorage.com/springhotel/storage/${roomDTO.roomImg.imageFileName}" width="300" height="250" name=""><br /> 
 					<input type="text" class="writeTitle" name="type" value="${roomDTO.getType()}" readonly="readonly" size="15" />
 				</td>
 			</tr>

@@ -15,7 +15,7 @@ public interface AdminService {
 
 	public List<RoomDTO> getRoomList();
 
-	public RoomDTO getRoomDTO(String type);
+	public RoomDTO getRoomDTO(int roomId);
 
 	public void update(RoomDTO roomDTO, MultipartFile img);
 
@@ -38,6 +38,8 @@ public interface AdminService {
 	public void saveQuestion(QuestionsDTO questionsDTO);
 
 	public void updateInquiry(int questionsId, int typename, String content);
+
+	public void deleteQuestions(int questionsId);
 
 
 }

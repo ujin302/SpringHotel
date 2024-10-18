@@ -6,7 +6,8 @@
 <head>
    <meta charset="UTF-8">
    <title>호텔 C&S - Q&A 게시글 수정</title>
-   <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
    <link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
    <style>
       .btn{

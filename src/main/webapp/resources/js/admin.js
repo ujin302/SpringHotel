@@ -20,30 +20,32 @@ $(function() {
         });
     });
 
-    // 댓글 작성
-    $('#commentWriteBtn').on('click', function(event) {
-        event.preventDefault();
+	 $('#commentWriteBtn').on('click', function(event) {
+	    event.preventDefault();
+	
+	    let formData = {
+	        comment: $('#comment2').val(), 
+	        questionsId: $('input[name="questionsId"]').val(),  
+	        userId: $('input[name="userId"]').val()  
+	    };
+	
+	    console.log(formData);  
+	
+	    $.ajax({
+	        type: 'POST',
+	        url: '/SpringHotel/admin/writeComment',
+	        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+	        data: formData,
+	        success: function(response) {
+	            alert("댓글이 작성되었습니다.");
+	            location.reload();
+	        },
+	        error: function(error) {
+	            console.log(error);
+	        }
+	    });
+	});
 
-        let formData = {
-            comment: $('#comment').val(),
-            questionsId: $('input[name="questionsId"]').val(),
-            userId: $('input[name="userId"]').val()
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/SpringHotel/admin/writeComment',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(formData),
-            success: function(response) {
-                alert("댓글이 작성되었습니다.");
-                location.reload();
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    });
 
     $('#loginBtn').on('click', function(event) {
         event.preventDefault(); // 기본 폼 제출 방지
@@ -174,35 +176,61 @@ $(function() {
             }
         });
     });
-$(document).on('click', '#updateBtn', function() {
-    let typename = $('#qtypesId').val();
-    let content = $('#content').val();
-    let questionsId = $('input[name="questionsId"]').val(); // questionsId 가져오기
+	$(document).on('click', '#updateBtn', function() {
+	    let typename = $('#qtypesId').val();
+	    let content = $('#content').val();
+	    let questionsId = $('input[name="questionsId"]').val(); // questionsId 가져오기
+	
+	    // questionsId가 비어있지 않은지 확인
+	    if (!questionsId) {
+	        alert("질문 ID가 유효하지 않습니다.");
+	        return; // 요청 중단
+	    }
+	
+	    $.ajax({
+	        type: "POST",
+	        url: "/SpringHotel/inquiry/update",
+	        data: {
+	            typename: typename,
+	            content: content,
+	            questionsId: questionsId // questionsId 추가
+	        },
+	        success: function(response) {
+	            alert("수정이 완료되었습니다.");
+	            location.href = "/SpringHotel/admin/inquiryList2";
+	        },
+	        error: function(xhr, status, error) {
+	            alert("오류 발생: " + error);
+	        }
+	    });
+	});
 
-    // questionsId가 비어있지 않은지 확인
-    if (!questionsId) {
-        alert("질문 ID가 유효하지 않습니다.");
-        return; // 요청 중단
-    }
+    // 댓글 삭제
+    $(document).on('click', '#Deletebtn', function() {
+        let questionsId = $('input[name="questionsId"]').val(); // questionsId 가져오기
 
-    $.ajax({
-        type: "POST",
-        url: "/SpringHotel/inquiry/update",
-        data: {
-            typename: typename,
-            content: content,
-            questionsId: questionsId // questionsId 추가
-        },
-        success: function(response) {
-            alert("수정이 완료되었습니다.");
-            location.href = "/SpringHotel/inquiryList2.jsp";
-        },
-        error: function(xhr, status, error) {
-            alert("오류 발생: " + error);
+        if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
+            $.ajax({
+                type: 'POST',
+                url: '/SpringHotel/inquiry/delete',
+                data: {
+                    questionsId: questionsId
+                },
+                success: function(response) {
+                    if (response === "success") {
+                        alert("게시글이 삭제되었습니다.");
+                        location.href = "/SpringHotel/admin/inquiryList2";
+                    } else {
+                        alert("게시글 삭제에 실패하였습니다.");
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                    alert("서버 오류가 발생하였습니다.");
+                }
+            });
         }
     });
-});
-
 
 	$(document).on('click', '#btn', function() {
         location.href = '/SpringHotel/admin/inquiryList2';

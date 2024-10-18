@@ -34,6 +34,11 @@ public class AdminController {
 	    return "/admin/login";
 	}
 	
+	@RequestMapping(value="admin/mypage")
+	public String mypage() {
+	    return "/mypage/mypage";
+	}	
+	
 	@RequestMapping(value = "admin/loginForm", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String adminLogin(@RequestParam String adminId, @RequestParam String pwd, HttpSession session, Model model) {
@@ -57,10 +62,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="admin/updateRoomInfo", method = RequestMethod.GET)
-	public String updateRoomInfo(@RequestParam String type, Model model) {
-		RoomDTO roomDTO = adminService.getRoomDTO(type);
+	public String updateRoomInfo(@RequestParam String type, @RequestParam int roomId, Model model) {
+		RoomDTO roomDTO = adminService.getRoomDTO(roomId);
 		model.addAttribute("roomDTO", roomDTO);
-		
+		System.out.println(roomDTO);
 		return "/admin/updateRoomInfo";
 	}
 	
@@ -99,28 +104,31 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="admin/inquiryList", method = RequestMethod.GET)
-	public String inquiryList(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
+	public String inquiryList(@RequestParam(required = false, defaultValue = "1") String pg, HttpSession session, Model model) {
 		Map<String, Object> map2 = adminService.inquiryList(pg);
 		
 		map2.put("pg", pg);
 		model.addAttribute("map2", map2);
 		return "/admin/inquiryList";
 	}
-	
-	
+		
 	@RequestMapping(value="admin/inquiryDetail", method = RequestMethod.GET)
-	public String inquiryDetail(@RequestParam String questionsId, String typename, String writerId, HttpSession session,Model model) {
+	public String inquiryDetail(@RequestParam String questionsId, 
+								@RequestParam String typename, 
+								@RequestParam String userName, HttpSession session,Model model) {
 	    QuestionsDTO questionsDTO = adminService.getQuestionsDTO(questionsId);
-	    String adminId = (String) session.getAttribute("adminId");
+	    String adminId = (String) session.getAttribute("adminId");	 
+	    String userSeq = (String) session.getAttribute("userSeq");	 
 	    
 	    // 댓글 목록 조회
 	    List<AnswerDTO> comments = adminService.getCommentsByQuestionId(Integer.parseInt(questionsId));
 	    
 	    model.addAttribute("questionsDTO", questionsDTO);
 	    model.addAttribute("typename", typename);
-	    model.addAttribute("writerId", writerId);
+	    model.addAttribute("userName", userName);
 	    model.addAttribute("comments", comments); 
 	    model.addAttribute("adminId", adminId); 
+	    model.addAttribute("userSeq", userSeq); 
 	    
 	    
 	    System.out.println("comments = " + comments);
@@ -129,35 +137,30 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="admin/inquiryDetail2", method = RequestMethod.GET)
-	public String inquiryDetail2(@RequestParam String questionsId, String typename, String writerId, HttpSession session,Model model) {
+	public String inquiryDetail2(@RequestParam String questionsId, 
+								 @RequestParam String seq, 
+								 @RequestParam String typename, 
+								 @RequestParam String userName, HttpSession session,Model model) {
 	    QuestionsDTO questionsDTO = adminService.getQuestionsDTO(questionsId);
 	    String adminId = (String) session.getAttribute("adminId");
+	    String userSeq = (String) session.getAttribute("userSeq"); 
+	    System.out.println("userSeq = " + userSeq);
+	    System.out.println("seq = " + seq);
 	    
 	    // 댓글 목록 조회
 	    List<AnswerDTO> comments = adminService.getCommentsByQuestionId(Integer.parseInt(questionsId));
 	    
 	    model.addAttribute("questionsDTO", questionsDTO);
 	    model.addAttribute("typename", typename);
-	    model.addAttribute("writerId", writerId);
+	    model.addAttribute("userName", userName);
 	    model.addAttribute("comments", comments); 
 	    model.addAttribute("adminId", adminId); 
-	    
+	    model.addAttribute("seq", seq); 
+	    model.addAttribute("userSeq", userSeq);
 	    
 	    System.out.println("comments = " + comments);
 	    System.out.println(questionsDTO);
 	    return "/inquiry/inquiryDetail";
-	}
-	
-	@RequestMapping(value="admin/writeComment")
-	@ResponseBody
-	public String writeComment(@RequestParam AnswerDTO answerDTO, HttpSession session) {
-	    try {
-	        adminService.writeComment(answerDTO);
-	        return "success";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return "fail";
-	    }
 	}
 	
 	@RequestMapping(value = "admin/writeComment", method = RequestMethod.POST)
@@ -165,26 +168,27 @@ public class AdminController {
 	public String writeComment(@RequestParam int questionsId, 
 	                           @RequestParam int userId, 
 	                           @RequestParam String comment, HttpSession session) {
-	    String adminId = (String) session.getAttribute("adminId");
+	    String adminId = (String) session.getAttribute("adminId");  // 세션에서 adminId 가져옴
 	    System.out.println("questionsId = " + questionsId);
 	    System.out.println("userId = " + userId);
 	    System.out.println("comment = " + comment);
 	    System.out.println("adminId = " + adminId);
-	    
+
 	    AnswerDTO answerDTO = new AnswerDTO();
 	    answerDTO.setQuestionsId(questionsId);
 	    answerDTO.setUserId(userId);
 	    answerDTO.setComment(comment);
-	    answerDTO.setAdminId(adminId);
+	    answerDTO.setAdminId(adminId);  // 세션에서 가져온 adminId 사용
 
 	    try {
-	        adminService.writeComment(answerDTO);
-	        return "success"; 
+	        adminService.writeComment(answerDTO);  // 댓글 작성 서비스 호출
+	        return "success";  // 성공 시 "success" 반환
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return "fail";
+	        return "fail";  // 실패 시 "fail" 반환
 	    }
 	}
+
 
 
 	@RequestMapping(value="admin/updateComment", method = RequestMethod.POST)
@@ -261,19 +265,30 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "inquiry/update", method = RequestMethod.POST)
+	@ResponseBody // Ajax 요청에 대해 문자열로 응답
 	public String updateInquiry(@RequestParam("typename") int typename,
-	                            @RequestParam(value = "questionsId", required = false) String questionsIdStr,
-	                            @RequestParam("content") String content,
-	                            Model model) {
-	    if (questionsIdStr == null || questionsIdStr.isEmpty()) {
-	        throw new IllegalArgumentException("questionsId는 필수입니다."); // 예외 처리
-	    }
+	                            @RequestParam("questionsId") int questionsId,
+	                            @RequestParam("content") String content) {
+	    System.out.println("typename = " + typename);
+	    System.out.println("questionsId = " + questionsId);
+	    System.out.println("content = " + content);
 	    
-	    int questionsId = Integer.parseInt(questionsIdStr); // 문자열을 정수로 변환
 	    adminService.updateInquiry(questionsId, typename, content); // 서비스 호출
 
-	    // 성공적으로 업데이트된 후의 로직
-	    return "redirect:/inquiryList.jsp";  // 수정 후 목록으로 리다이렉트
+	    // 성공적으로 업데이트된 후의 응답
+	    return "success"; // 문자열로 응답
+	}
+	
+	@RequestMapping(value = "inquiry/delete", method = RequestMethod.POST)
+	@ResponseBody 
+	public String updateInquiry(@RequestParam("questionsId") int questionsId) {
+	    try {
+	        adminService.deleteQuestions(questionsId);
+	        return "success";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "fail";
+	    }
 	}
 
 }

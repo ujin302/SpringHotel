@@ -5,12 +5,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Spring Hotel Q&A</title>
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
 </head>
 
 <body>
 	<%@ include file="../common/header.jsp" %>
-	<div id="reserveTitle"><font size="20">Q&A</font></div>
+	<div id="reserveTitle"><font size="20">	Q&A</font></div>
+
+	<input type="hidden" id="pg" value="${pg }" />
 	
 	<table align="center" class="reserveInfo">
 	    <tr align="center" id="list">
@@ -26,9 +32,10 @@
 	            <c:forEach items="${map2.list}" var="questionsDTO">
 	                <tr align="center">
 	                    <td>${questionsDTO.questionsId}</td>
-	                    <td>${questionsDTO.writerId}</td> 
+	                    <td>${questionsDTO.userName}</td> 
 	                    <td>${questionsDTO.typename}</td>
-	                    <td><a href="/SpringHotel/admin/inquiryDetail2?questionsId=${questionsDTO.questionsId}&writerId=${questionsDTO.writerId}&typename=${questionsDTO.typename}"><b>${questionsDTO.content}</b></a></td>
+	                    <input type="hidden" name="seq" value="${questionsDTO.seq}">
+	                    <td><a href="/SpringHotel/admin/inquiryDetail2?questionsId=${questionsDTO.questionsId}&userName=${questionsDTO.userName}&typename=${questionsDTO.typename}&seq=${questionsDTO.seq}"><b>${questionsDTO.content}</b></a></td>
 	                    <td>${questionsDTO.logtime}</td>
 	                </tr>
 	            </c:forEach>
@@ -41,11 +48,19 @@
 	    </c:choose>
 	</table>
 	
-	<!-- 글쓰기 버튼 추가 -->
 	<div style="text-align: center; margin-top: 20px;">
 	    <a href="/SpringHotel/admin/inquiryWrite">
-	        <button class="btn small-btn">글쓰기</button>
+	        <button class="btn small-btn" style="margin-bottom: 20px;">글쓰기</button>
 	    </a>
 	</div>
+	
+	<div class="pagination" style="align-items: center;">
+	    ${map2.adminPaging.pagingHTML}
+	</div>
+<script type="text/javascript">
+function adminPaging(pg){
+	location.href = "/SpringHotel/admin/inquiryList2?pg=" + pg;
+}
+</script>
 </body>
 </html>

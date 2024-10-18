@@ -21,4 +21,6 @@ public class QuestionsDTO {
     private String updatetime;  // 문의 수정 시간 (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP ON UPDATE)
     private String typename;     // 문의 유형 이름 추가
     private String writerId;	//작성자 user_id 추가
+    private String userName;	//작성자 userName 추가
+    private int seq;	//작성자 seq 추가
 }
