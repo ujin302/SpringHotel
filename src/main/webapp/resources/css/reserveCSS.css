@@ -136,3 +136,49 @@ input{
 	height:600px;
 
 }
+/* 메뉴1 */
+#reservation #menu1 {
+	margin: 5% 0;
+	font-size: 25px;
+}
+
+#reservation #menu1 .nav-tabs {
+	padding-left: 5%;
+}
+
+#reservation #menu1 .nav-tabs .nav-link {
+	color: #382f24;
+}
+/* 메뉴2 */
+#reservation #menu2 .table {
+	border: none;
+}
+#reservation #menu2 .btn {
+	background-color: #ded3c5;
+	color: #382f24;
+	height: 30px;
+}
+#reservation #menu2 .btn:hover {
+	background-color: #382f24;
+	color: white;
+}
+#reservation #menu2 .table tbody {
+	height: 100px;
+}
+#reservation #menu2 .table tbody #calVal {
+	border-bottom: 7px solid #f2f1f0;
+}
+#reservation #menu2 .table tbody #calVal input {
+	margin-top: 30px;
+}
+#reservation #menu2 .table tfoot tr {
+	height: 500px;
+	border: none;
+}
+#reservation #menu2 .table tfoot #noData {
+	margin-top: 10%;
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+#reservation #menu2 .table tfoot #roomList {
+	margin-top: 2%;
+}

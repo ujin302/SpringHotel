@@ -9,6 +9,9 @@
         <result property="size" column="size" />
         <result property="capacity" column="capacity" />
         <result property="price" column="price" />
+        <result property="count" column="count" />
+        <result property="description" column="description" />
+        <result property="form" column="form" />
         <result property="view" column="view" />
         <result property="bedtype" column="bedtype" />
         <!-- roomImg와의 association -->
@@ -17,9 +20,9 @@
         </association>
     </resultMap>
     
-	<select id="findRoom" parameterType="map" resultMap="findRoomResultMap">
+	<select id="findRoomList" parameterType="map" resultMap="findRoomResultMap">
 		<![CDATA[ 
-			SELECT r.roomid, r.type, r.size, r.capacity, r.price, r.view, r.bedtype, ri.imageFileName
+			SELECT r.roomid, r.type, r.size, r.capacity, r.price, r.count, r.description, r.form, r.view, r.bedtype, ri.imageFileName
 		    FROM room r
 		    LEFT JOIN (
 		        SELECT roomid, COUNT(*) AS reserved_count

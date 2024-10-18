@@ -1,6 +1,6 @@
 // 메뉴 설정
 function setMenu() {
-	var menuNum = $('#reservation').data('menu');
+	var menuNum = $('.container').data('menu');
 	
 	console.log(menuNum);
 	$('#m' + menuNum).addClass('active');
@@ -72,8 +72,15 @@ function findRoom() {
 		},
 		dataType: 'text',
 		success: function(data) {
-			alert(1);
-			location.href = '/SpringHotel/reserve/menu2';
+			if(data == "true") {
+				location.href = '/SpringHotel/reserve/menu2?checkin='
+								+$('#checkin').val()
+								+'&checkout='+$('#checkout').val()
+								+'&adults=' + $('#adults').val()
+								+'&kids=' + $('#kids').val();
+			}else {
+				alert('예약 가능한 객실이 없습니다.');
+			}
 		},
 		error: function(e) {
 			console.log(e);

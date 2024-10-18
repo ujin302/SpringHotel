@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
-<link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/reserveCSS.css">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico" type="image/x-icon">
 <title>Spring Hotel</title>
@@ -16,8 +16,7 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 	
-	<div class="container" data-view="reservation" data-menu="1">
-	
+	<div class="container" data-view="reservation1" data-menu="2">
 		<!-- 메인 메뉴 -->
 		<div id="reservation">
 			<!-- 예약 순서 -->
@@ -46,13 +45,31 @@
 						</tr>
 					</tbody>
 					<tfoot>
-						<tr align="center">
-							<td colspan="6">
-								<div id="noData">
-									예약을 원하는 날짜,인원을 선택해주세요.
-								</div>
-							</td>
-						</tr>				
+						<c:forEach items="${roomList }" var="roomDTO">
+							<tr>
+								<td colspan="6">
+									<div class="card mb-3">
+										<img src="https://kr.object.ncloudstorage.com/springhotel/storage/${roomDTO.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
+										<div class="room-details bg-light p-5 rounded shadow-sm">
+											<h3 class="card-title">${roomDTO.type }</h3>
+											<div class="row">
+												<div class="col-md-6">
+													<p><i class="fas fa-expand-arrows-alt"></i>크기: ${roomDTO.size} m²</p>
+								                    <p><i class="fas fa-users"></i> 수용 인원: ${roomDTO.capacity}명</p>
+								                    <p><i class="fas fa-money-bill-wave"></i> 가격: ₩${roomDTO.price}</p>
+						                		</div>
+								                <div class="col-md-6">
+								                    <p><i class="fas fa-info-circle"></i> 설명: ${roomDTO.description}</p>
+								                    <p><i class="fas fa-couch"></i> 구성: ${roomDTO.form}</p>
+								                    <p><i class="fas fa-mountain"></i> 전망: ${roomDTO.view}</p>
+								                    <p><i class="fas fa-bed"></i> 침대 유형: ${roomDTO.bedtype}</p>
+								                </div>
+						            		</div>
+							          	</div>
+									</div>
+								</td>
+							</tr>
+						</c:forEach>
 					</tfoot>
 				</table>
 			</div>
