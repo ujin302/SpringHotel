@@ -35,7 +35,6 @@ public class ReserveController {
 		mMap.addAttribute("menuNum", 2);
 		
 		
-		
 		return false;
 	}
 	
