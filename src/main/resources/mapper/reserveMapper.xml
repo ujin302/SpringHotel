@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="room.dao.ReserveDAO"> 
+	<resultMap id="findRoomResultMap" type="room.bean.RoomDTO">
+        <id property="roomId" column="roomid" />
+        <result property="type" column="type" />
+        <result property="size" column="size" />
+        <result property="capacity" column="capacity" />
+        <result property="price" column="price" />
+        <result property="view" column="view" />
+        <result property="bedtype" column="bedtype" />
+        <!-- roomImg와의 association -->
+        <association property="roomImg" javaType="room.bean.RoomImgDTO">
+            <result property="imageFileName" column="imageFileName" />
+        </association>
+    </resultMap>
+    
+	<select id="findRoom" parameterType="map" resultMap="findRoomResultMap">
+		<![CDATA[ 
+			SELECT r.roomid, r.type, r.size, r.capacity, r.price, r.view, r.bedtype, ri.imageFileName
+		    FROM room r
+		    LEFT JOIN (
+		        SELECT roomid, COUNT(*) AS reserved_count
+		        FROM RESERVE
+		        WHERE (checkin <= #{checkout} AND checkout >= #{checkin})
+		        GROUP BY roomid
+		    ) AS reserved_rooms ON r.roomid = reserved_rooms.roomid
+		    LEFT JOIN roomImg ri ON r.roomid = ri.roomid
+		    WHERE r.capacity >= #{people}
+		    AND (reserved_rooms.reserved_count IS NULL OR r.count > reserved_rooms.reserved_count) 
+		]]>
+	</select>
+
+</mapper>	

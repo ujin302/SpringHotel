@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<meta name="viewport" content="width=device-width", initial-scale="1">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
@@ -28,7 +29,7 @@
     		<c:if test="${sessionScope.adminId == null}">
     			<li id="header-1"><a href="${pageContext.request.contextPath}/">HOME</a></li>
 	          	<li id="header-2"><a href="${pageContext.request.contextPath}/room/roomView">객실 정보</a></li>
-	            <li id="header-3"><a href="${pageContext.request.contextPath}/reserve/menu1">예약</a></li>
+	            <li id="header-3"><a href="${pageContext.request.contextPath}/reserve/main">예약</a></li>
 	            <li id="header-4"><a href="${pageContext.request.contextPath}/">예약내역</a></li>
 	            <li id="header-5"><a href="${pageContext.request.contextPath}/">Q&A</a></li>
     		</c:if>

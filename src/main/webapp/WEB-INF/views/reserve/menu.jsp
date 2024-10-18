@@ -49,9 +49,6 @@
 	margin-top: 2%;
 }
 </style>
-${menuNum}
-${menuNum == 1}
-${menuNum}
 <div id="reservation" data-menu="${menuNum}">
 	<div id="menu1">
 		<ul class="nav nav-tabs">
