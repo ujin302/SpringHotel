@@ -15,5 +15,11 @@ $(function(){
     	$('#header-adminMenu').addClass('active');
     }else if(viewName == 'checkUser') {
     	$('#header-6').addClass('active');
+    }else if(viewName == 'updateRoom') {
+    	$('#header-7').addClass('active');
+    }else if(viewName == 'checkReserve') {
+    	$('#header-8').addClass('active');
+    }else if(viewName == 'inquiryList') {
+    	$('#header-9').addClass('active');
     }
 });

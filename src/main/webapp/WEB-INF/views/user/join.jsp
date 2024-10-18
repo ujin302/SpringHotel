@@ -57,10 +57,32 @@
 				<tr align="center">
 					<th><label for="email">이메일</label></th>
 					<td class="inputList">
-						<input type="email" id="email" name="email" size="35" class="input" placeholder="이메일 입력" value="${userDTO.email}"/>
+						<input type="email" id="emailInput" name="email" size="35" class="input" placeholder="이메일 입력" value="${userDTO.email}"/>
 						<div class="infoText" id="emailDiv"></div>
 					</td>
 				</tr>
+				<tr align="center">
+				    <th><label> </label></th>
+				    <td class="inputList">
+				        <input type="button" id="EmailSendbutton" name="EmailSendbutton" style="width: 60%; height: 40px;" class="input" value="인증번호 발송"/>
+				    </td>
+				</tr>
+				<tr align="center">
+				    <th><label for="emailCheck">인증번호확인</label></th>
+				    <td class="inputList">
+				        <input type="text" id="EmailCheckbutton" name="EmailCheckbutton" size="35" class="input" placeholder="인증번호 입력"/>
+				        <div class="infoText" id="emailCheckDiv"></div>
+				    </td>
+				</tr>
+				<tr align="center">
+				    <th><label for="emailCheck"> </label></th>
+				    <td class="inputList">
+				        <input type="button" id="emailCheckBtn" name="emailCheckBtn" style="width: 60%; height: 40px;" class="input" value="인증번호 확인"/>
+				    </td>
+				</tr>
+			
+				<input type="hidden" id="checkNum" name="checkNum" />
+
 				<tr align="center">
 					<th>성별</th>
 					<td>

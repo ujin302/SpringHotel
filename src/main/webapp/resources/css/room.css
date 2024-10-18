@@ -7,12 +7,16 @@ body {
     color: #333;  /* 텍스트는 짙은 회색으로 고급스러움 유지 */
 }
 
+.container {
+	margin-top: 10px;
+	margin-bottom: -150px;
+}
+
 /* 슬라이더 컨테이너 스타일 */
 .slider-container {
     position: relative;
     width: 100%;
     overflow: hidden;
-    margin-bottom: 20px; /* 부대시설과의 간격 더 줄임 */
 }
 
 /* 슬라이드 트랙 (카드들이 담긴 트랙) */
@@ -97,7 +101,6 @@ body {
     border-radius: 15px;
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    margin-top: 15px; /* 슬라이더와 부대시설 사이 간격 줄임 */
 }
 
 /* 타이틀 스타일 */

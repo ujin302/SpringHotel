@@ -7,6 +7,8 @@
 	<meta charset="UTF-8">
 	<title>호텔 Spring Hotel - 객실 정보</title>
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
 	<style>
 		input{
 			margin:2% auto;
@@ -36,7 +38,7 @@
 		<c:forEach items="${roomList}" var="roomDTO">
 				<tr align="center">
 				<td>
-					<img src="/SpringHotel/resources/image/${roomDTO.roomImg.imageOriginalFileName}" width="250" height="200"><br /><br />
+					<img src="https://kr.object.ncloudstorage.com/springhotel/storage/${roomDTO.roomImg.imageFileName}" width="250" height="200"><br /><br />
 					<b>${roomDTO.type}</b>
 				</td>
 				<td>${roomDTO.getSize() }</td>

@@ -6,7 +6,8 @@
    <meta charset="UTF-8">
    <title>호텔 C&S - Q&A</title>
    <script type="text/javascript" src="script/script.js"></script>
-   <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
    <link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
    <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
    

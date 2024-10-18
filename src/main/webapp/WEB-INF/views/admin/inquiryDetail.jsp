@@ -7,6 +7,9 @@
     <meta charset="UTF-8">
     <title>Spring Hotel Q&A 상세내역</title>
     <link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
+    <link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
     <style>
         #btn {
             margin-top: 15px;
@@ -56,7 +59,7 @@
             </tr>
             <tr>
                 <td id="detail">작성자</td>
-                <td>${writerId}</td>
+                <td>${userName}</td>
                 <td id="detail">작성일</td>
                 <td>${questionsDTO.logtime}</td>
             </tr>
