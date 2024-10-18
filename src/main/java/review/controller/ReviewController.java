@@ -1,83 +1,75 @@
 package review.controller;
 
 import java.util.List;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.ui.Model;
 import review.bean.ReviewDTO;
 import review.service.ReviewService;
+import user.bean.UserDTO;
 
 @Controller
-@RequestMapping("/review") // 기본 경로 설정: /review
+@RequestMapping("/review")
 public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
 
-    // 1. 특정 roomId에 맞는 리뷰 목록을 반환하는 메서드
-    @RequestMapping(value="/reviewListByRoom", method = RequestMethod.GET)
-    public String reviewListByRoom(@RequestParam("roomId") int roomId, Model model) {
-        // 리뷰 목록을 roomId로 필터링하여 가져옴
-        List<ReviewDTO> reviews = reviewService.reviewListByRoom(roomId); 
-        // JSP로 데이터 전달
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("roomId", roomId); // roomId를 JSP로 전달
-        // JSP 페이지로 이동 (예: /WEB-INF/views/review/reviewList.jsp)
-        System.out.println("Received roomId: " + roomId);
-        return "review/reviewList"; 
+    // 특정 roomId에 맞는 리뷰 목록을 반환하는 메서드
+    @RequestMapping(value="/reviewList", method = RequestMethod.POST)
+    public ResponseEntity<List<ReviewDTO>> reviewList(@RequestParam("roomId") int roomId) {
+        List<ReviewDTO> reviews = reviewService.reviewListByRoom(roomId);
+        return ResponseEntity.ok(reviews);  // 리뷰 목록을 JSON으로 반환
     }
 
-    // 2. 리뷰 작성 폼으로 이동하는 메서드
-    @RequestMapping(value="/reviewWriteForm", method = RequestMethod.GET)
-    public String reviewWriteForm(@RequestParam("roomId") int roomId, Model model) throws Exception {
-        // JSP로 roomId 전달
-        model.addAttribute("roomId", roomId);
-        // 리뷰 작성 폼을 보여줄 JSP 경로 (예: /WEB-INF/views/review/reviewWriteForm.jsp)
-        return "review/reviewWriteForm";  
-    }
+ // 리뷰 작성
+    @RequestMapping(value = "/insertReview", method = RequestMethod.POST)
+    public ResponseEntity<String> insertOrUpdateReview(@ModelAttribute ReviewDTO reviewDTO, HttpSession session) {
+        // 세션에서 userSeq와 userName 가져오기
+        Integer userSeq = (Integer) session.getAttribute("userSeq");
+        String userName = (String) session.getAttribute("userName");
 
-    // 3. 리뷰 작성 후 roomId로 필터링된 리뷰 목록을 보여줌
-    @RequestMapping(value="/insertReview", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity<String> insertReview(@ModelAttribute ReviewDTO review) {
+        // 디버깅을 위한 로그 추가
+        System.out.println("userSeq: " + userSeq);
+        System.out.println("userName: " + userName);
+
+        // 로그인하지 않은 경우
+        if (userSeq == null || userName == null) {
+            reviewDTO.setUserId(null); // 익명 사용자로 처리
+            reviewDTO.setUserName("익명의 사용자");
+        } else {
+            // 로그인한 경우 세션에서 가져온 정보를 이용해 리뷰에 저장
+            reviewDTO.setUserId(userSeq); // 세션에서 가져온 userSeq를 ReviewDTO에 저장
+            reviewDTO.setUserName(userName); // 세션에서 가져온 userName을 ReviewDTO에 저장
+        }
+
         try {
-            // 리뷰 작성 로직 호출
-            reviewService.insertReview(review);
-            return new ResponseEntity<>("리뷰 작성 성공", HttpStatus.OK);  // 성공 응답
+            if (reviewDTO.getReviewId() != 0) {
+                reviewService.updateReview(reviewDTO);
+            } else {
+                reviewService.insertReview(reviewDTO);
+            }
+            return ResponseEntity.ok("success");
         } catch (Exception e) {
-            return new ResponseEntity<>("리뷰 작성 실패", HttpStatus.INTERNAL_SERVER_ERROR);  // 실패 응답
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("error");
         }
     }
-
-    // 4. 리뷰 업데이트 메서드
-    @RequestMapping(value="/updateReview", method = RequestMethod.POST)
-    @ResponseBody  
-    public ResponseEntity<String> updateReview(@ModelAttribute ReviewDTO review) {
-        try {
-            reviewService.updateReview(review);  // 리뷰 수정 로직 호출
-            return new ResponseEntity<>("리뷰 수정 성공", HttpStatus.OK);  // 성공 응답
-        } catch (Exception e) {
-            return new ResponseEntity<>("리뷰 수정 실패", HttpStatus.INTERNAL_SERVER_ERROR);  // 실패 응답
-        }
-    }
-
-    // 5. 리뷰 삭제 메서드
-    @RequestMapping(value="/deleteReview", method = RequestMethod.POST)
-    @ResponseBody  
+    
+    // 리뷰 삭제
+    @RequestMapping(value="/deleteReview", method=RequestMethod.POST)
     public ResponseEntity<String> deleteReview(@RequestParam("reviewId") int reviewId) {
         try {
-            reviewService.deleteReview(reviewId);  // 리뷰 삭제 로직 호출
-            return new ResponseEntity<>("리뷰 삭제 성공", HttpStatus.OK);  // 성공 응답
+            reviewService.deleteReview(reviewId);
+            return ResponseEntity.ok("success");
         } catch (Exception e) {
-            return new ResponseEntity<>("리뷰 삭제 실패", HttpStatus.INTERNAL_SERVER_ERROR);  // 실패 응답
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("error");
         }
     }
 }
