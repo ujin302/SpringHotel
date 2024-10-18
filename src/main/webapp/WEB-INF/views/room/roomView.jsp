@@ -3,13 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
     <link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/SpringHotel/resources/css/room.css">
     <title>Room Information - Hotel S&H</title>
 </head>
@@ -24,11 +23,11 @@
             <i class="fas fa-bed"></i> 객실 정보
         </h2>
 
-        <!-- 슬라이더 컨테이너 -->
-        <div class="slider-container" id="sliderContainer">
-            <div class="slider-track" id="sliderTrack">
-                <c:forEach var="room" items="${rooms}">
-                    <div class="slider-item">
+        <!-- Bootstrap Carousel 사용 -->
+        <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <c:forEach var="room" items="${rooms}" varStatus="status">
+                    <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
                         <div class="card shadow-sm">
                             <img class="card-img-top"
                                 src="https://kr.object.ncloudstorage.com/springhotel/storage/${room.roomImg.imageFileName}"
@@ -50,9 +49,8 @@
                     </div>
                 </c:forEach>
             </div>
-        </div>
-    </div>
-
+            
+    
     <!-- 부대시설 정보 섹션 -->
     <div class="amenity-section bg-light p-4 rounded">
         <h3><i class="fas fa-dumbbell"></i> 부대시설</h3>
@@ -102,7 +100,49 @@
             </tr>
         </table>
     </div>
-
+	
+	<!-- 호텔 정보 섹션 -->
+	<div class="hotel-info bg-light p-4 mt-5 rounded">
+		<h3>
+			<i class="fas fa-hotel"></i> 호텔 정보
+		</h3>
+		<table class="table">
+			<tr>
+				<td>
+					<h4>
+						<i class="fas fa-utensils"></i> 조식 이용 안내
+					</h4>
+					<ul class="list-unstyled">
+						<li>다이닝 존 (뷔페) : 07:30 ~ 10:30</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>
+						<i class="fas fa-clock"></i> 체크인 / 체크아웃 시간
+					</h4>
+					<ul class="list-unstyled">
+						<li>체크인 : 오후 2시 이후</li>
+						<li>체크아웃 : 오전 11시</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>
+						<i class="fas fa-calendar-times"></i> 예약 취소/변경 및 No-Show 안내
+					</h4>
+					<ul class="list-unstyled">
+						<li>숙박 예정일 7일 전: 위약금 없음</li>
+						<li>숙박 예정일 6일 전 ~ 1일 전 : 1박 요금의 20%</li>
+						<li>숙박 예정일 1일 전 (18시 이후 취소 및 변경): 1박 요금의 80%</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
     
@@ -113,6 +153,5 @@
         crossorigin="anonymous"></script>
     <script src="/SpringHotel/resources/js/bootstrap.js"></script>
     <script src="/SpringHotel/resources/js/header.js"></script>
-    <script src="/SpringHotel/resources/js/roomView.js"></script>
 </body>
 </html>
