@@ -85,6 +85,40 @@ $(document).ready(function() {
         }
     );
 
+    // 터치 및 드래그를 통한 슬라이더 이동
+    const sliderContainer = document.getElementById('sliderContainer');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    sliderContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        sliderContainer.classList.add('active');
+        startX = e.pageX - sliderContainer.offsetLeft;
+        scrollLeft = sliderContainer.scrollLeft;
+        stopSlider(); // 마우스 다운 시 슬라이더 멈춤
+    });
+
+    sliderContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        sliderContainer.classList.remove('active');
+        startSlider(); // 마우스가 떠나면 슬라이더 다시 시작
+    });
+
+    sliderContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        sliderContainer.classList.remove('active');
+        startSlider(); // 마우스를 떼면 슬라이더 다시 시작
+    });
+
+    sliderContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - sliderContainer.offsetLeft;
+        const walk = (x - startX) * 2; // 스크롤 속도 조정
+        sliderContainer.scrollLeft = scrollLeft - walk;
+    });
+
     // 초기 슬라이드 시작
     startSlider();
 });
