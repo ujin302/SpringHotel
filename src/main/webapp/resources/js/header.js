@@ -3,6 +3,10 @@ $(function(){
     console.log('viewName: ' + viewName);
     if(viewName == 'index') {
     	$('#header-1').addClass('active');
+    }else if(viewName == 'roomView') {
+    	$('#header-2').addClass('active');
+    }else if(viewName == 'reservation1') {
+    	$('#header-3').addClass('active');
     }else if(viewName == 'login') {
     	$('#header-loginMenu').addClass('active');
     }else if(viewName == 'join') {
