@@ -3,24 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Room Information - Hotel S&H</title>
     <!-- favicon & footer -->
-	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
-	<link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
 	<link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/room.css">
+    <title>Room Information - Hotel S&H</title>
 </head>
 <body>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- 최신 jQuery -->
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
 
-    <div class="container">
+    <div class="container" data-view="roomView">
         <!-- 페이지 타이틀 -->
         <h2 class="my-4 text-center"><i class="fas fa-bed"></i> 객실 정보</h2>
 
@@ -151,9 +147,9 @@
 
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script src="/SpringHotel/resources/js/bootstrap.js"></script>
 	<script src="/SpringHotel/resources/js/header.js"></script>
 	<script src="/SpringHotel/resources/js/roomView.js"></script>
-
 </body>
 </html>

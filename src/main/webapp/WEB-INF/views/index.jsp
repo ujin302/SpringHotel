@@ -8,10 +8,8 @@
 <title>Spring Hotel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale="1">
-<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
-<link rel="stylesheet" href="/SpringHotel/resources/css/custom.css"> 
-<link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
-<link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom.css">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<jsp:include page="./common/header.jsp" />
@@ -26,13 +24,13 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="/SpringHotel/resources/image/1.png">
+					<img src="${pageContext.request.contextPath}/resources/image/1.png">
 				</div>
 				<div class="item">
-					<img src="/SpringHotel/resources/image/2.png">
+					<img src="${pageContext.request.contextPath}/resources/image/2.png">
 				</div>
 				<div class="item">
-					<img src="/SpringHotel/resources/image/3.png">
+					<img src="${pageContext.request.contextPath}/resources/image/3.png">
 				</div>			
 			</div>
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
