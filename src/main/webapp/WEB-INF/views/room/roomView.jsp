@@ -16,10 +16,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/room.css">
 </head>
 <body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- 최신 jQuery -->
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
 
-    <div class="container mt-5">
+    <div class="container">
         <!-- 페이지 타이틀 -->
         <h2 class="my-4 text-center"><i class="fas fa-bed"></i> 객실 정보</h2>
 
@@ -150,8 +151,6 @@
 
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="/SpringHotel/resources/js/bootstrap.js"></script>
 	<script src="/SpringHotel/resources/js/header.js"></script>
 	<script src="/SpringHotel/resources/js/roomView.js"></script>

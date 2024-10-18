@@ -6,9 +6,10 @@
 <mapper namespace="review.dao.ReviewDAO">
 
     <insert id="insertReview" parameterType="review.bean.ReviewDTO">
-        INSERT INTO review (roomid, userid, rating, comment, logtime, updatetime)
-        VALUES (#{roomId}, #{userId}, #{rating}, #{comment}, NOW(), NOW())
-    </insert>
+	    INSERT INTO review (roomId, userId, rating, comment, logtime, updatetime)
+	    VALUES (#{roomId}, #{userId}, #{rating}, #{comment}, NOW(), NOW())
+	</insert>
+
 
 		<select id="getAllReviews" resultType="review.bean.ReviewDTO">
 		    SELECT r.reviewId, r.roomId, r.userId, u.name AS userName, r.rating, r.comment, r.logtime, r.updatetime

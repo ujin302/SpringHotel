@@ -7,23 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Room Detail</title>
     
-    <!-- 리빌딩된 디자인에 필요한 스타일시트 추가 -->
     <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
     <link rel="icon" href="/SpringHotel/resources/static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomDetail.css">
+    <link rel="stylesheet" href="/SpringHotel/resources/css/roomDetail.css">
 </head>
 <body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- 최신 jQuery -->
     <jsp:include page="../common/header.jsp" />
-	<script type="text/javascript">
-	    var contextPath = "${pageContext.request.contextPath}";
-	</script>
+	
     <!-- 룸 상세 정보 섹션 -->
     <div class="container room-detail-container mt-5">
         <h2 class="text-center room-detail-title"><i class="fas fa-bed"></i> ${room.type} 상세 정보</h2>
-
+        
+        <!-- 세션에서 가져온 userId를 히든 필드로 저장 -->
+        <input type="hidden" name="userId" value="${sessionScope.userId}">
+        
+        <!-- 세션에서 가져온 userName을 읽기 전용 필드로 표시 -->
+        <input type="hidden" class="form-control" id="userName" name="userName" value="${sessionScope.userName}" readonly>
+        
+        
         <!-- 객실 이미지 섹션 -->
         <div class="room-images">
             <div class="card mx-auto shadow-sm" style="max-width: 800px;"> <!-- 이미지 크기 고정 -->
@@ -52,38 +57,71 @@
 
          <!-- 리뷰 관련 버튼 -->
         <div class="room-actions text-center mt-4">
-	    <a href="#" class="btn btn-outline-secondary mr-2" data-room-id="${room.roomId}" id="loadReviewList">리뷰 목록 보기</a>
-	    <a href="#" class="btn btn-outline-primary" data-room-id="${room.roomId}" id="loadReviewWriteForm">리뷰 작성하기</a>
-	</div>
-
+            <button type="button" class="btn btn-outline-secondary mr-2" data-room-id="${roomId}" id="reviewListBtn">리뷰 목록 보기</button>
+            <button type="button" class="btn btn-outline-primary" data-room-id="${roomId}" id="reviewWriteBtn">리뷰 작성하기</button>
+        </div>
         
-		<!-- 모달 버튼 클릭 시 보여줄 모달 구조 -->
-		<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
-		    <div class="modal-dialog modal-lg" role="document">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <h5 class="modal-title" id="reviewModalLabel">리뷰</h5>
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                    <span aria-hidden="true">&times;</span>
-		                </button>
-		            </div>
-		            <div class="modal-body">
-		                <!-- 모달 내용 로딩 전 로딩 인디케이터 -->
-						<div id="loadingIndicator" style="display:none;">
-						    <div class="text-center">
-						        <i class="fas fa-spinner fa-spin"></i> 로딩 중...
-						    </div>
-						</div>
-		                <!-- 여기에 리뷰 목록이나 작성 폼이 로드될 예정 -->
-		                <div id="modalContent"></div>
-		            </div>
-		            <div class="modal-footer">
-		                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-		            </div>
-		        </div>
-		    </div>
-		</div>		
-		
+        <div id="contentContainer" class="mt-5">
+         <!-- 리뷰 작성 모달 -->
+    <div class="modal fade" id="reviewWriteModal" tabindex="-1" role="dialog" aria-labelledby="reviewWriteModalLabel" aria-hidden="true" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewWriteModalLabel">리뷰 작성</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="reviewForm">
+                        <input type="hidden" name="roomId" value="${roomId}">
+                        <input type="hidden" name="reviewId" value="0">
+                        <div class="form-group">
+                            <label for="rating">Rating:</label>
+                            <div id="starRating">
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                            </div>
+                            <input type="hidden" name="rating" id="rating" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Review:</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="5" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" id="submitReview">리뷰 제출</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 리뷰 목록 모달 -->
+    <div class="modal fade" id="reviewListModal" tabindex="-1" role="dialog" aria-labelledby="reviewListModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewListModalLabel">리뷰 목록</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="reviewListContainer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
         <!-- 부가적인 룸 정보 섹션 -->
         <div class="additional-info mt-5 bg-white p-5 rounded shadow-sm text-center">
             <h3 class="mb-4">객실 부가 정보</h3>
@@ -94,9 +132,8 @@
 
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	<script src="/SpringHotel/resources/js/bootstrap.js"></script>
-	<script src="/SpringHotel/resources/js/header.js"></script>
-	<script src="/SpringHotel/resources/js/review.js"></script>
+    <script src="/SpringHotel/resources/js/bootstrap.js"></script>
+    <!-- <script src="/SpringHotel/resources/js/header.js"></script> -->
+    <script src="/SpringHotel/resources/js/review.js"></script>
 </body>
 </html>

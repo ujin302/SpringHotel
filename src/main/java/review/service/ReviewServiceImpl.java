@@ -42,4 +42,10 @@ public class ReviewServiceImpl implements ReviewService {
     	
     	return reviewDAO.reviewListByRoom(roomId);
     }
+    
+    @Override
+    public void addReview(ReviewDTO reviewDTO) {
+    	// TODO Auto-generated method stub
+    	
+    }
 }
