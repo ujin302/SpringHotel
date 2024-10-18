@@ -17,7 +17,9 @@ public class ReserveDTO {
     private int kids;          // 아이 수 (INT)
     private String checkin;    // 체크인 날짜 (DATE)
     private String checkout;   // 체크아웃 날짜 (DATE)
-    private String type;       // 객실 타입 (VARCHAR(20))
     private int price;         // 가격 (INT)
     private String time;       // 예약 시간 (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)
+    private RoomDTO room;	  // RoomDTO 추가
+    
+    private RoomImgDTO roomImgDTO;
 }

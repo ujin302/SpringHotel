@@ -8,12 +8,16 @@
 	<meta charset="UTF-8">
 	<title>Spring Hotel 예약 내역 조회</title>
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
+	
 	<div id="reserveTitle"><font size="20">예약 내역</font></div>
 	
+	<input type="hidden" id="pg" value="${pg }" />
 
 	<table align="center" class="reserveInfo">
 		<tr align="center" id="list">
@@ -29,18 +33,18 @@
 		</tr>
 				
 		<c:choose>
-			<c:when test="${result.size() != 0 }">
-				<c:forEach items="${result }" var="dto">
+			<c:when test="${map2.list != null }">
+				<c:forEach items="${map2.list }" var="reserveDTO">
 					<tr align="center">
-						<td>${dto.getReserveId() }</td>
-						<td>${dto.getRoomId() }</td>
-						<td>${dto.getAdults() }</td>
-						<td>${dto.getKids() }</td>
-						<td>${dto.getCheckin() }</td>
-						<td>${dto.getCheckout() }</td>
-						<td>${dto.getType() }</td>
-						<td><fmt:formatNumber value="${dto.getPrice()}" pattern="#,###" />원</td>
-						<td>${dto.getTime() }</td>
+						<td>${reserveDTO.getReserveId() }</td>
+						<td>${reserveDTO.getRoomId() }</td>
+						<td>${reserveDTO.getAdults() }</td>
+						<td>${reserveDTO.getKids() }</td>
+						<td>${reserveDTO.getCheckin() }</td>
+						<td>${reserveDTO.getCheckout() }</td>
+						<td>${reserveDTO.getRoom().getType()}</td>
+						<td><fmt:formatNumber value="${reserveDTO.getPrice()}" pattern="#,###" />원</td>
+						<td>${reserveDTO.getTime() }</td>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -50,6 +54,16 @@
 		</c:choose>
 						
 	</table>
-			
+	<div class="pagination">
+	    ${map2.adminPaging.pagingHTML}
+	</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
+<script type="text/javascript">
+function adminPaging(pg){
+	location.href = "/SpringHotel/admin/checkReserve?pg=" + pg;
+}
+</script>			
 </body>
 </html>

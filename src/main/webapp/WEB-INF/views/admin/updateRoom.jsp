@@ -7,6 +7,8 @@
 	<meta charset="UTF-8">
 	<title>호텔 Spring Hotel - 객실 정보</title>
 	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
 	<style>
 		input{
 			margin:2% auto;
@@ -21,7 +23,7 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	<div id="reserveTitle" style="font-size:20px;">객실 정보</div>
 	
 	<table align="center" class="reserveInfo">
@@ -36,16 +38,19 @@
 		<c:forEach items="${roomList}" var="roomDTO">
 				<tr align="center">
 				<td>
-					<img src="/SpringHotel/resources/image/" width="250" height="200"><br /><br />
-					<b>${roomDTO.type }</b>
+					<img src="https://kr.object.ncloudstorage.com/springhotel/storage/${roomDTO.roomImg.imageFileName}" width="250" height="200"><br /><br />
+					<b>${roomDTO.type}</b>
 				</td>
 				<td>${roomDTO.getSize() }</td>
 				<td>${roomDTO.getCapacity()}</td>
 				<td><fmt:formatNumber value="${roomDTO.getPrice()}" pattern="#,###" /></td>
 				<td>${roomDTO.getCount() }</td>
-				<td><input type="button" value="객실 수정" style="color: white" onclick="location.href='/SpringHotel/admin/updateRoomInfo?type=${roomDTO.type}'"/></td>
+				<td><input type="button" value="객실 수정" style="color: white" onclick="location.href='/SpringHotel/admin/updateRoomInfo?roomId=${roomDTO.roomId}&type=${roomDTO.type}'"/></td>
 			</tr>	
-		</c:forEach>
+		</c:forEach> 
 	</table>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/SpringHotel/resources/js/bootstrap.js"></script>
+<script src="/SpringHotel/resources/js/header.js"></script>
 </body>
 </html>
