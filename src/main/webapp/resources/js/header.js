@@ -5,7 +5,7 @@ $(function(){
     	$('#header-1').addClass('active');
     }else if(viewName == 'roomView' || viewName == 'roomDetail') {
     	$('#header-2').addClass('active');
-    }else if(viewName == 'reservation1') {
+    }else if(viewName == 'reservation') {
     	$('#header-3').addClass('active');
     }else if(viewName == 'login') {
     	$('#header-loginMenu').addClass('active');

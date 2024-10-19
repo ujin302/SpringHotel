@@ -62,6 +62,7 @@ public class ReserveServiceImpl implements ReserveService {
 		
 		// RoomDTO 설정
 		RoomDTO roomDTO = roomDAO.getRoomById(reserveDTO.getRoomId());
+		roomDTO.setType(roomDTO.getType().toUpperCase());
 		reserveDTO.setRoom(roomDTO);
 		
 		// 숙박일 구하기
@@ -75,13 +76,29 @@ public class ReserveServiceImpl implements ReserveService {
 		// 가격 설정
 		reserveDTO.setPrice((int)days * roomDTO.getPrice());
 		
+		
 		return reserveDTO;
 	}
 
 	// 예약 정보 저장
 	@Override
-	public void submitReserve(ReserveDTO reserveDTO) {
-		reserveDAO.submitReserve(reserveDTO);
+	public void submitReserve(Map<String, String> getSubmitMap) {
+		reserveDAO.submitReserve(getSubmitMap);
+	}
+
+	@Override
+	public ArrayList<ReserveDTO> getReserveList(String userSeq) {
+		ArrayList<ReserveDTO> list = reserveDAO.getReserveList(userSeq);
+		
+		for (ReserveDTO reserveDTO : list) {
+			System.out.println(reserveDTO);
+		}
+		return list;
+	}
+
+	@Override
+	public ReserveDTO getReserveDetali(String reserveId) {
+		return reserveDAO.getReserveDetali(reserveId);
 	}
     
 }

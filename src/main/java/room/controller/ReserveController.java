@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.amazonaws.HttpMethod;
 
 import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
@@ -70,11 +75,38 @@ public class ReserveController {
 	}
 	
 	// 예약 정보 저장
-	@RequestMapping(value = "/submit")
-	public void submit(@ModelAttribute ReserveDTO reserveDTO) {
-		System.out.println("/submit");
+	@RequestMapping(value = "/menu3/submit", method = RequestMethod.POST)
+	@ResponseBody
+	public String submit(@RequestParam Map<String, String> getSubmitMap, HttpSession session) {
+		System.out.println("/menu3/submit");
+		getSubmitMap.put("userSeq", session.getAttribute("userSeq").toString());
+		System.out.println(getSubmitMap);
+		
 		// 예약 정보 저장
-		reserveService.submitReserve(reserveDTO);
+		reserveService.submitReserve(getSubmitMap);
+		
+		return null;
 	}
 	
+	// 사용자 예약 내역 확인
+	@RequestMapping(value = "/list")
+	public String list(HttpSession session, Model model) {
+		System.out.println("/list");
+		
+		ArrayList<ReserveDTO> reserveDTOList = reserveService.getReserveList(session.getAttribute("userSeq").toString());
+		
+		model.addAttribute("reserveDTOList", reserveDTOList);
+		
+		return "reserve/list";
+	}
+	
+	@RequestMapping(value = "/list/detail")
+	public String list(@RequestParam String reserveId, Model model) {
+		System.out.println("/list/detail");
+		
+		ReserveDTO reserveDTO = reserveService.getReserveDetali(reserveId);
+		model.addAttribute("reserveDTO", reserveDTO);
+		
+		return "reserve/list/detail";
+	}
 }

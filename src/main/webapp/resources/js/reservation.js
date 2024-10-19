@@ -23,6 +23,7 @@ function setMenu() {
 		$("#m2 a").removeAttr("href");
 		$("#m3 a").removeAttr("href");
 	}else if(menuNum == 3) {
+		$("#m2 a").removeAttr("href");
 		$("#m3 a").removeAttr("href");
 	}
 	
@@ -108,12 +109,12 @@ function findRoom() {
 	});
 }
 
-function reserveSubmit(roomId) {
+// 예약 정보 전송
+function reserveInfo(roomId) {
 	const userSeq = $('#seq').text();
 	
-	alert(roomId)
 	$.ajax({
-		type: 'post',
+		type: 'get',
 		url: '/SpringHotel/reserve/menu3/info',
 		dataType: 'text',
 		success: function(data) {
@@ -130,6 +131,30 @@ function reserveSubmit(roomId) {
 		}
 	});
 	
+}
+
+// 예약하기
+function reserveSubmit() {
+	$.ajax({
+		type: 'post',
+		url: '/SpringHotel/reserve/menu3/submit',
+		data: {
+			'roomId' : $('#roomId').text(),
+			'checkin' : $('#checkin').text(),
+			'checkout' : $('#checkout').text(),
+			'adults' : $('#adults').text(),
+			'kids' : $('#kids').text(),
+			'price' : $('#price').text()
+		},
+		dataType: 'text',
+		success: function(data) {
+			alert("예약되었습니다. ");
+			location.href = '/SpringHotel/reserve/list';
+		},
+		error: function(e) {
+			console.log(e);
+		}
+	});
 }
 
 $(function() {
@@ -152,12 +177,15 @@ $(function() {
     // 4. 날짜, 인원 데이터 전송
     $('#findRoomBtn').click(findRoom);
     
-    // 5. 예약
-    $('.reserveBtn').click(function() {
+    // 5. 예약 정보 전송
+    $('.reserveInfoBtn').click(function() {
     	if($('#seq').text() != '') {
-    		reserveSubmit($(this).data('roomid'));         
+    		reserveInfo($(this).data('roomid'));         
     	}else {
     		alert('로그인 후에 예약 가능합니다.');
     	}
     });
+    
+    // 6. 예약하기
+    $('#reserveBtn').click(reserveSubmit);
 })

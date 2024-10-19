@@ -13,5 +13,9 @@ import room.bean.RoomDTO;
 public interface ReserveDAO {
 	public ArrayList<RoomDTO> findRoomList(Map<String, String> map);
 
-	public void submitReserve(ReserveDTO reserveDTO);
+	public void submitReserve(Map<String, String> getSubmitMap);
+
+	public ArrayList<ReserveDTO> getReserveList(String userSeq);
+
+	public ReserveDTO getReserveDetali(String reserveId);
 }

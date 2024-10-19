@@ -13,8 +13,12 @@ public interface ReserveService {
 
 	public ArrayList<RoomDTO> getFindRoomList(Map<String, String> map);
 
-	public ReserveDTO setReserveDTO(Map<String, String> mMap);
+	public ReserveDTO setReserveDTO(Map<String, String> getInfoMap);
 
-	public void submitReserve(ReserveDTO reserveDTO);
+	public void submitReserve(Map<String, String> getSubmitMap);
+
+	public ArrayList<ReserveDTO> getReserveList(String string);
+
+	public ReserveDTO getReserveDetali(String reserveId);
 
 }
