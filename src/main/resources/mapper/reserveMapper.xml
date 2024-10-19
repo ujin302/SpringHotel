@@ -85,7 +85,7 @@
             <result property="view" column="view" />
             <result property="bedtype" column="bedtype" />
         </association>
-        <association property="roomImg" javaType="room.bean.RoomImgDTO">
+        <association property="roomImgDTO" javaType="room.bean.RoomImgDTO">
             <result property="imageFileName" column="imageFileName" />
         </association>
     </resultMap>

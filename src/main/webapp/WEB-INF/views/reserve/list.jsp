@@ -36,7 +36,7 @@ a {
 				<tbody>
 					<c:if test="${reserveDTOList.size() == 0}">
 						<tr align="center">
-							<td>예약 내역이 존재하지 않습니다.</td>
+							<td colspan="5">예약 내역이 존재하지 않습니다.</td>
 						</tr>
 					</c:if>
 					<c:forEach items="${reserveDTOList }" var="reserveDTO">
