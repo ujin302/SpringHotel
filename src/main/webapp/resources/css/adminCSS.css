@@ -338,7 +338,7 @@ body {
     display: flex; /* Flexbox 활성화 */
     justify-content: center; /* 수평 중앙 정렬 */
     margin-top: 50px; /* 위쪽 여백 */
-    z-index: 1; /* 다른 요소 위에 표시 */
+    /* z-index: 1; 다른 요소 위에 표시 */
     left: 50%;
     
 }
