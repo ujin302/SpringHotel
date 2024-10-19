@@ -41,7 +41,6 @@
 
 <body>
 	<%@ include file="../common/header.jsp" %>
-    <br/><br />
 	<div id="reserveTitle"><font size="20">Q&A</font></div>
     <div id="detailcomment">
         Spring Hotel은 언제나 고객님의 목소리에 귀기울이고 있습니다.<br />

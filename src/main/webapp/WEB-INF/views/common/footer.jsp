@@ -7,6 +7,7 @@
 		<b>(주)Spring Hotel 02-1234-5678</b><br/>
 		000-000 충청남도 아산시 순천향로 25-14<br/>
 		Email : Spring@hotel.com<br>
+		GitHub : <a id="git" href="https://github.com/ujin302/SpringHotel">Spring Hotel</a> <br>
 	</div>
 	<div id="footer-service">
 		Hours<br/>

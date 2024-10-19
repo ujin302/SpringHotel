@@ -6,7 +6,7 @@
 
     <!-- 모든 room 정보 가져오기 (room + roomimg) -->
     <select id="getAllRooms" resultMap="roomResultMap">
-        SELECT r.*, ri.imageFileName 
+        SELECT r.roomid, upper(r.`type`) as type, r.`size`, r.capacity, r.price, r.count, r.description, r.form, r.`view`, r.bedtype, ri.imageFileName 
         FROM room r 
         LEFT JOIN roomimg ri ON r.roomid = ri.roomid
     </select>
@@ -31,7 +31,7 @@
     
     <!-- 객실 ID로 객실 정보 가져오기 -->
     <select id="getRoomById" parameterType="int" resultMap="roomResultMap">
-        SELECT r.*, ri.imageFileName 
+        SELECT r.roomid, upper(r.`type`) as type, r.`size`, r.capacity, r.price, r.count, r.description, r.form, r.`view`, r.bedtype, ri.imageFileName 
         FROM room r
         LEFT JOIN roomimg ri ON r.roomid = ri.roomid
         WHERE r.roomid = #{roomId}

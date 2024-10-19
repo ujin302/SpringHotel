@@ -7,6 +7,27 @@ function setMenu() {
     $('#m' + menuNum + ' > a').css('color', 'white');
     $('#m' + menuNum + ' > a').css('background-color', '#ded3c5');
 	
+	if(menuNum == 1) {
+		// 1. 메뉴 초기화
+		$("#m1 a").removeAttr("href");
+		$("#m2 a").removeAttr("href");
+		$("#m3 a").removeAttr("href");
+		
+		// 2. 날짜 초기화
+	    $('#checkin').attr('min', getToday()); // min : 오늘 날짜
+	    $('#checkin').val(getToday()); // val : 오늘 날짜 
+	    $('#checkout').val(getTomorrow()); // min : 내일 날짜
+	    $('#checkout').attr('min', getTomorrow()); // val : 내일 날짜 
+	    $('#diffday').val(calculateStayDuration() + '박'); // 숙박일 계산
+	}else if(menuNum == 2) {
+		$("#m2 a").removeAttr("href");
+		$("#m3 a").removeAttr("href");
+	}else if(menuNum == 3) {
+		$("#m2 a").removeAttr("href");
+		$("#m3 a").removeAttr("href");
+	}
+	
+	
 }
 
 // 오늘 날짜 구하기
@@ -63,7 +84,7 @@ function calculateStayDuration() {
 function findRoom() {
 	$.ajax({
 		type: 'post',
-		url: '/SpringHotel/reserve/findRoom',
+		url: '/SpringHotel/reserve/menu2/findRoom',
 		data: {
 			'checkin' : $('#checkin').val(),
 			'checkout' : $('#checkout').val(),
@@ -73,8 +94,8 @@ function findRoom() {
 		dataType: 'text',
 		success: function(data) {
 			if(data == "true") {
-				location.href = '/SpringHotel/reserve/menu2?checkin='
-								+$('#checkin').val()
+				location.href = '/SpringHotel/reserve/menu2?'
+								+'checkin=' +$('#checkin').val()
 								+'&checkout='+$('#checkout').val()
 								+'&adults=' + $('#adults').val()
 								+'&kids=' + $('#kids').val();
@@ -88,30 +109,84 @@ function findRoom() {
 	});
 }
 
+// 예약 정보 전송
+function reserveInfo(roomId) {
+	const userSeq = $('#seq').text();
+	
+	$.ajax({
+		type: 'get',
+		url: '/SpringHotel/reserve/menu3/info',
+		dataType: 'text',
+		success: function(data) {
+			location.href = '/SpringHotel/reserve/menu3?'
+								+'checkin=' +$('#checkin').val()
+								+'&checkout='+$('#checkout').val()
+								+'&adults=' + $('#adults').val()
+								+'&kids=' + $('#kids').val()
+								+'&roomId=' + roomId
+								+'&userSeq=' + userSeq;
+		},
+		error: function(e) {
+			console.log(e);
+		}
+	});
+	
+}
+
+// 예약하기
+function reserveSubmit() {
+	$.ajax({
+		type: 'post',
+		url: '/SpringHotel/reserve/menu3/submit',
+		data: {
+			'roomId' : $('#roomId').text(),
+			'checkin' : $('#checkin').text(),
+			'checkout' : $('#checkout').text(),
+			'adults' : $('#adults').text(),
+			'kids' : $('#kids').text(),
+			'price' : $('#price').text()
+		},
+		dataType: 'text',
+		success: function(data) {
+			alert("예약되었습니다. ");
+			location.href = '/SpringHotel/reserve/list';
+		},
+		error: function(e) {
+			console.log(e);
+		}
+	});
+}
+
 $(function() {
-	// [ 날짜&인원 선택 ]
 	// 1. 메뉴 활성화
 	setMenu();
     
-    // 2. 날짜 초기화
-    $('#checkin').attr('min', getToday()); // min : 오늘 날짜
-    $('#checkin').val(getToday()); // val : 오늘 날짜 
-    $('#checkout').val(getTomorrow()); // min : 내일 날짜
-    $('#checkout').attr('min', getTomorrow()); // val : 내일 날짜 
-    $('#diffday').val(calculateStayDuration() + '박'); // 숙박일 계산
-    
-    // 3. 체크아웃 min 설정: 체크인+1일부터 선택 가능
+    // 2. 체크아웃 min 설정: 체크인+1일부터 선택 가능
     $('#checkin').change(function() {
     	$('#checkout').attr('min', getTomorrow());
+    	$('#checkout').val(getTomorrow());
     });
     
-    // 4. 숙박 일수 계산 
+    // 3. 숙박 일수 계산 
+    $('#diffday').val(calculateStayDuration() + '박');
     $('#checkout').change(function() {
     	if($('#checkout').val != '') {
     		$('#diffday').val(calculateStayDuration() + '박');
     	}
     })
 
-    // 5. 날짜, 인원 데이터 전송
+    // 4. 날짜, 인원 데이터 전송
     $('#findRoomBtn').click(findRoom);
+    
+    // 5. 예약 정보 전송
+    $('.reserveInfoBtn').click(function() {
+    	if($('#seq').text() != '') {
+    		reserveInfo($(this).data('roomid'));         
+    	}else {
+    		alert('로그인 후에 예약 가능합니다.');
+    	}
+    });
+    
+    // 6. 예약하기
+    $('#reserveBtn').click(reserveSubmit);
 })
