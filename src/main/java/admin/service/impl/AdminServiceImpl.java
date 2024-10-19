@@ -232,6 +232,11 @@ public class AdminServiceImpl implements AdminService {
 	public void deleteQuestions(int questionsId) {
 		adminDAO.deleteQuestions(questionsId);
 	}
+	@Override
+	public int getUserIdByUserName(String userName) {
+		int userId = adminDAO.getUserIdByUserName(userName);
+		return userId;
+	}
 
 
 }

@@ -8,8 +8,8 @@
     <title>Spring Hotel Q&A 상세내역</title>
     <link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
     <link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
-<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
-<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/headerCSS.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrapCSS.css">
     <style>
         #btn {
             margin-top: 15px;
@@ -26,7 +26,7 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            width: 70%;
+            width: 100%;
             margin: 0 auto;
         }
         #comment2 {
@@ -99,13 +99,13 @@
 	    </div>
 	</c:forEach>
 
-	<div id="commentWrite">
-	    <form id="commentForm" style="text-align: center; width: 100%;">
-	        <textarea rows="6" cols="100" name="comment2" id="comment2" required="required" placeholder="댓글을 작성해주시길 바랍니다."></textarea><br>
+	<div id="commentWrite2">
+	    <form id="commentForm2" style="text-align: center; width: 100%;">
+	        <textarea rows="6" cols="100" name="comment2" id="comment22" required="required" placeholder="댓글을 작성해주시길 바랍니다."></textarea><br>
 	        <input type="hidden" name="questionsId" value="${questionsDTO.questionsId}">
-	        <input type="hidden" name="userId" value="${questionsDTO.userId}">
+	        <input type="hidden" name="userName" value="${userName}">
 	        <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-	            <input type="button" value="댓글 작성" id="commentWriteBtn" />
+	            <input type="button" value="댓글 작성" id="commentWriteBtn" style="text-align: center; align-content: center; align-items: center; margin: 0 auto;"/>
 	        </div>
 	    </form>
 	</div>

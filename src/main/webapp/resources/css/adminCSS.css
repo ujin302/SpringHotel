@@ -10,6 +10,11 @@ html, body {
 	height: 100%;
 	font-family: 'Noto Sans KR', sans-serif;
 }
+body {
+    margin: 0;
+    padding: 20px; /* 상단 여백 추가 */
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 /* 공통 header 스타일 */
 .header {
@@ -138,19 +143,18 @@ html, body {
 
 /*checkReserve.jsp */
 #reserveTitle {
-    width: 100%;  /* 전체 너비 사용 */
+    width: 100%;  
     height: auto;
-    margin: 3% auto;
+    margin: 10px auto; /* 위쪽 여백을 줄임 */
     text-align: center;
-    font-size: 5vw;  /* 화면 너비의 5%로 폰트 크기 설정 */
+    font-size: 5vw;  
 }
 
-.reserveInfo{
-	width:70%;
-	margin-top:60px;
-	margin-bottom:80px;
-	border-top: 3px solid #623f30;
-	border-collapse: collapse;
+.reserveInfo {
+    width: 70%;
+    margin: 20px auto; /* 위쪽과 아래쪽 여백을 줄임 */
+    border-top: 3px solid #623f30;
+    border-collapse: collapse;
 }
 
 .reserveInfo tr{
@@ -237,11 +241,7 @@ html, body {
 	padding-left: 150px;
 }
 
-#commentWrite{
-	width:300px;
-	height:120px;
-	padding-left: 150px;
-}
+
 
 #commentBtn{
 	width:75px;

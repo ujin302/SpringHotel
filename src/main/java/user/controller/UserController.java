@@ -117,9 +117,12 @@ public class UserController {
 	      String setFrom = "springhotel@naver.com"; //2단계 인증 x, 메일 설정에서 POP/IMAP 사용 설정에서 POP/SMTP 사용함으로 설정o
 	      String toMail = email;
 	      String title = "SpringHotel 회원가입 인증 이메일입니다.";
-	      String content = "인증 코드는 " + checkNum + " 입니다." +
-	                   "<br>" +
-	                   "해당 인증 코드를 인증 코드 확인란에 기입하여 주세요.";
+	      String content = "안녕하세요! Spring Hotel입니다.<br>" +
+	                 "귀하의 요청에 따라 인증 코드를 전송해 드립니다. <br>" +
+	                 "인증 코드는 다음과 같습니다: <strong>" + checkNum + "</strong>입니다.<br>" +
+	                 "해당 인증 코드를 인증 코드 확인란에 입력해 주시면, 서비스 이용이 가능해집니다.<br>" +
+	                 "감사합니다!";
+
 	      
 	      try {
 	         MimeMessage message = mailSender.createMimeMessage(); //Spring에서 제공하는 mail API
