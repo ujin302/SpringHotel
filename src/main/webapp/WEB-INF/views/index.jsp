@@ -40,7 +40,6 @@
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</a>
 		</div>
-		
 	</div>
 	
 <jsp:include page="./common/footer.jsp" />

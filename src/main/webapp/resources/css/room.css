@@ -105,6 +105,14 @@ body {
     background-color: #a05a00; /* 더 진한 금색 */
 }
 
+.main {
+	min-width: 80%;
+}
+
+.roomInfo {
+	margin-bottom: 6%;
+}
+
 /* 반응형 디자인 */
 
 /* 태블릿 이하에서 카드 배치 */

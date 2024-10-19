@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.ui.ModelMap;
+
+import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
 
 public interface ReserveService {
 
-	public List<RoomDTO> getRoomList() throws Exception;
-
 	public ArrayList<RoomDTO> getFindRoomList(Map<String, String> map);
+
+	public ReserveDTO setReserveDTO(Map<String, String> getInfoMap);
+
+	public void submitReserve(Map<String, String> getSubmitMap);
+
+	public ArrayList<ReserveDTO> getReserveList(String string);
+
+	public ReserveDTO getReserveDetali(String reserveId);
 
 }

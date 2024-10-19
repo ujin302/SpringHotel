@@ -12,7 +12,6 @@ html, body {
 }
 body {
     margin: 0;
-    padding: 20px; /* 상단 여백 추가 */
     font-family: 'Noto Sans KR', sans-serif;
 }
 

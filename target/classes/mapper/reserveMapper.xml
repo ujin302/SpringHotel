@@ -2,7 +2,27 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="room.dao.ReserveDAO"> 
+<mapper namespace="room.dao.ReserveDAO">
+	<insert id="submitReserve" parameterType="map">
+		INSERT INTO RESERVE (
+	        userid,
+	        roomid,
+	        adults,
+	        kids,
+	        checkin,
+	        checkout,
+	        price
+	    ) VALUES (
+	        #{userSeq},
+	        #{roomId},
+	        #{adults},
+	        #{kids},
+	        #{checkin},
+	        #{checkout},
+	        #{price}
+	    )
+	</insert>
+
 	<resultMap id="findRoomResultMap" type="room.bean.RoomDTO">
         <id property="roomId" column="roomid" />
         <result property="type" column="type" />
@@ -22,7 +42,7 @@
     
 	<select id="findRoomList" parameterType="map" resultMap="findRoomResultMap">
 		<![CDATA[ 
-			SELECT r.roomid, r.type, r.size, r.capacity, r.price, r.count, r.description, r.form, r.view, r.bedtype, ri.imageFileName
+			SELECT r.roomid, UPPER(r.`type`) as type, r.size, r.capacity, r.price, r.count, r.description, r.form, r.view, r.bedtype, ri.imageFileName
 		    FROM room r
 		    LEFT JOIN (
 		        SELECT roomid, COUNT(*) AS reserved_count
@@ -36,4 +56,48 @@
 		]]>
 	</select>
 
+	<resultMap id="getReserveListMap" type="room.bean.ReserveDTO">
+        <id property="reserveId" column="reserveId" />
+        <result property="checkin" column="checkin" />
+        <result property="checkout" column="checkout" />
+        <result property="price" column="price" />
+        <result property="time" column="time" />
+        <association property="room" javaType="room.bean.RoomDTO">
+            <result property="type" column="type" />
+        </association>
+    </resultMap>
+    
+	<select id="getReserveList" resultMap="getReserveListMap">
+		select re.reserveId, re.checkin, re.checkout, re.price, re.`time`, UPPER(rm.`type`) as type
+		from reserve re
+		left join room rm on rm.roomid = re.roomid 
+		where re.userid = #{userSeq}
+	</select>
+	
+	<resultMap id="getReserveDetaliMap" type="room.bean.ReserveDTO">
+        <id property="reserveId" column="reserveId" />
+        <result property="adults" column="adults" />
+        <result property="kids" column="kids" />
+        <result property="price" column="price" />
+        <result property="checkin" column="checkin" />
+        <result property="checkout" column="checkout" />
+        <result property="time" column="time" />
+        <association property="room" javaType="room.bean.RoomDTO">
+            <result property="type" column="type" />
+            <result property="view" column="view" />
+            <result property="bedtype" column="bedtype" />
+        	<result property="price" column="rprice" />
+        </association>
+        <association property="roomImgDTO" javaType="room.bean.RoomImgDTO">
+            <result property="imageFileName" column="imageFileName" />
+        </association>
+    </resultMap>
+    
+	<select id="getReserveDetali" resultMap="getReserveDetaliMap">
+		select re.reserveid, re.adults, re.kids, re.price, re.checkin, re.checkout, re.`time`, UPPER(rm.`type`) as type, rm.`view`, rm.bedtype, rm.price as rprice, ri.imageFileName 
+		from reserve re
+		left join room rm on rm.roomid = re.roomid 
+		left join roomimg ri on rm.roomid = ri.roomid 
+		where re.reserveid = #{reserveId}
+	</select>
 </mapper>	
