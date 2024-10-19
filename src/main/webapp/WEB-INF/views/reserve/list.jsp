@@ -16,6 +16,14 @@
 a {
 	text-decoration: none;
 }
+
+#noData {
+	margin-top: 10%;
+}
+
+#reserveId {
+	color: black;
+}
 </style>
 </head>
 <body>
@@ -36,16 +44,16 @@ a {
 				<tbody>
 					<c:if test="${reserveDTOList.size() == 0}">
 						<tr align="center">
-							<td colspan="5">예약 내역이 존재하지 않습니다.</td>
+							<td colspan="5"><div id="noData">예약 내역이 존재하지 않습니다.</div></td>
 						</tr>
 					</c:if>
 					<c:forEach items="${reserveDTOList }" var="reserveDTO">
 						<tr id="calVal" align="center">
 							<td><a href="/SpringHotel/reserve/list/detail?reserveId=${reserveDTO.reserveId }"><div id="reserveId">${reserveDTO.reserveId }</div></a></td>
 							<td><div id="roomType">${reserveDTO.room.type }</div></td>
-							<td><div id="reserveDate">${reserveDTO.room.type }박</div></td>
-							<td><div id="reservePrice">₩${reserveDTO.price }</div></td>
-							<td><div id="reserveTime">${reserveDTO.time }</div></td>
+							<td><div id="reserveDate">${reserveDTO.days }박</div></td>
+							<td><div id="reservePrice">₩ ${reserveDTO.price }</div></td>
+							<td><div id="reserveTime">${reserveDTO.time.split(" ")[0] }</div></td>
 						</tr>
 					</c:forEach>
 				</tbody>

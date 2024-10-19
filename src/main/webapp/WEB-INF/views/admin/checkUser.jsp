@@ -14,7 +14,6 @@
 
 <body>
 	<%@ include file="../common/header.jsp" %>
-	<div class="container" data-view="checkUser"></div>
 	<div id="reserveTitle">
 		<font size="20">회원 조회</font>
 	</div>

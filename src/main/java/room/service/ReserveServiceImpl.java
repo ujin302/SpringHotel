@@ -62,20 +62,10 @@ public class ReserveServiceImpl implements ReserveService {
 		
 		// RoomDTO 설정
 		RoomDTO roomDTO = roomDAO.getRoomById(reserveDTO.getRoomId());
-		roomDTO.setType(roomDTO.getType().toUpperCase());
 		reserveDTO.setRoom(roomDTO);
 		
-		// 숙박일 구하기
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		
-		LocalDate checkin = LocalDate.parse(reserveDTO.getCheckin(), format);
-		LocalDate checkout = LocalDate.parse(reserveDTO.getCheckout(), format);
-		
-		long days = DAYS.between(checkin, checkout);
-		
 		// 가격 설정
-		reserveDTO.setPrice((int)days * roomDTO.getPrice());
-		
+		reserveDTO.setPrice(getDays(reserveDTO.getCheckin(), reserveDTO.getCheckout()) * roomDTO.getPrice());
 		
 		return reserveDTO;
 	}
@@ -91,14 +81,28 @@ public class ReserveServiceImpl implements ReserveService {
 		ArrayList<ReserveDTO> list = reserveDAO.getReserveList(userSeq);
 		
 		for (ReserveDTO reserveDTO : list) {
+			reserveDTO.setDays(getDays(reserveDTO.getCheckin(), reserveDTO.getCheckout()));
 			System.out.println(reserveDTO);
 		}
 		return list;
 	}
 
+	// 예약 상세 내역
 	@Override
 	public ReserveDTO getReserveDetali(String reserveId) {
-		return reserveDAO.getReserveDetali(reserveId);
+		ReserveDTO reserveDTO = reserveDAO.getReserveDetali(reserveId);
+		System.out.println(reserveDTO);
+		return reserveDTO;
 	}
-    
+	
+	// 숙박일 계산
+	private int getDays(String checkin, String checkout) {
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		LocalDate checkinDate = LocalDate.parse(checkin, format);
+		LocalDate checkoutDate = LocalDate.parse(checkout, format);
+		
+		return (int) DAYS.between(checkinDate, checkoutDate);
+	}
+	
 }

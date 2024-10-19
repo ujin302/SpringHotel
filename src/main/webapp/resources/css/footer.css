@@ -35,3 +35,7 @@ footer {
     width: 150px; /* 이미지 크기 조정 */
     height: auto;
 }
+footer #git {
+	text-decoration: none;
+    color: #f7f7f5;
+}

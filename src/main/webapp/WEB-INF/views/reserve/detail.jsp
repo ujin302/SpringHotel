@@ -22,8 +22,12 @@ a {
 <jsp:include page="../common/header.jsp"/>
 	
 	<div class="container" data-view="reservationList">
+		<div>
+			<h2>예약 상세 내역</h2>
+		</div>
+	
 		<div class="card mb-3" >
-			<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${reserveDTO.room.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
+			<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${reserveDTO.roomImgDTO.imageFileName}" width="450px" class="card-img-top" alt="">
 			<div class="room-details bg-light p-5 rounded shadow-sm">
 				<div class="row roomInfo">
 					<div class="col-md-6">
@@ -34,10 +38,13 @@ a {
 	                    <p><i class="fas fa-users"></i> 투숙 인원: ${reserveDTO.adults + reserveDTO.kids}인</p>
 	                    <p><i class="fas fa-money-bill-wave"></i> 총 금액: ₩ ${reserveDTO.price}</p>
 	                    <p><i class="fas fa-money-bill-wave"></i> 객실 정보: ${reserveDTO.room.view}</p>
-	                    <p><i class="fas fa-expand-arrows-alt"></i> 객실 면적: ${reserveDTO.room.size} m²</p>
                		</div>
            		</div>
           	</div>
+		</div>
+		
+		<div>
+			<button type="button" class="btn btn-primary" onclick="location.href='/SpringHotel/reserve/list'">예약 내역</button>
 		</div>
 	</div>
 	

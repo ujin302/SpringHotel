@@ -36,8 +36,6 @@
 		<div id="reservation">
 			<!-- 예약 순서 --> 
 			<jsp:include page="./menu.jsp"/>
-			<%-- ${reserveDTO } --%>
-			
 			<!-- 예약 화면 -->
 			<div id="menu2">
 				<div id="roomType">
@@ -53,7 +51,7 @@
 					<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${reserveDTO.room.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
 					<div class="room-details bg-light p-5 rounded shadow-sm">
 						<div class="row roomInfo">
-							<div class="col-md-6"> <span id="roomId">${reserveDTO.room.roomId}</span>
+							<div class="col-md-6"> <span id="roomId" hidden>${reserveDTO.room.roomId}</span>
 								<p><i class="fa fa-calendar"></i> 체크인: <span id="checkin">${reserveDTO.checkin}</span> 14:00</p>
 			                    <p><i class="fa fa-calendar"></i> 체크아웃: <span id="checkout">${reserveDTO.checkout}</span> 11:00</p>
 			                    <p><i class="fas fa-users"></i> 어른: <span id="adults">${reserveDTO.adults}</span>인</p>
@@ -66,30 +64,6 @@
 	            		</div>
 		          	</div>
 				</div>
-							
-				<%-- <table width="80%" align="center" class="reserve table">
-					<thead>
-						<tr align="center" id="colName" style="color:#a0a0a0; font-weight:bold;">
-							<div class="card mb-3" >
-								<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${reserveDTO.room.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
-								<div class="room-details bg-light p-5 rounded shadow-sm">
-									<div class="row roomInfo">
-										<div class="col-md-6">
-											<p><i class="fa fa-calendar"></i> 체크인: ${reserveDTO.checkin} 14:00</p>
-						                    <p><i class="fa fa-calendar"></i> 체크아웃: ${reserveDTO.checkout} 11:00</p>
-						                    <p><i class="fas fa-users"></i> 어른: ${reserveDTO.adults}인</p>
-						                    <p><i class="fas fa-users"></i> 어린이: ${reserveDTO.kids}인</p>
-						                    <p><i class="fas fa-users"></i> 투숙 인원: ${reserveDTO.adults + reserveDTO.kids}인</p>
-						                    <p><i class="fas fa-money-bill-wave"></i> 총 금액: ₩ ${reserveDTO.price}</p>
-						                    <p><i class="fas fa-money-bill-wave"></i> 객실 정보: ${reserveDTO.room.view}</p>
-						                    <p><i class="fas fa-expand-arrows-alt"></i> 객실 면적: ${reserveDTO.room.size} m²</p>
-				                		</div>
-				            		</div>
-					          	</div>
-							</div>
-						</tr>
-					</thead>
-				</table> --%>
 			</div>
 		</div>
 		

@@ -23,4 +23,5 @@ public class ReserveDTO {
     
     private RoomDTO room;	  // RoomDTO 추가
     private RoomImgDTO roomImgDTO;
+    private int days;
 }

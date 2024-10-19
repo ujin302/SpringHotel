@@ -52,7 +52,7 @@
 									<div class="card mb-3" >
 										<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${roomDTO.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
 										<div class="room-details bg-light p-5 rounded shadow-sm">
-											<h3 class="card-title">${roomDTO.type }</h3>
+											<h3 class="card-title">${roomDTO.type}</h3>
 											<div class="row roomInfo">
 												<div class="col-md-6">
 													<p><i class="fas fa-expand-arrows-alt"></i> 객실 면적: ${roomDTO.size} m²</p>

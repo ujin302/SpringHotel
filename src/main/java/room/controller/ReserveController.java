@@ -107,6 +107,6 @@ public class ReserveController {
 		ReserveDTO reserveDTO = reserveService.getReserveDetali(reserveId);
 		model.addAttribute("reserveDTO", reserveDTO);
 		
-		return "reserve/list/detail";
+		return "reserve/detail";
 	}
 }
