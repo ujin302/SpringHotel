@@ -42,7 +42,7 @@
     
 	<select id="findRoomList" parameterType="map" resultMap="findRoomResultMap">
 		<![CDATA[ 
-			SELECT r.roomid, UPPER(r.`type`), r.size, r.capacity, r.price, r.count, r.description, r.form, r.view, r.bedtype, ri.imageFileName
+			SELECT r.roomid, UPPER(r.`type`) as type, r.size, r.capacity, r.price, r.count, r.description, r.form, r.view, r.bedtype, ri.imageFileName
 		    FROM room r
 		    LEFT JOIN (
 		        SELECT roomid, COUNT(*) AS reserved_count
@@ -68,7 +68,7 @@
     </resultMap>
     
 	<select id="getReserveList" resultMap="getReserveListMap">
-		select re.reserveId, re.checkin, re.checkout, re.price, re.`time`, UPPER(rm.`type`) 
+		select re.reserveId, re.checkin, re.checkout, re.price, re.`time`, UPPER(rm.`type`) as type
 		from reserve re
 		left join room rm on rm.roomid = re.roomid 
 		where re.userid = #{userSeq}
@@ -86,6 +86,7 @@
             <result property="type" column="type" />
             <result property="view" column="view" />
             <result property="bedtype" column="bedtype" />
+        	<result property="price" column="rprice" />
         </association>
         <association property="roomImgDTO" javaType="room.bean.RoomImgDTO">
             <result property="imageFileName" column="imageFileName" />
@@ -93,7 +94,7 @@
     </resultMap>
     
 	<select id="getReserveDetali" resultMap="getReserveDetaliMap">
-		select re.reserveid, re.adults, re.kids, re.price, re.checkin, re.checkout, re.`time`, UPPER(rm.`type`), rm.`view`, rm.bedtype, ri.imageFileName 
+		select re.reserveid, re.adults, re.kids, re.price, re.checkin, re.checkout, re.`time`, UPPER(rm.`type`) as type, rm.`view`, rm.bedtype, rm.price as rprice, ri.imageFileName 
 		from reserve re
 		left join room rm on rm.roomid = re.roomid 
 		left join roomimg ri on rm.roomid = ri.roomid 

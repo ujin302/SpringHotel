@@ -11,14 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/SpringHotel/resources/css/room.css">
     <title>Room Information - Hotel S&H</title>
-<style type="text/css">
-.main {
-	min-width: 80%;
-}
-.roomInfo {
-	margin-bottom: 6%;
-}
-</style>
 </head>
 <body>
 

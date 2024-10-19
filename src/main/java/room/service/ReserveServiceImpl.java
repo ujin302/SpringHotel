@@ -91,6 +91,7 @@ public class ReserveServiceImpl implements ReserveService {
 	@Override
 	public ReserveDTO getReserveDetali(String reserveId) {
 		ReserveDTO reserveDTO = reserveDAO.getReserveDetali(reserveId);
+		reserveDTO.setDays(getDays(reserveDTO.getCheckin(), reserveDTO.getCheckout()));
 		System.out.println(reserveDTO);
 		return reserveDTO;
 	}

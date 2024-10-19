@@ -24,6 +24,10 @@
 
 #menu2 #roomType h2 {
 	margin: 0 auto;
+	font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #b8860b;
 }
 </style>
 </head>
@@ -42,9 +46,9 @@
 					<h2>
 						${reserveDTO.room.type }
 					</h2>
-					<h5>
+					<h4>
 						예약 옵션
-					</h5>
+					</h4>
 				</div>
 				
 				<div class="card mb-3" >
@@ -65,49 +69,49 @@
 		          	</div>
 				</div>
 			</div>
-		</div>
-		
-		<div class="hotel-info bg-light p-4 mt-5 rounded">
-			<table class="table">
-				<tr>
-					<td>
-						<h4>
-							<i class="fas fa-utensils"></i> 조식 이용 안내
-						</h4>
-						<ul class="list-unstyled">
-							<li>다이닝 존 (뷔페) : 07:30 ~ 10:30</li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h4>
-							<i class="fas fa-clock"></i> 체크인 / 체크아웃
-						</h4>
-						<ul class="list-unstyled">
-							<li>체크인 : ${reserveDTO.checkin} 14:00</li>
-							<li>체크아웃 : ${reserveDTO.checkout} 11:00</li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h4>
-							<i class="fas fa-calendar-times"></i> 예약 취소/변경 및 No-Show 안내
-						</h4>
-						<ul class="list-unstyled">
-							<li>숙박 예정일 7일 전: 위약금 없음</li>
-							<li>숙박 예정일 6일 전 ~ 1일 전 : 1박 요금의 20%</li>
-							<li>숙박 예정일 1일 전 (18시 이후 취소 및 변경): 1박 요금의 80%</li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button type="button" class="btn btn-primary" id="reserveBtn">예약하기</button>
-					</td>
-				</tr>
-			</table>
+			
+			<div class="hotel-info bg-light p-4 mt-5 rounded">
+				<table class="table">
+					<tr>
+						<td>
+							<h4>
+								<i class="fas fa-utensils"></i> 조식 이용 안내
+							</h4>
+							<ul class="list-unstyled">
+								<li>다이닝 존 (뷔페) : 07:30 ~ 10:30</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h4>
+								<i class="fas fa-clock"></i> 체크인 / 체크아웃
+							</h4>
+							<ul class="list-unstyled">
+								<li>체크인 : ${reserveDTO.checkin} 14:00</li>
+								<li>체크아웃 : ${reserveDTO.checkout} 11:00</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h4>
+								<i class="fas fa-calendar-times"></i> 예약 취소/변경 및 No-Show 안내
+							</h4>
+							<ul class="list-unstyled">
+								<li>숙박 예정일 7일 전: 위약금 없음</li>
+								<li>숙박 예정일 6일 전 ~ 1일 전 : 1박 요금의 20%</li>
+								<li>숙박 예정일 1일 전 (18시 이후 취소 및 변경): 1박 요금의 80%</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" class="btn btn-primary" id="reserveBtn">예약하기</button>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 <jsp:include page="../common/footer.jsp" />

@@ -168,6 +168,7 @@ $(function() {
     });
     
     // 3. 숙박 일수 계산 
+    $('#diffday').val(calculateStayDuration() + '박');
     $('#checkout').change(function() {
     	if($('#checkout').val != '') {
     		$('#diffday').val(calculateStayDuration() + '박');

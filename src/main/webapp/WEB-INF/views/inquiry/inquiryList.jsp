@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<%@ include file="../common/header.jsp" %>
+<jsp:include page="../common/header.jsp"/>
 	<div id="reserveTitle"><font size="20">	Q&A</font></div>
 
 	<input type="hidden" id="pg" value="${pg }" />

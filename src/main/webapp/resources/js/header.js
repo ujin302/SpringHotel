@@ -7,6 +7,8 @@ $(function(){
     	$('#header-2').addClass('active');
     }else if(viewName == 'reservation') {
     	$('#header-3').addClass('active');
+    }else if(viewName == 'reservationList') {
+    	$('#header-4').addClass('active');
     }else if(viewName == 'login') {
     	$('#header-loginMenu').addClass('active');
     }else if(viewName == 'join') {

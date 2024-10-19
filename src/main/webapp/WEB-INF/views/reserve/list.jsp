@@ -9,14 +9,13 @@
 <link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/footer.css">
-<link rel="stylesheet" href="/SpringHotel/resources/css/reserveCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/reserveList.css">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico" type="image/x-icon">
 <title>Spring Hotel</title>
 <style type="text/css">
 a {
 	text-decoration: none;
 }
-
 #noData {
 	margin-top: 10%;
 }

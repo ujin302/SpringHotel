@@ -12,6 +12,15 @@
 <link rel="stylesheet" href="/SpringHotel/resources/css/reserveCSS.css">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico" type="image/x-icon">
 <title>Spring Hotel</title>
+<style type="text/css">
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #b8860b;
+    margin: 2rem 0;
+}
+</style>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
@@ -55,15 +64,15 @@
 											<h3 class="card-title">${roomDTO.type}</h3>
 											<div class="row roomInfo">
 												<div class="col-md-6">
-													<p><i class="fas fa-expand-arrows-alt"></i> 객실 면적: ${roomDTO.size} m²</p>
-								                    <p><i class="fas fa-users"></i> 수용 인원: ${roomDTO.capacity}명</p>
-								                    <p><i class="fas fa-money-bill-wave"></i> 가격: ₩${roomDTO.price}</p>
+													<p><i class="fas fa-expand-arrows-alt"></i> <span>객실 면적: ${roomDTO.size} m²</span> </p>
+								                    <p><i class="fas fa-users"></i> <span>수용 인원: ${roomDTO.capacity}명</span> </p>
+								                    <p><i class="fas fa-money-bill-wave"></i> <span>가격: ₩${roomDTO.price}</span> </p>
 						                		</div>
 								                <div class="col-md-6">
-								                    <p><i class="fas fa-info-circle"></i> 설명: ${roomDTO.description}</p>
-								                    <p><i class="fas fa-couch"></i> 구성: ${roomDTO.form}</p>
-								                    <p><i class="fas fa-mountain"></i> 전망: ${roomDTO.view}</p>
-								                    <p><i class="fas fa-bed"></i> 침대 유형: ${roomDTO.bedtype}</p>
+								                    <p><i class="fas fa-info-circle"></i> <span>설명: ${roomDTO.description}</span> </p>
+								                    <p><i class="fas fa-couch"></i> <span>구성: ${roomDTO.form}</span> </p>
+								                    <p><i class="fas fa-mountain"></i> <span>전망: ${roomDTO.view}</span> </p>
+								                    <p><i class="fas fa-bed"></i> <span>침대 유형: ${roomDTO.bedtype}</span> </p>
 								                    <p align="right"><button type="button" data-roomId="${roomDTO.roomId }" class="btn btn-primary reserveInfoBtn">예약<span id="roomId" hidden>${roomDTO.roomId }</span></button></p>
 								                </div>
 						            		</div>
