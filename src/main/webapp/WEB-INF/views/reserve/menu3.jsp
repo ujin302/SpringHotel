@@ -20,63 +20,81 @@
 	
 		<!-- 메인 메뉴 -->
 		<div id="reservation">
-			<!-- 예약 순서 -->
+			<!-- 예약 순서 --> 
 			<jsp:include page="./menu.jsp"/>
-			
+			${reserveDTO }
+			<%-- ${reserveDTO.roomDTO.roomImg.imageFileName} --%>
 			<!-- 예약 화면 -->
 			<div id="menu2">
 				<table width="80%" align="center" class="reserve table">
 					<thead>
 						<tr align="center" id="colName" style="color:#a0a0a0; font-weight:bold;">
-							<td>체크인</td>
-							<td>체크아웃</td>
-							<td width="10%" align="center"><img src="/SpringHotel/resources/image/night.png" width="30" height="30"></td>
-							<td width="10%">성인</td>
-							<td width="10%">어린이</td>
+							<div class="card mb-3" >
+								<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${reserveDTO.room.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
+								<div class="room-details bg-light p-5 rounded shadow-sm">
+									<h3 class="card-title">${roomDTO.type }</h3>
+									<div class="row roomInfo">
+										<div class="col-md-6">
+											<p><i class="fas fa-expand-arrows-alt"></i> 체크인: ${reserveDTO.checkin}</p>
+						                    <p><i class="fas fa-users"></i> 체크아웃: ${reserveDTO.checkout}</p>
+						                    <p><i class="fas fa-users"></i> 어른: ${reserveDTO.adults}인</p>
+						                    <p><i class="fas fa-users"></i> 어린이: ${reserveDTO.kids}인</p>
+						                    <p><i class="fas fa-users"></i> 투숙인원: ${reserveDTO.adults + reserveDTO.kids}인</p>
+						                    <p><i class="fas fa-money-bill-wave"></i> 총 금액: ₩ ${reserveDTO.price}</p>
+						                    <p><i class="fas fa-money-bill-wave"></i> 객실 정보: ${reserveDTO.room.view}</p>
+						                    <p><i class="fas fa-money-bill-wave"></i> 객실 면적: ${reserveDTO.room.view}</p>
+				                		</div>
+				            		</div>
+					          	</div>
+							</div>
 						</tr>
 					</thead>
-					<tbody>
-						<!-- <tr id="calVal" align="center">
-							<td><input type="date" id="checkin" name="checkin" min='' pattern="yyyy-MM-dd" /></td>
-							<td><input type="date" id="checkout" name="checkout" min=''  pattern="yyyy-MM-dd" /></td>
-							<td><input type="text" id="diffday" min="1" value="" readonly/></td>
-							<td><input type="number" id="adults" name="adults" min="1" value="1"/></td>
-							<td><input type="number" id="kids" name="kids" value="0" min="0" /></td>
-							<td><input type="button" class="btn" id="findRoomBtn" value="검색"></td>
-						</tr> -->
-					</tbody>
-					<tfoot>
-						<tr align="center">
-							<td colspan="6">
-								<div class="card mb-3" >
-										<img class="col-md-6" src="https://kr.object.ncloudstorage.com/springhotel/storage/${roomDTO.roomImg.imageFileName}" width="450px" class="card-img-top" alt="">
-										<div class="room-details bg-light p-5 rounded shadow-sm">
-											<h3 class="card-title">${roomDTO.type }</h3>
-											<div class="row roomInfo">
-												<div class="col-md-6">
-													<p><i class="fas fa-expand-arrows-alt"></i>크기: ${roomDTO.size} m²</p>
-								                    <p><i class="fas fa-users"></i> 어른: ${roomDTO.capacity}인</p>
-								                    <p><i class="fas fa-users"></i> 아이: ${roomDTO.capacity}인</p>
-								                    <p><i class="fas fa-money-bill-wave"></i> 가격: ₩${roomDTO.price}</p>
-						                		</div>
-								                <div class="col-md-6">
-								                    <p><i class="fas fa-info-circle"></i> 설명: ${roomDTO.description}</p>
-								                    <p><i class="fas fa-couch"></i> 구성: ${roomDTO.form}</p>
-								                    <p><i class="fas fa-mountain"></i> 전망: ${roomDTO.view}</p>
-								                    <p><i class="fas fa-bed"></i> 침대 유형: ${roomDTO.bedtype}</p>
-								                    <p align="right"><button type="button" class="btn btn-primary reserveBtn">예약<span hidden>${roomDTO.roomId }</span></button></p>
-								                </div>
-						            		</div>
-							          	</div>
-									</div>
-							</td>
-						</tr>				
-					</tfoot>
 				</table>
 			</div>
 		</div>
 	</div>
 	
+	
+	<table width="80%" align="center" class="reserveOption">
+			<!-- <tr height="15%">
+				<th colspan="4" align="center"><font size="5">예약정보</font></th>
+			</tr>
+			<tr id="line">
+				<td align="center" id="line"><img src="img/.jpg" width="280" height="200"></td>
+				<td colspan="3" id="line">
+					<table width="100%">
+						<tr align="left">	
+							<td>
+								예약 객실 : <b></b>
+							</td>
+							<td>
+								체크인날짜 : <b></b>
+							</td>
+						</tr>
+						<tr align="left">
+							<td>
+								체크아웃 날짜 : <b></b>
+							</td>
+							<td>
+								성인 투숙객 수 : <b></b>명
+							</td>
+						</tr>
+						<tr align="left">
+							<td>
+								아동 투숙객 수 : <b></b>명
+							</td>
+							<td> 
+								총 금액 : <input type="number" name="r_price" id="input" readonly="readonly" value="" />원
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id="line">
+				<td colspan="4" align="center" id="line">
+					<input type="button" id="btn" value="예약하기" onclick="location.href='reservationProc.jsp?r_id='"/>
+				</td>
+			</tr> -->
 <jsp:include page="../common/footer.jsp" />
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -108,14 +108,13 @@ function findRoom() {
 	});
 }
 
-function reserveSubmit() {
-	const roomId = $(this).find('span').text();
+function reserveSubmit(roomId) {
 	const userSeq = $('#seq').text();
-	console.log(roomId);
 	
+	alert(roomId)
 	$.ajax({
 		type: 'post',
-		url: '/SpringHotel/reserve/menu3/submit',
+		url: '/SpringHotel/reserve/menu3/info',
 		dataType: 'text',
 		success: function(data) {
 			location.href = '/SpringHotel/reserve/menu3?'
@@ -156,7 +155,7 @@ $(function() {
     // 5. 예약
     $('.reserveBtn').click(function() {
     	if($('#seq').text() != '') {
-    		reserveSubmit();         
+    		reserveSubmit($(this).data('roomid'));         
     	}else {
     		alert('로그인 후에 예약 가능합니다.');
     	}

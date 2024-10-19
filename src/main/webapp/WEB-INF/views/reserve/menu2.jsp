@@ -18,7 +18,7 @@
 	
 	<div class="container" data-view="reservation1" data-menu="2">
 		<!-- 메인 메뉴 -->
-		<span id="seq">${sessionScope.userSeq }</span>
+		<span hidden id="seq">${sessionScope.userSeq }</span>
 		<div id="reservation">
 			<!-- 예약 순서 -->
 			<jsp:include page="./menu.jsp"/>
@@ -55,7 +55,7 @@
 											<h3 class="card-title">${roomDTO.type }</h3>
 											<div class="row roomInfo">
 												<div class="col-md-6">
-													<p><i class="fas fa-expand-arrows-alt"></i>크기: ${roomDTO.size} m²</p>
+													<p><i class="fas fa-expand-arrows-alt"></i> 크기: ${roomDTO.size} m²</p>
 								                    <p><i class="fas fa-users"></i> 수용 인원: ${roomDTO.capacity}명</p>
 								                    <p><i class="fas fa-money-bill-wave"></i> 가격: ₩${roomDTO.price}</p>
 						                		</div>
@@ -64,7 +64,7 @@
 								                    <p><i class="fas fa-couch"></i> 구성: ${roomDTO.form}</p>
 								                    <p><i class="fas fa-mountain"></i> 전망: ${roomDTO.view}</p>
 								                    <p><i class="fas fa-bed"></i> 침대 유형: ${roomDTO.bedtype}</p>
-								                    <p align="right"><button type="button" class="btn btn-primary reserveBtn">예약<span hidden>${roomDTO.roomId }</span></button></p>
+								                    <p align="right"><button type="button" data-roomId="${roomDTO.roomId }" class="btn btn-primary reserveBtn">예약<span id="roomId" hidden>${roomDTO.roomId }</span></button></p>
 								                </div>
 						            		</div>
 							          	</div>

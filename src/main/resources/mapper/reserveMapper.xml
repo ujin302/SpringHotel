@@ -2,7 +2,11 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="room.dao.ReserveDAO"> 
+<mapper namespace="room.dao.ReserveDAO">
+	<insert id="submitReserve" parameterType="ReserveDTO">
+		
+	</insert>
+
 	<resultMap id="findRoomResultMap" type="room.bean.RoomDTO">
         <id property="roomId" column="roomid" />
         <result property="type" column="type" />

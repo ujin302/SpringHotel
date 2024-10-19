@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
 import room.service.ReserveService;
+import room.service.RoomService;
 
 @Controller
 @RequestMapping("/reserve")
@@ -53,25 +54,27 @@ public class ReserveController {
 	}
 	
 	// [ 예약 정보 화면 ]
-	@RequestMapping(value = "/menu3/submit")
-	public String submit() {
-		System.out.println("/submit");
+	@RequestMapping(value = "/menu3/info")
+	public String info() {
 		return "reserve/menu3";
 	}
 	
 	// 예약 정보 출력
 	@RequestMapping(value = "/menu3")
-	public void menu3(@RequestParam Map<String, String> map, ModelMap mMap) {
+	public void menu3(@RequestParam Map<String, String> getInfoMap, ModelMap mMap) {
 		System.out.println("/menu3");
-		System.out.println(map);
+		System.out.println(getInfoMap);
 		
 		// 1. 예약 정보 가져오기
-		ReserveDTO reserveDTO = reserveService.getReserveInfo(map);
-		
-		// 2. 정보 저장
-		mMap.addAttribute("reserveDTO", reserveDTO);
+		mMap.addAttribute("reserveDTO", reserveService.setReserveDTO(getInfoMap));
 	}
 	
 	// 예약 정보 저장
+	@RequestMapping(value = "/submit")
+	public void submit(@ModelAttribute ReserveDTO reserveDTO) {
+		System.out.println("/submit");
+		// 예약 정보 저장
+		reserveService.submitReserve(reserveDTO);
+	}
 	
 }
