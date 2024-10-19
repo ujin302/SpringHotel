@@ -144,6 +144,10 @@
         VALUES (#{userId}, #{content}, #{qtypesId}, false, NOW());
     </insert>
     
+    <select id="getUserIdByUserName" parameterType="String" resultType="int">
+    	select seq from user where name = #{userName}
+    </select>
+    
     <update id="updateInquiry" parameterType="map">
         UPDATE questions
         SET content = #{content}, qtypesId = #{typename}  
