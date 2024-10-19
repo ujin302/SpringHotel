@@ -59,4 +59,6 @@ public interface AdminDAO {
 
 	public void deleteQuestions(int questionsId);
 
+	public int getUserIdByUserName(String userName);
+
 }

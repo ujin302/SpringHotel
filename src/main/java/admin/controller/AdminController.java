@@ -142,8 +142,7 @@ public class AdminController {
 								 @RequestParam String typename, 
 								 @RequestParam String userName, HttpSession session,Model model) {
 	    QuestionsDTO questionsDTO = adminService.getQuestionsDTO(questionsId);
-	    String adminId = (String) session.getAttribute("adminId");
-	    String userSeq = (String) session.getAttribute("userSeq"); 
+	    Integer userSeq = (Integer) session.getAttribute("userSeq"); 
 	    System.out.println("userSeq = " + userSeq);
 	    System.out.println("seq = " + seq);
 	    
@@ -154,7 +153,6 @@ public class AdminController {
 	    model.addAttribute("typename", typename);
 	    model.addAttribute("userName", userName);
 	    model.addAttribute("comments", comments); 
-	    model.addAttribute("adminId", adminId); 
 	    model.addAttribute("seq", seq); 
 	    model.addAttribute("userSeq", userSeq);
 	    
@@ -166,17 +164,20 @@ public class AdminController {
 	@RequestMapping(value = "admin/writeComment", method = RequestMethod.POST)
 	@ResponseBody
 	public String writeComment(@RequestParam int questionsId, 
-	                           @RequestParam int userId, 
+	                           @RequestParam String userName, 
 	                           @RequestParam String comment, HttpSession session) {
 	    String adminId = (String) session.getAttribute("adminId");  // 세션에서 adminId 가져옴
+	    
+	    
 	    System.out.println("questionsId = " + questionsId);
-	    System.out.println("userId = " + userId);
 	    System.out.println("comment = " + comment);
 	    System.out.println("adminId = " + adminId);
 
+	    int userSeq = adminService.getUserIdByUserName(userName);
+	    System.out.println("userSeq = " + userSeq);
 	    AnswerDTO answerDTO = new AnswerDTO();
 	    answerDTO.setQuestionsId(questionsId);
-	    answerDTO.setUserId(userId);
+	    answerDTO.setUserId(userSeq);
 	    answerDTO.setComment(comment);
 	    answerDTO.setAdminId(adminId);  // 세션에서 가져온 adminId 사용
 
@@ -226,12 +227,13 @@ public class AdminController {
 	public String saveQuestion(@RequestParam("qtypesId") int qtypesId,
 	                    @RequestParam("content") String content,
 	                    HttpSession session) {
-		// 세션에서 userId 가져오기
-		Integer userId = (Integer) session.getAttribute("userId");
+		// 세션에서 userName 가져오기
+		String  userName = (String) session.getAttribute("userName");
+		int userSeq = adminService.getUserIdByUserName(userName);
 		
 		// QuestionsDTO 객체 생성
 		QuestionsDTO questionsDTO = new QuestionsDTO();
-		questionsDTO.setUserId(userId);
+		questionsDTO.setUserId(userSeq);
 		questionsDTO.setContent(content);
 		questionsDTO.setQtypesId(qtypesId);
 		

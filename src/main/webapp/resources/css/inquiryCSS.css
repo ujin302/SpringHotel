@@ -195,7 +195,7 @@ footer{
 
 /* 댓글 작성 영역 스타일 */
 #commentWrite {
-    display: flex; /* Flexbox 활성화 */
+    
     justify-content: center; /* 수평 중앙 정렬 */
     margin: 20px 0; /* 위아래 여백 추가 */
     width: 70%; /* 댓글 목록과 동일한 너비 설정 */

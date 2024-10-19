@@ -24,9 +24,9 @@ $(function() {
 	    event.preventDefault();
 	
 	    let formData = {
-	        comment: $('#comment2').val(), 
+	        comment: $('#comment22').val(), 
 	        questionsId: $('input[name="questionsId"]').val(),  
-	        userId: $('input[name="userId"]').val()  
+	        userName: $('input[name="userName"]').val()  
 	    };
 	
 	    console.log(formData);  
