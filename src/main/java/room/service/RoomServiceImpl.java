@@ -6,6 +6,7 @@ import room.bean.RoomDTO;
 import room.bean.RoomImgDTO;
 import room.dao.RoomDAO;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -28,5 +29,14 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomImgDTO> getRoomImagesByRoomId(int roomId) {
         return roomDAO.getRoomImagesByRoomId(roomId);  // 이미지 정보 가져옴
     }
+
+	@Override
+	public int isWrite(String userSeq, int roomId) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("userSeq", Integer.parseInt(userSeq));
+		map.put("roomId", roomId);
+		
+		return roomDAO.isWrite(map);
+	}
     
 }

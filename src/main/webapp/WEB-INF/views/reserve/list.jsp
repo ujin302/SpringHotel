@@ -23,12 +23,33 @@ a {
 #reserveId {
 	color: black;
 }
+#name {
+	margin-bottom: 2%;
+}
+#grade {
+	margin-bottom: 5%;
+	font-weight: bold;
+}
+#name span {
+	color: black;
+	font-size: 2.5rem
+}
+#grade span {
+	color: black;
+	font-size: 1.4rem;
+	font-weight: normal;
+}
 </style>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
 	
 	<div class="container" data-view="reservationList">
+		<div>
+			<h2 id="name">${sessionScope.userName} <span>님의 예약 내역</span> </h2>
+			<h4 id="grade">${userDTO.grade}<span>  등급</span></h4>
+			<hr>
+		</div>
 		<div id="menu2">
 			<table width="80%" align="center" class="reserve table">
 				<thead>

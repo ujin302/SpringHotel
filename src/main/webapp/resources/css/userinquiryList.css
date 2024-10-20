@@ -28,13 +28,6 @@ body {
 	color: black;
 	text-decoration: none;
 }
-/* 로그인 페이지 스타일 */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
 /* 로그인 페이지 스타일 */
 #loginComment {
@@ -47,14 +40,9 @@ body {
 	font-size: x-large;
 	border-bottom: 2px solid #623f30;
 }
-.login-form {
-    width: 100%;
-    max-width: 500px;
-}
 
 .log {
 	background: #f1ebd5;
-	padding: 20px;
 	margin: auto;
 	width: 470px;
 	height: 500px;
@@ -98,34 +86,7 @@ body {
 	color: #f1ebd5;
 	margin-top: 5px;
 }
-/* 미디어 쿼리: 768px 이하 */
-@media (max-width: 768px) {
-    .log {
-        width: 90%;
-        padding: 10px;
-    }
 
-    .log th {
-        font-size: 18px;
-    }
-
-    .input, .btn {
-        font-size: 16px;
-        padding: 5px;
-    }
-}
-
-/* 미디어 쿼리: 480px 이하 */
-@media (max-width: 480px) {
-    .log th {
-        font-size: 16px;
-    }
-
-    .input, .btn {
-        font-size: 14px;
-        height: 35px;
-    }
-}
 .btn:hover {
 	color: white;
 	background-color: #45392a;
@@ -138,28 +99,32 @@ body {
 }
 
 
-/* 작은 화면에서 테이블을 세로로 배치 */
+/* 반응형 미디어 쿼리 */
 @media (max-width: 768px) {
     .reserveInfo {
-        width: 100%;
+        width: 90%; /* 작은 화면에서 너비를 90%로 */
     }
 
     .reserveInfo tr {
-        display: block;
-        margin-bottom: 10px;  /* 행 간의 간격 추가 */
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 나열 */
+        align-items: center; /* 가운데 정렬 */
     }
 
-    .reserveInfo td {
-        display: block;
-        width: 100%;
-        text-align: center; /* 텍스트 중앙 정렬 */
+    .reserveInfo tr td {
+        width: 100%; /* 각 셀의 너비를 100%로 */
+        text-align: center; /* 텍스트 가운데 정렬 */
     }
 
-    .reserveInfo td img {
-        width: 100%;  /* 이미지를 화면 너비에 맞춤 */
-        height: auto; /* 비율에 맞춰 높이 조절 */
+    #reserveTitle {
+        font-size: 6vw; /* 작은 화면에서 글자 크기 조정 */
+    }
+
+    .btn, .small-btn {
+        width: 100%; /* 버튼 너비를 100%로 */
     }
 }
+
 /* 더 작은 화면에서 */
 @media (max-width: 480px) {
     .reserveInfo {
@@ -376,13 +341,6 @@ body {
     /* z-index: 1; 다른 요소 위에 표시 */
     left: 50%;
     
-}
-.pagination {
-    position: fixed; /* 고정 위치 설정 */
-    bottom: 20px; /* 아래에서 20px 여백 */
-    left: 50%; /* 화면의 중앙으로 이동 */
-    transform: translateX(-50%); /* 중앙 정렬 조정 */
-
 }
 #paging, #currentPaging {
     display: inline-block; /* 블록 형태로 나열 */

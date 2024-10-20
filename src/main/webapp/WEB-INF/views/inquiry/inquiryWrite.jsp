@@ -66,5 +66,6 @@
    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
    <script src="/SpringHotel/resources/js/bootstrap.js"></script>
    <script src="/SpringHotel/resources/js/admin.js"></script>
+   <script src="/SpringHotel/resources/js/header.js"></script>
 </body>
 </html>

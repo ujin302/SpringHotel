@@ -20,6 +20,7 @@ import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
 import room.dao.ReserveDAO;
 import room.dao.RoomDAO;
+import user.bean.UserDTO;
 
 @Service
 public class ReserveServiceImpl implements ReserveService {
@@ -96,6 +97,11 @@ public class ReserveServiceImpl implements ReserveService {
 		return reserveDTO;
 	}
 	
+	@Override
+	public void updateUserGrade(String userSeq) {
+		reserveDAO.updateUserGrade(userSeq);
+	}
+	
 	// 숙박일 계산
 	private int getDays(String checkin, String checkout) {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -104,6 +110,11 @@ public class ReserveServiceImpl implements ReserveService {
 		LocalDate checkoutDate = LocalDate.parse(checkout, format);
 		
 		return (int) DAYS.between(checkinDate, checkoutDate);
+	}
+
+	@Override
+	public UserDTO getUserInfo(String userSeq) {
+		return reserveDAO.getUserInfo(userSeq);
 	}
 	
 }

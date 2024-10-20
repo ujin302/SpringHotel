@@ -21,7 +21,7 @@ $(function(){
     	$('#header-7').addClass('active');
     }else if(viewName == 'checkReserve') {
     	$('#header-8').addClass('active');
-    }else if(viewName == 'inquiryList') {
-    	$('#header-9').addClass('active');
+    }else if(viewName == 'inquiryList' || $('#detailcomment').data('view')) {
+    	$('#header-5').addClass('active');
     }
 });

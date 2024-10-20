@@ -42,7 +42,7 @@
 <body>
 	<%@ include file="../common/header.jsp" %>
 	<div id="reserveTitle"><font size="20">Q&A</font></div>
-    <div id="detailcomment">
+    <div id="detailcomment" data-view="inquiryList">
         Spring Hotel은 언제나 고객님의 목소리에 귀기울이고 있습니다.<br />
         고객님들의 소중한 충고와 격려, 또는 제안의 말씀을 주시면 더 나은 서비스로 보답하겠습니다.
     </div>
@@ -70,7 +70,7 @@
             <tr align="center">
                 <td colspan="4">
                    	<input type="hidden" name="questionsId" value="${questionsDTO.questionsId}">
-                    <input type="button" class="btn" value="목록" onclick="location.href='admin/inquiryList2'" />
+                    <input type="button" class="btn" value="목록" onclick="location.href='/SpringHotel/admin/inquiryList2'" />
  					<!-- 현재 로그인한 사용자가 작성자인지 확인하여 수정, 삭제 버튼 표시 -->
                     <c:if test="${sessionScope.userSeq == seq}">
                         <input type="button" class="btn" id="Updatebtn" value="수정" onclick="location.href='/SpringHotel/admin/inquiryUpdate?questionsId=${questionsDTO.questionsId}&typename=${typename}&content=${questionsDTO.content}'" />
@@ -90,6 +90,7 @@
 	    </div>
 	</c:forEach>
 
+   <jsp:include page="../common/footer.jsp" />
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="/SpringHotel/resources/js/bootstrap.js"></script>
 <script src="/SpringHotel/resources/js/header.js"></script>
