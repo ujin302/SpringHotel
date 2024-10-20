@@ -58,6 +58,7 @@
 
 	<resultMap id="getReserveListMap" type="room.bean.ReserveDTO">
         <id property="reserveId" column="reserveId" />
+        <result property="roomId" column="roomid" />
         <result property="checkin" column="checkin" />
         <result property="checkout" column="checkout" />
         <result property="price" column="price" />
@@ -68,7 +69,7 @@
     </resultMap>
     
 	<select id="getReserveList" resultMap="getReserveListMap">
-		select re.reserveId, re.checkin, re.checkout, re.price, re.`time`, UPPER(rm.`type`) as type
+		select re.reserveId, re.roomid, re.checkin, re.checkout, re.price, re.`time`, UPPER(rm.`type`) as type
 		from reserve re
 		left join room rm on rm.roomid = re.roomid 
 		where re.userid = #{userSeq}
@@ -76,6 +77,7 @@
 	
 	<resultMap id="getReserveDetaliMap" type="room.bean.ReserveDTO">
         <id property="reserveId" column="reserveId" />
+        <result property="roomId" column="roomid" />
         <result property="adults" column="adults" />
         <result property="kids" column="kids" />
         <result property="price" column="price" />
@@ -94,10 +96,57 @@
     </resultMap>
     
 	<select id="getReserveDetali" resultMap="getReserveDetaliMap">
-		select re.reserveid, re.adults, re.kids, re.price, re.checkin, re.checkout, re.`time`, UPPER(rm.`type`) as type, rm.`view`, rm.bedtype, rm.price as rprice, ri.imageFileName 
+		select re.reserveid, re.roomid, re.adults, re.kids, re.price, re.checkin, re.checkout, re.`time`, UPPER(rm.`type`) as type, rm.`view`, rm.bedtype, rm.price as rprice, ri.imageFileName 
 		from reserve re
 		left join room rm on rm.roomid = re.roomid 
 		left join roomimg ri on rm.roomid = ri.roomid 
 		where re.reserveid = #{reserveId}
+	</select>
+	
+	<update id="updateUserGrade" parameterType="String">
+        <![CDATA[
+        	UPDATE `user`
+			SET grade = CASE
+			    WHEN (
+			        SELECT sum(DATEDIFF(r.checkout, r.checkin)) as alldays
+			        FROM reserve r
+			        WHERE r.userid = #{userSeq}
+			    ) >= 50 
+			    AND (
+			        SELECT sum(r.price) as allprice
+			        FROM reserve r
+			        WHERE r.userid = #{userSeq}
+			    ) >= 2000000
+			    THEN 'VIP'
+			    WHEN (
+			        SELECT sum(DATEDIFF(r.checkout, r.checkin)) as alldays
+			        FROM reserve r
+			        WHERE r.userid = #{userSeq}
+			    ) >= 25
+			    AND (
+			        SELECT sum(r.price) as allprice
+			        FROM reserve r
+			        WHERE r.userid = #{userSeq}
+			    ) >= 1000000
+			    THEN 'GOLD'
+			    WHEN (
+			        SELECT sum(DATEDIFF(r.checkout, r.checkin)) as alldays
+			        FROM reserve r
+			        WHERE r.userid = #{userSeq}
+			    ) >= 5
+			    AND (
+			        SELECT sum(r.price) as allprice
+			        FROM reserve r
+			        WHERE r.userid = #{userSeq}
+			    ) >= 500000
+			    THEN 'SILVER'
+			    ELSE '일반'
+			END
+			WHERE seq = #{userSeq};
+        ]]>
+   </update>
+   
+   <select id="getUserInfo">
+		select * from user where seq = #{userSeq}
 	</select>
 </mapper>	

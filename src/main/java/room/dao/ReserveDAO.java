@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
+import user.bean.UserDTO;
 
 @Mapper
 public interface ReserveDAO {
@@ -18,4 +19,8 @@ public interface ReserveDAO {
 	public ArrayList<ReserveDTO> getReserveList(String userSeq);
 
 	public ReserveDTO getReserveDetali(String reserveId);
+
+	public void updateUserGrade(String userSeq);
+
+	public UserDTO getUserInfo(String userSeq);
 }

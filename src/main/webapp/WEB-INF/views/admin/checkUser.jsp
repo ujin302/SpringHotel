@@ -14,10 +14,6 @@
 
 <body>
 	<%@ include file="../common/header.jsp" %>
-<<<<<<< HEAD
-=======
-	
->>>>>>> 62a11942049c0cf24f7d6db31a08f5238640c70a
 	<div id="reserveTitle">
 		<font size="20">회원 조회</font>
 	</div>

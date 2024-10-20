@@ -189,4 +189,11 @@ $(function() {
     
     // 6. 예약하기
     $('#reserveBtn').click(reserveSubmit);
+    
+    // 7. 등급 색상
+    var grade = $('#grade').text().split(' ')[0];
+    
+    if(grade == 'VIP') $('#grade').css('color', '#0d3591');
+    else if(grade == 'GOLD') $('#grade').css('color', '#b8860b');
+    else if(grade == 'SILVER') $('#grade').css('color', '#807e79');
 })

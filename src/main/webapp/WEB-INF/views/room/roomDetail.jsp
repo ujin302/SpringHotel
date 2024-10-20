@@ -59,7 +59,9 @@
          <!-- 리뷰 관련 버튼 -->
         <div class="room-actions text-center mt-4">
             <button type="button" class="btn btn-outline-secondary mr-2" data-room-id="${roomId}" id="reviewListBtn">리뷰 목록 보기</button>
-            <button type="button" class="btn btn-outline-primary" data-room-id="${roomId}" id="reviewWriteBtn">리뷰 작성하기</button>
+            <c:if test="${reserveCount > 0}">
+            	<button type="button" class="btn btn-outline-primary" data-room-id="${roomId}" id="reviewWriteBtn">리뷰 작성하기</button>
+            </c:if>
         </div>
         
         <div id="contentContainer" class="mt-5">

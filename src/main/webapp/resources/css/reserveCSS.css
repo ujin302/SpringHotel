@@ -15,37 +15,6 @@ html,body{
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-/*모든 폴더의 header에 적용*/
-.header{
-	height:8%;
-	text-align:center; 
-	font-size: 22px;
-}
-.header tr th{
-	width:13%;
-}
-
-/*날짜/객실/옵션 선택 안내 table */
-.reservelist{
-	margin:1% auto;
-	width:50%;
-	height:8%;
-	text-align:center;
-	border: 1px solid #e3e3e3;
-	background-color:  #e3e3e3;
-	font-size:larger;
-}
-
-/*예약 날짜,인원 선택 table*/
-.reserve1{
-	border-top:2px solid #876f55;
-	box-shadow: 0 3px 6px -6px #666;
-	height:20%;
-	margin-top:5%;
-	margin-bottom:5%;
-	padding:30px;
-}
-
 /*예약 날짜,인원 선택 table 내의 input 태그 */
 input{
     height:20px;
@@ -56,39 +25,6 @@ input{
     font-weight:bold;
 }
 
-#line{
-    border-bottom:1px solid #e3e3e3;
-    padding:20px;
-}
-
-#btn2{
-	margin-top:30px;
-	margin-bottom:30px;
-	background-color: #876f55;
-    width:110px;
-    height:45px;
-    border: none;
-    font-size:medium;
-    color:#f1ebd5;
-}
-
-/* 메뉴1 */
-#reservation {
-	width: 99%;
-	margin: 0 auto;
-}
-#reservation #menu1 {
-	margin: 5% 0;
-	font-size: 2.7rem;
-}
-
-#reservation #menu1 .nav-tabs {
-	padding-left: 5%;
-}
-
-#reservation #menu1 .nav-tabs .nav-link {
-	color: #382f24;
-}
 /* 메뉴2 */
 #menu2 #roomType, .roomInfo {
 	padding: 0 15px;
@@ -135,37 +71,71 @@ input{
 	margin-top: 2%;
 }
 
-.reserveBtn {
-	background-color: 
-}
-
-/* 반응형 디자인 */
-/* @media (max-width: 1024px) {
-    .slider-item {
-        min-width: 33.33%; 태블릿: 카드 3개
-    }
-    .card-img-top {
-        height: 220px; 태블릿에서 이미지 높이 조정
+/* 화면 너비가 1024px 이하일 때 (태블릿) */
+@media (max-width: 1024px) {
+    #menu2 .reserve {
+        width: 100%;
     }
 }
 
+/* 화면 너비가 768px 이하일 때 (작은 태블릿) */
 @media (max-width: 768px) {
-    .slider-item {
-        min-width: 50%; 작은 태블릿: 카드 2개
+    #menu2 {
+        padding: 10px;
     }
-    .card-img-top {
-        height: 200px;
+
+    #menu2 .reserve {
+        width: 100%;
+    }
+    #menu2 .table thead tr td {
+        padding: 5px;
+    }
+	#menu2 .table tbody tr td {
+        padding: 5px;
+    }
+    #menu2 .table tbody tr td #checkin, #menu2 .table tbody tr td #checkout {
+    	width: 60%;
+    }
+    #menu2 #calVal input {
+        width: 100%;
+    }
+
+    #menu2 .btn {
+        font-size: 0.9rem;
+        height: 30px;
     }
 }
 
+/* 화면 너비가 480px 이하일 때 (모바일) */
 @media (max-width: 480px) {
-    .slider-item {
-        min-width: 100%; 모바일: 카드 1개
+    #menu2 .table thead tr td {
+        padding: 5px;
     }
-    .card-img-top {
-        height: 180px;
+
+    #menu2 #calVal input {
+        width: 100%;
     }
-    h3 {
-        font-size: 1.6em;
+
+    #menu2 .btn {
+        height: 30px;
     }
-} */
+
+    /* 테이블을 세로로 나열 */
+    #menu2 .table tbody, #menu2 .table tfoot {
+        display: block;
+        width: 100%;
+    }
+
+    #menu2 .table tbody tr, #menu2 .table tfoot tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    #menu2 .table tbody tr td, #menu2 .table tfoot tr td {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+}

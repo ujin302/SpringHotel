@@ -12,8 +12,7 @@ public interface RoomService {
 	public RoomDTO getRoomById(int roomId);
 
 	public List<RoomImgDTO> getRoomImagesByRoomId(int roomId);
-	
-	
-	
+
+	public int isWrite(String userSeq, int roomId);
 	
 }

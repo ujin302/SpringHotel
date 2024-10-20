@@ -27,18 +27,18 @@
     		</c:if>
     		<!-- 사용자 로그인-->
     		<c:if test="${sessionScope.userName != null}">
-    			<li id="header-1"><a href="/SpringHotel/">HOME</a></li>
-	          	<li id="header-2"><a href="/SpringHotel/room/roomView">객실 정보</a></li>
-	            <li id="header-3"><a href="/SpringHotel/reserve/main">예약</a></li>
-	            <li id="header-4"><a href="/SpringHotel/reserve/list">예약내역</a></li>
-	            <li id="header-5"><a href="/SpringHotel/admin/inquiryList2">Q&A</a></li>
+    			<li id="header-1"><a href="${pageContext.request.contextPath}/">HOME</a></li>
+	          	<li id="header-2"><a href="${pageContext.request.contextPath}/room/roomView">객실 정보</a></li>
+	            <li id="header-3"><a href="${pageContext.request.contextPath}/reserve/main">예약</a></li>
+	            <li id="header-4"><a href="${pageContext.request.contextPath}/reserve/list">예약내역</a></li>
+	            <li id="header-5"><a href="${pageContext.request.contextPath}/admin/inquiryList2">Q&A</a></li>
     		</c:if>
     		<!-- 로그인 전 -->
     		<c:if test="${sessionScope.userName == null && sessionScope.adminId == null}">
-    			<li id="header-1"><a href="/SpringHotel/">HOME</a></li>
-	          	<li id="header-2"><a href="/SpringHotel/room/roomView">객실 정보</a></li>
-	            <li id="header-3"><a href="/SpringHotel/reserve/main">예약</a></li>
-	            <li id="header-5"><a href="/SpringHotel/admin/inquiryList2">Q&A</a></li>
+    			<li id="header-1"><a href="${pageContext.request.contextPath}/">HOME</a></li>
+	          	<li id="header-2"><a href="${pageContext.request.contextPath}/room/roomView">객실 정보</a></li>
+	            <li id="header-3"><a href="${pageContext.request.contextPath}/reserve/main">예약</a></li>
+	            <li id="header-5"><a href="${pageContext.request.contextPath}/admin/inquiryList2">Q&A</a></li>
     		</c:if>
         </ul>
         <ul class="nav navbar-nav navbar-right">

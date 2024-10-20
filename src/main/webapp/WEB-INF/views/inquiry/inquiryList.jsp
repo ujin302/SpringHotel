@@ -7,11 +7,13 @@
 	<title>Spring Hotel Q&A</title>
 	<meta name="viewport" content="width=device-width", initial-scale="1">
 	<link rel="stylesheet" href="/SpringHotel/resources/css/inquiryCSS.css">
-	<link rel="stylesheet" href="/SpringHotel/resources/css/adminCSS.css">
+	<link rel="stylesheet" href="/SpringHotel/resources/css/userinquiryList.css">
 	<link rel="stylesheet" href="/SpringHotel/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="/SpringHotel/resources/css/header.css">
 </head>
+<style>
 
+</style>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	
@@ -55,7 +57,6 @@
 				<button class="btn small-btn" style="margin-bottom: 20px;">글쓰기</button>
 			</a>
 		</div>
-		
 		<div class="pagination" style="align-items: center;">
 			${map2.adminPaging.pagingHTML}
 		</div>
