@@ -81,6 +81,3 @@ public class UserServiceImpl implements UserService {
 	}
 	
 }
-
-VIP
-	결제 금액: 200000
