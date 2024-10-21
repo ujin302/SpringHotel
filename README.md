@@ -24,26 +24,6 @@
 
 ![기술 스택](https://github.com/user-attachments/assets/aaccf862-f8e9-4a66-bedd-b1bdfb3e0a12)
 
-### 1. **Front-End**
-
-- **JSP**: 동적 웹 페이지 생성을 통해 실시간 데이터를 처리하고 사용자에게 최신 정보 제공
-- **CSS & Bootstrap**: 반응형 웹 디자인으로 다양한 기기에서 일관된 사용자 경험 제공
-- **JavaScript (AJAX)**: 비동기 요청으로 실시간 상태 업데이트 및 동적 UI 구현
-- **jQuery**: DOM 조작 및 이벤트 핸들링을 간편하게 수행
-
-### 2. **Back-End**
-
-- **Spring Framework**: RESTful API로 클라이언트-서버 간 데이터 통신 처리
-- **Spring Security**: 이메일 인증을 포함한 사용자 인증 및 권한 관리
-- **MySQL**: 관계형 데이터베이스로 예약, 회원, 리뷰 및 QnA 데이터 관리
-
-### 3. **DevOps 및 기타**
-
-- **Naver Cloud Platform**: 클라우드 배포를 통해 서버 확장성 및 안정성 제공
-- **Jenkins**: CI/CD 파이프라인으로 자동화된 빌드, 테스트 및 배포 처리
-- **Maven**: 의존성 관리 및 빌드 자동화
-- **GitHub**: 코드 버전 관리 및 팀 협업 지원
-
 ---
 
 ## 🛠 주요 기능
