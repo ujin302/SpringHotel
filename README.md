@@ -92,5 +92,5 @@
 
 - [프로젝트 Notion 페이지](https://fresh-second-b8f.notion.site/241017_Spring-Hotel-11e42d6fe7d7801b9127dfdf9a6cc0c6)
 - [GitHub 저장소](https://github.com/ujin302/SpringHotel)
-
+- [Spring Hotel PDF] ([Uploading Spring Hotel.pdf…]())
 ---
