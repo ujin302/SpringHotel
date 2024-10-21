@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c8b10cd3-dbba-4276-aeb0-657a53a0a763)![image](https://github.com/user-attachments/assets/64aebca6-c0cb-4328-955b-12063ac4013f)![image](https://github.com/user-attachments/assets/e36b6525-d391-442c-b0a0-f23fe1201e94)![image](https://github.com/user-attachments/assets/231ba188-4709-4698-9fed-b59452485d68)![image](https://github.com/user-attachments/assets/6bd4508b-15ed-438a-a109-139b48f2f4eb)
+![image](https://github.com/user-attachments/assets/e91e03a4-e3b6-4089-8ec6-d513dbfbaa51)![image](https://github.com/user-attachments/assets/9ed1a62e-ca47-4629-b6df-45e821fdd986)![image](https://github.com/user-attachments/assets/c8b10cd3-dbba-4276-aeb0-657a53a0a763)![image](https://github.com/user-attachments/assets/64aebca6-c0cb-4328-955b-12063ac4013f)![image](https://github.com/user-attachments/assets/e36b6525-d391-442c-b0a0-f23fe1201e94)![image](https://github.com/user-attachments/assets/231ba188-4709-4698-9fed-b59452485d68)![image](https://github.com/user-attachments/assets/6bd4508b-15ed-438a-a109-139b48f2f4eb)
 ### 🏨 SpringHotel - README.md
 
 ---
@@ -86,12 +86,16 @@
 
 ![image](https://github.com/user-attachments/assets/4acb5b71-4235-4e50-a7a1-6bcaeb304d33)
 
+![image](https://github.com/user-attachments/assets/e07ca076-581d-4384-ba4c-aed62af66c74)
+
 ---
 
 ### 4. **회원가입 및 이메일 인증**
 - 회원가입 시, 고객이 이메일 인증을 완료해야 계정이 활성화됨
 
 ![image](https://github.com/user-attachments/assets/a80d9803-ffec-4526-8809-f0177acd2ed9)
+
+![image](https://github.com/user-attachments/assets/ed6598b9-d7de-43c8-a9f5-aee6a462d2c2)
 
 ---
 
