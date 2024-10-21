@@ -18,11 +18,14 @@
   - **CI/CD 담당**: Jenkins 기반 자동화 배포 관리
 - **목표**: 고객에게 원활한 호텔 예약 경험을 제공하고, 관리자가 효율적으로 운영을 관리할 수 있는 시스템을 구축하는 것을 목표로 했습니다.
 
+![멤버](https://github.com/user-attachments/assets/04399d60-099e-4b08-a353-03bee3ecb36e)
+
 ---
 
 ## 📂 프로젝트 구조
 
 ### 1. **Front-End**
+![기술 스택](https://github.com/user-attachments/assets/aaccf862-f8e9-4a66-bedd-b1bdfb3e0a12)
 
 - **JSP**: 동적 웹 페이지 생성을 통해 실시간 데이터를 처리하고 사용자에게 최신 정보 제공
 - **CSS & Bootstrap**: 반응형 웹 디자인으로 다양한 기기에서 일관된 사용자 경험 제공
