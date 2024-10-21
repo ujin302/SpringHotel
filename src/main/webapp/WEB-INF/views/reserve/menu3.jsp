@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/SpringHotel/resources/css/custom.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="/SpringHotel/resources/css/reserveCSS.css">
+<link rel="stylesheet" href="/SpringHotel/resources/css/reserveMenu.css">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico" type="image/x-icon">
 <title>Spring Hotel</title>
 <style type="text/css">

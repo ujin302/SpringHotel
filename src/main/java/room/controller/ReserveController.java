@@ -22,6 +22,7 @@ import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
 import room.service.ReserveService;
 import room.service.RoomService;
+import user.bean.UserDTO;
 
 @Controller
 @RequestMapping("/reserve")
@@ -85,6 +86,9 @@ public class ReserveController {
 		// 예약 정보 저장
 		reserveService.submitReserve(getSubmitMap);
 		
+		// 회원 등급 업데이트
+		reserveService.updateUserGrade(session.getAttribute("userSeq").toString());
+		
 		return null;
 	}
 	
@@ -93,13 +97,17 @@ public class ReserveController {
 	public String list(HttpSession session, Model model) {
 		System.out.println("/list");
 		
-		ArrayList<ReserveDTO> reserveDTOList = reserveService.getReserveList(session.getAttribute("userSeq").toString());
+		String userSeq = session.getAttribute("userSeq").toString();
+		ArrayList<ReserveDTO> reserveDTOList = reserveService.getReserveList(userSeq);
+		UserDTO userDTO = reserveService.getUserInfo(userSeq);
 		
+		model.addAttribute("userDTO", userDTO);
 		model.addAttribute("reserveDTOList", reserveDTOList);
 		
 		return "reserve/list";
 	}
 	
+	// 예약 상세 정보
 	@RequestMapping(value = "/list/detail")
 	public String list(@RequestParam String reserveId, Model model) {
 		System.out.println("/list/detail");

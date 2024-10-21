@@ -27,7 +27,7 @@ public class ReviewController {
         return ResponseEntity.ok(reviews);  // 리뷰 목록을 JSON으로 반환
     }
 
- // 리뷰 작성
+    // 리뷰 작성
     @RequestMapping(value = "/insertReview", method = RequestMethod.POST)
     public ResponseEntity<String> insertOrUpdateReview(@ModelAttribute ReviewDTO reviewDTO, HttpSession session) {
         // 세션에서 userSeq와 userName 가져오기

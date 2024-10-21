@@ -24,17 +24,17 @@
 #detailTitle h2 {
 	margin: auto;
 }
-#listBtn {
-	margin: 5% 0;
+#listBtn, #reviewBtn {
+	margin: 5% 0.5%;
 	padding: 0 15px;
 	float: right;
 }
-#listBtn {
+#listBtn, #reviewBtn {
 	background-color: #ded3c5;
 	color: #382f24;
 	height: 35px;
 }
-#listBtn:hover {
+#listBtn:hover, #reviewBtn:hover {
 	background-color: #382f24;
 	color: white;
 }
@@ -93,6 +93,7 @@
           	</div>
 			<div class="roomInfo">
 				<button type="button" class="btn btn-primary" id="listBtn" onclick="location.href='/SpringHotel/reserve/list'">예약 내역</button>
+				<button type="button" class="btn btn-primary" id="reviewBtn" onclick="location.href='/SpringHotel/room/detail/${reserveDTO.roomId}'">리뷰 작성</button>
 			</div>
 		</div>
 	</div>

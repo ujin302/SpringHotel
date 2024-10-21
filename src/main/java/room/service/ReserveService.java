@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 
 import room.bean.ReserveDTO;
 import room.bean.RoomDTO;
+import user.bean.UserDTO;
 
 public interface ReserveService {
 
@@ -20,5 +21,9 @@ public interface ReserveService {
 	public ArrayList<ReserveDTO> getReserveList(String string);
 
 	public ReserveDTO getReserveDetali(String reserveId);
+
+	public void updateUserGrade(String userSeq);
+
+	public UserDTO getUserInfo(String userSeq);
 
 }

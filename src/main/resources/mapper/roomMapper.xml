@@ -44,4 +44,10 @@
         WHERE roomId = #{roomId}
     </select>
 
+	<select id="isWrite" parameterType="map">
+		select count(*) 
+		from room rm
+		left join reserve re on re.roomid = rm.roomid 
+		where re.userid = #{userSeq} and rm.roomid = #{roomId};
+	</select>
 </mapper>

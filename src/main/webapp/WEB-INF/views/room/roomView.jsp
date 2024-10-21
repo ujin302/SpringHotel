@@ -42,7 +42,8 @@
                                         onclick="location.href='${pageContext.request.contextPath}/room/detail/${room.roomId}'">
                                         상세 보기
                                     </button>
-                                    <button class="btn btn-primary">예약</button>
+                                    <button class="btn btn-primary" 
+                                    onclick="location.href='${pageContext.request.contextPath}/reserve/main'">예약</button>
                                 </div>
                             </div>
                         </div>
