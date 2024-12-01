@@ -14,91 +14,47 @@ SpringHotel은 Spring Framework를 기반으로 개발된 호텔 예약 관리 �
 ---
 
 ## 📌 프로젝트 개요  
-SpringHotel은 사용자 친화적인 UI와 효율적인 데이터 처리를 통해 호텔 예약 및 관리를 돕는 웹 애플리케이션입니다.  
-**주요 기능**:  
-- 호텔 객실 예약 관리  
-- 사용자 정보 관리  
-- 예약 내역 확인  
+
+**SpringHotel**은 **Spring Framework**와 **MySQL**을 기반으로 한 호텔 예약 및 관리 시스템입니다. 
+
+고객에게는 간편한 호텔 객실 예약을, 관리자는 예약 및 고객 정보를 효율적으로 관리할 수 있는 시스템을 제공합니다. 
+주요 기능으로는 **소셜 로그인, 실시간 예약 시스템**, **객실 상세 정보 모달**, **리뷰 작성**, **QnA 기능**, 그리고 **회원가입 시 이메일 인증** 등이 포함되어 있습니다.
+
+
+- **프로젝트 기간**: 2024.10.11 - 2024.10.21
+- **팀 구성**: 3명
 
 ---
 
 ## 🛠 기술 스택  
 
+![기술_스택](https://github.com/user-attachments/assets/204e5907-1556-4454-9889-8b174eeb0c06)
+
 ### 💻 백엔드  
-- **Java**: Spring Framework (Spring Boot 미사용)  
-- **MyBatis**: 데이터 매퍼 프레임워크  
-- **JSP**: 서버 사이드 렌더링  
-- **Maven**: 의존성 관리 및 빌드 도구  
+- **Java**: Spring Framework
+- **MyBatis**
+- **JSP**
+- **Maven**
 
 ### 🌐 프론트엔드  
 - **HTML, CSS, JavaScript**  
-- **AJAX**: 비동기 데이터 통신  
-- **Bootstrap**: 반응형 디자인  
+- **AJAX**
+- **Bootstrap**
 
 ### 📦 데이터베이스 및 배포  
 - **DBMS**: MySQL  
-- **SQL 툴**: DBeaver  
 - **Cloud**: Naver Cloud Platform  
   - **Database**: MySQL (springhotel)  
   - **Object Storage**: 파일 및 이미지 저장 (springhotel)  
-- **배포**: Jenkins를 사용한 수동 배포  
-
-### 📂 버전 관리  
-- **GitHub**: [SpringHotel Repository](https://github.com/ujin302/SpringHotel)  
-
----
-
-## 🚀 설치 및 실행 방법  
-1. **Repository 클론**  
-   ```bash
-   git clone https://github.com/ujin302/SpringHotel.git
-   cd SpringHotel
-
-
-
-### 🏨 SpringHotel - README.md
-
----
-
-**SpringHotel**은 **Spring Framework**와 **MySQL**을 기반으로 한 호텔 예약 및 관리 시스템입니다. 
-
-고객에게는 간편한 호텔 객실 예약을, 관리자는 예약 및 고객 정보를 효율적으로 관리할 수 있는 시스템을 제공합니다. 주요 기능으로는 **소셜 로그인, 실시간 예약 시스템**, **객실 상세 정보 모달**, **리뷰 작성**, **QnA 기능**, 그리고 **회원가입 시 이메일 인증** 등이 포함되어 있습니다.
-
----
-
-## 📂 기술 스택
-![기술_스택](https://github.com/user-attachments/assets/204e5907-1556-4454-9889-8b174eeb0c06)
-
-## 🛠 개발 환경
-- **프로그래밍 언어**: HTML, CSS, JavaScript
-- **IDE**: Eclipse (jdk-17)
-- **DBMS**: MySQL Database
-- **SQL 툴**: DBeaver
-- **버전 관리**: GitHub
-- **Naver Cloud DB**: springhotel
-- **Naver Cloud Object Storage**: springhotel
 - **배포**: Jenkins
+
+### 🔧 개발 도구
+- **IDE**: Eclipse (JDK 17)
+- **SQL 툴**: DBeaver
+
 
 ## 📰 Database
 ![image](https://github.com/user-attachments/assets/fa3b7275-86d7-48b4-9c19-7511b11b988f)
-
----
-
-## 📋 프로젝트 개요
-
-- **프로젝트 기간**: 2024.10.11 - 2024.10.21
-- **팀 구성**: 3명
-
-![멤버](https://github.com/user-attachments/assets/04399d60-099e-4b08-a353-03bee3ecb36e)
-
-## **역할**
-
-|            | 주요 작업                                                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------  |
-|   이유진   | 전체 DB 설계, 로그인(네이버 로그인) 및 회원가입, 객실 예약 프로세스, 사용자별 예약 목록 출력, 회원 등급 반영, 예약 객실 리뷰 작성  |
-|   전수민   | 이메일 인증, 관리자 로그인, 회원 조회, 객실 정보 수정, 모든 회원 예약 내역 조회, Q&A 작성 & 수정 & 삭제, Q&A 관리자 답변          |
-|   김성찬   | 객실 목록, 객실 상세 회원, 리뷰 작성 & 수정 & 삭제 & 목록                                                                     |
-
 
 ---
 
@@ -189,9 +145,15 @@ SpringHotel은 사용자 친화적인 UI와 효율적인 데이터 처리를 통
 
 ---
 
-## 결론 및 성과
+![멤버](https://github.com/user-attachments/assets/04399d60-099e-4b08-a353-03bee3ecb36e)
 
-**SpringHotel** 프로젝트는 효율적인 예약 및 관리 시스템을 구현하여 사용자가 원활하게 호텔 예약을 진행할 수 있도록 했습니다. **CI/CD** 파이프라인을 통해 지속적인 통합 및 자동 배포 환경을 구축했으며, 이메일 인증을 통한 보안 기능 강화로 신뢰성 높은 시스템을 제공했습니다.
+## **역할**
+
+|            | 주요 작업                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------  |
+|   이유진   | 전체 DB 설계, 로그인(네이버 로그인) 및 회원가입, 객실 예약 프로세스, 사용자별 예약 목록 출력, 회원 등급 반영, 예약 객실 리뷰 작성  |
+|   전수민   | 이메일 인증, 관리자 로그인, 회원 조회, 객실 정보 수정, 모든 회원 예약 내역 조회, Q&A 작성 & 수정 & 삭제, Q&A 관리자 답변          |
+|   김성찬   | 객실 목록, 객실 상세 회원, 리뷰 작성 & 수정 & 삭제 & 목록                                                                     |
 
 ---
 
