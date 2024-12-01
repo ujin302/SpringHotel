@@ -15,19 +15,28 @@
 
 ![멤버](https://github.com/user-attachments/assets/04399d60-099e-4b08-a353-03bee3ecb36e)
 
+## **역할**
+
+|            | 주요 작업                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------  |
+|   이유진   | 전체 DB 설계, 로그인(네이버 로그인) 및 회원가입, 객실 예약 프로세스, 사용자별 예약 목록 출력, 회원 등급 반영, 예약 객실 리뷰 작성  |
+|   전수민   | 이메일 인증, 관리자 로그인, 회원 조회, 객실 정보 수정, 모든 회원 예약 내역 조회, Q&A 작성 & 수정 & 삭제, Q&A 관리자 답변          |
+|   김성찬   | 객실 목록, 객실 상세 회원, 리뷰 작성 & 수정 & 삭제 & 목록                                                                     |
+
 ---
 
 ## 📂 기술 스택
 ![기술_스택](https://github.com/user-attachments/assets/204e5907-1556-4454-9889-8b174eeb0c06)
 
 ## 🛠 개발 환경
-프로그래밍 언어: HTML, CSS, JavaScript
-IDE: Eclipse (jdk-17)
-DBMS: MySQL Database
-SQL 툴: DBeaver
-버전 관리: GitHub
-Naver Cloud DB: springhotel
-Naver Cloud Object Storage: springhotel
+- **프로그래밍 언어**: HTML, CSS, JavaScript
+- **IDE**: Eclipse (jdk-17)
+- **DBMS**: MySQL Database
+- **SQL 툴**: DBeaver
+- **버전 관리**: GitHub
+- **Naver Cloud DB**: springhotel
+- **Naver Cloud Object Storage**: springhotel
+- **배포**: Jenkins
 
 ## 📰 Database
 ![image](https://github.com/user-attachments/assets/fa3b7275-86d7-48b4-9c19-7511b11b988f)
