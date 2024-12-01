@@ -1,3 +1,61 @@
+# 🏨 SpringHotel  
+
+SpringHotel은 Spring Framework를 기반으로 개발된 호텔 예약 관리 시스템입니다.  
+이 프로젝트는 **Naver Cloud Platform**을 활용하여 데이터베이스 및 오브젝트 스토리지를 통합하였으며, **Jenkins**를 사용하여 수동 배포를 진행하였습니다.  
+
+---
+
+## 📑 목차  
+1. [프로젝트 개요](#프로젝트-개요)  
+2. [기술 스택](#기술-스택)  
+3. [설치 및 실행 방법](#설치-및-실행-방법)  
+4. [기여 방법](#기여-방법)  
+
+---
+
+## 📌 프로젝트 개요  
+SpringHotel은 사용자 친화적인 UI와 효율적인 데이터 처리를 통해 호텔 예약 및 관리를 돕는 웹 애플리케이션입니다.  
+**주요 기능**:  
+- 호텔 객실 예약 관리  
+- 사용자 정보 관리  
+- 예약 내역 확인  
+
+---
+
+## 🛠 기술 스택  
+
+### 💻 백엔드  
+- **Java**: Spring Framework (Spring Boot 미사용)  
+- **MyBatis**: 데이터 매퍼 프레임워크  
+- **JSP**: 서버 사이드 렌더링  
+- **Maven**: 의존성 관리 및 빌드 도구  
+
+### 🌐 프론트엔드  
+- **HTML, CSS, JavaScript**  
+- **AJAX**: 비동기 데이터 통신  
+- **Bootstrap**: 반응형 디자인  
+
+### 📦 데이터베이스 및 배포  
+- **DBMS**: MySQL  
+- **SQL 툴**: DBeaver  
+- **Cloud**: Naver Cloud Platform  
+  - **Database**: MySQL (springhotel)  
+  - **Object Storage**: 파일 및 이미지 저장 (springhotel)  
+- **배포**: Jenkins를 사용한 수동 배포  
+
+### 📂 버전 관리  
+- **GitHub**: [SpringHotel Repository](https://github.com/ujin302/SpringHotel)  
+
+---
+
+## 🚀 설치 및 실행 방법  
+1. **Repository 클론**  
+   ```bash
+   git clone https://github.com/ujin302/SpringHotel.git
+   cd SpringHotel
+
+
+
 ### 🏨 SpringHotel - README.md
 
 ---
